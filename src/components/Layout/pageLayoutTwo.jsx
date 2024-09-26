@@ -2,38 +2,44 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
-import zIndex from '@mui/material/styles/zIndex';
 
 function PageLayoutTwo({ children }) {
   return (
     <Container>
+     
       <Grid2 container justifyContent="center" sx={{ marginTop: 5 }}>
         <Grid2 item>
-          
+        
           <Paper
             sx={{
-              height: 730,
+              backgroundColor: '#d9ebfa',  
+              height: 787,
               width: 400,
-              backgroundColor:'#f0bebb',
-              // padding: 2,
+              padding: 0,  
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              borderBottomLeftRadius: 10,  
+              borderBottomRightRadius: 10, 
+              position: 'relative',
             }}
           >
-        
-            <Grid2 container justifyContent="center">
+            
+            <Grid2 container justifyContent="center" sx={{ position: 'relative', zIndex: 1 }}>
               <Grid2 item>
                 <Paper
                   sx={{
-                    backgroundColor:'white',
+                    backgroundColor: 'white',
                     height: 450,
                     width: 400,
                     padding: 2,
-                    marginTop: 43,
-                    marginRight:80,
-                    borderRadius:10,
-                    zIndex:1,
+                    borderTopLeftRadius: 20, 
+                    borderTopRightRadius: 20, 
+                    borderBottomLeftRadius: 10, 
+                    borderBottomRightRadius: 10, 
+                    marginTop: 42, 
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', 
                   }}
                 >
                   {children}
