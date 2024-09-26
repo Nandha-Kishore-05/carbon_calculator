@@ -2,19 +2,17 @@ import PageLayoutTwo from "../components/Layout/pageLayoutTwo";
 import PageOneLayout from "../components/Layout/PageOneLayout";
 import Sample from "../pages/sample/sample";
 import Url from "../pages/url/url";
-import FuelType from "../pages/Vehicle/FuelType";
-import KiloMeters from "../pages/Vehicle/Kilometers";
-import NoOfVehicle from "../pages/Vehicle/NoOfVehicle";
-import VehicleType from "../pages/Vehicle/VehicleType";
+import FuelType from "../pages/VehicleExpensive/FuelType";
+import KiloMeters from "../pages/VehicleExpensive/Kilometers";
+import NoOfVehicle from "../pages/VehicleExpensive/NoOfVehicle";
+import VehicleType from "../pages/VehicleExpensive/VehicleType";
+import PageLayoutThree from "../components/Layout/pageLayoutThree";
+import CarbonFootPrint from "../pages/CarbonFootprint/CarbonFootPrint";
+import Form from "../pages/Form/Form";
+import FoodType from "../pages/FoodExpensive/FoodType";
+import HomeAppliances from "../pages/ElectricityExpensive/HomeAppliances";
+import CurrentUnit from "../pages/ElectricityExpensive/CurrentUnit";
 const routes = [
-  {
-    path: "/sample",
-    element: (
-      <PageOneLayout>
-        <Url />
-      </PageOneLayout>
-    ),
-  },
 {
   path:"/",
   element: (
@@ -53,9 +51,56 @@ const routes = [
   path:'/kilometer',
   element : (
     <PageLayoutTwo>
-      <KiloMeters/>
+<KiloMeters/>
+      
     </PageLayoutTwo>
 
+  ),
+},
+{
+  path:'/food-type',
+  element : (
+    <PageLayoutTwo>
+<FoodType/>
+      
+    </PageLayoutTwo>
+
+  ),
+},
+{
+  path:'/home-appliance',
+  element : (
+    <PageLayoutTwo>
+<HomeAppliances/>
+      
+    </PageLayoutTwo>
+
+  ),
+},
+{
+  path:'/current-unit',
+  element : (
+    <PageLayoutTwo>
+<CurrentUnit/> 
+    </PageLayoutTwo>
+
+  ),
+},
+{
+  path:'/carbon-footprint',
+  element : (
+    <PageLayoutThree>
+      <CarbonFootPrint/>
+    </PageLayoutThree>
+
+  ),
+},
+{
+  path:"/form",
+  element: (
+    <PageOneLayout>
+      <Form />
+    </PageOneLayout>
   ),
 },
 

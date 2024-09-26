@@ -3,14 +3,14 @@ import React from 'react'
 import CustomButton from '../../components/button/button'
 import {useNavigate} from "react-router-dom"
 
-function KiloMeters() {
+function CurrentUnit() {
     const navigate = useNavigate();
   const handleClick =() =>{
-   navigate('/item2');
+   navigate('/carbon-footprint');
   }
   return (
     <Typography variant='h5'>
-      KiloMeters
+     Units...
       <CustomButton
                 onClick={handleClick}
                 width={150}
@@ -21,4 +21,4 @@ function KiloMeters() {
   )
 }
 
-export default KiloMeters
+export default CurrentUnit
