@@ -3,6 +3,7 @@ import PageOneLayout from "../components/Layout/PageOneLayout";
 import Sample from "../pages/sample/sample";
 import Url from "../pages/url/url";
 import VehicleType from "../pages/Vehicle/VehicleType";
+import FormSummition from "../pages/Form/form";
 
 const routes = [
   {
@@ -26,6 +27,15 @@ const routes = [
   element : (
     <PageOneLayout>
       <VehicleType />
+    </PageOneLayout>
+
+  )
+},
+{
+  path:'/form',
+  element : (
+    <PageOneLayout>
+      <FormSummition />
     </PageOneLayout>
 
   )
