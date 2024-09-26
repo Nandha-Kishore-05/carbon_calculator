@@ -1,8 +1,13 @@
 import React from 'react'
 import CustomButton from '../../components/button/button'
 import InputBox from '../../components/inputbox/inputbox'
-
+import {useNavigate} from "react-router-dom"
 function Sample() {
+
+  const navigate = useNavigate();
+  const handleClick =() =>{
+   navigate('/vehicle-type');
+  }
   return (
     <div>
         <center>
@@ -10,7 +15,7 @@ function Sample() {
       <h2 style={{marginTop:'3%'}}>Just add   <strong style={{fontSize:'30px'}}>/sample</strong> to your url and  check how router is working</h2><br />
       <h2>Button and Inputbox use like this </h2><br />
       <CustomButton
-                // onClick={handleOpenLeave}
+                onClick={handleClick}
                 width={150}
                 label="Apply Leave"
             
