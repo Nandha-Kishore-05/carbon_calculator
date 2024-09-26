@@ -1,23 +1,17 @@
 package main
 
 import (
-	"github.com/gin-contrib/cors"
+	"CARBON_CALCULATOR/config"
+	"CARBON_CALCULATOR/routes"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	config.ConnectDB()
+
 	router := gin.Default()
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5174"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-	}))
+	routes.RegisterRoutes(router)
 
-	// config.InitDB()
-
-	// routes.SetupRoutes(router)
-
-	router.Run(":8080")
+	router.Run(":8080") // Starts the server
 }
