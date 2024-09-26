@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 
-function PageLayoutTwo({ children }) {
+function PageLayoutThree({ children }) {
   return (
     <Container>
      
@@ -20,6 +20,8 @@ function PageLayoutTwo({ children }) {
               flexDirection: 'column',
               justifyContent: 'flex-start',
               alignItems: 'center',
+              borderBottomLeftRadius: 10,  
+              borderBottomRightRadius: 10, 
               position: 'relative',
             }}
           >
@@ -29,14 +31,11 @@ function PageLayoutTwo({ children }) {
                 <Paper
                   sx={{
                     backgroundColor: 'white',
-                    height: 450,
-                    width: 400,
+                    height: 590,
+                    width: 340,
                     padding: 2,
-                    borderTopLeftRadius: 20, 
-                    borderTopRightRadius: 20, 
-                    borderBottomLeftRadius: 10, 
-                    borderBottomRightRadius: 10, 
-                    marginTop: 42, 
+                    borderRadius:3,
+                    marginTop: 12, 
                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', 
                   }}
                 >
@@ -51,4 +50,4 @@ function PageLayoutTwo({ children }) {
   );
 }
 
-export default PageLayoutTwo;
+export default PageLayoutThree;

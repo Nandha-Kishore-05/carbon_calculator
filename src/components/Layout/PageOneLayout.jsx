@@ -12,7 +12,7 @@ function PageOneLayout({ children }) {
             <Grid2 item>
               <Paper
                 sx={{
-                  height: 730,
+                  height: 787,
                   width: 400,
                   marginTop: 5,
                   marginLeft: 50,
