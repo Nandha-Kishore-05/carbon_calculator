@@ -4,6 +4,7 @@ import Sample from "../pages/sample/sample";
 import Url from "../pages/url/url";
 import VehicleType from "../pages/Vehicle/VehicleType";
 import FormSummition from "../pages/Form/form";
+import Submitted from "../pages/Form/submitted";
 
 const routes = [
   {
@@ -36,6 +37,15 @@ const routes = [
   element : (
     <PageOneLayout>
       <FormSummition />
+    </PageOneLayout>
+
+  )
+},
+{
+  path:'/submitted',
+  element : (
+    <PageOneLayout>
+      <Submitted />
     </PageOneLayout>
 
   )
