@@ -11,5 +11,6 @@ func RegisterRoutes(router *gin.Engine) {
 	{
 		api.POST("/calculate", pages.CalculateCarbonFootprint)
 		api.POST("/plantation", pages.CreateTreePlantation)
+		api.GET("/all-data", pages.GetAllData)
 	}
 }
