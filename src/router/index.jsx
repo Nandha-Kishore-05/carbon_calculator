@@ -1,7 +1,6 @@
 import PageLayoutTwo from "../components/Layout/pageLayoutTwo";
 import PageOneLayout from "../components/Layout/PageOneLayout";
 import Sample from "../pages/sample/sample";
-import Url from "../pages/url/url";
 import FuelType from "../pages/VehicleExpensive/FuelType";
 import KiloMeters from "../pages/VehicleExpensive/Kilometers";
 import NoOfVehicle from "../pages/VehicleExpensive/NoOfVehicle";
@@ -12,12 +11,13 @@ import Form from "../pages/Form/Form";
 import FoodType from "../pages/FoodExpensive/FoodType";
 import HomeAppliances from "../pages/ElectricityExpensive/HomeAppliances";
 import CurrentUnit from "../pages/ElectricityExpensive/CurrentUnit";
+import Home from "../pages/Home/Home";
 const routes = [
 {
   path:"/",
   element: (
     <PageOneLayout>
-      <Sample />
+      <Home />
     </PageOneLayout>
   ),
 },

@@ -20,8 +20,6 @@ function PageLayoutTwo({ children }) {
               flexDirection: 'column',
               justifyContent: 'flex-start',
               alignItems: 'center',
-              borderBottomLeftRadius: 10,  
-              borderBottomRightRadius: 10, 
               position: 'relative',
             }}
           >
