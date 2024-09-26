@@ -1,0 +1,23 @@
+import "./inputbox.css";
+
+function InputBox(props) {
+  return (
+    <div style={{ marginTop: props.margin }} className="input-box">
+      <label>{props.label}</label>
+     
+      <input
+        placeholder={props.placeholder}
+        type={props.type}
+        accept={props.accept}
+        value={props.value}
+        onChange={(e) => {
+          props.type === "file"
+            ? props.onChange(e)
+            : props.onChange(e.target.value);
+        }}
+      />
+    </div>
+  );
+}
+
+export default InputBox;

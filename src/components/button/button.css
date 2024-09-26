@@ -1,0 +1,13 @@
+.custom-button{
+    color: white;
+    padding: 12px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    height: max-content;
+    background-color: #0e78dc;
+  }
