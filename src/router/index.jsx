@@ -7,11 +7,13 @@ import NoOfVehicle from "../pages/VehicleExpensive/NoOfVehicle";
 import VehicleType from "../pages/VehicleExpensive/VehicleType";
 import PageLayoutThree from "../components/Layout/pageLayoutThree";
 import CarbonFootPrint from "../pages/CarbonFootprint/CarbonFootPrint";
-import Form from "../pages/Form/Form";
+
 import FoodType from "../pages/FoodExpensive/FoodType";
 import HomeAppliances from "../pages/ElectricityExpensive/HomeAppliances";
 import CurrentUnit from "../pages/ElectricityExpensive/CurrentUnit";
 import Home from "../pages/Home/Home";
+import Form from "../pages/Form/form";
+
 const routes = [
 {
   path:"/",

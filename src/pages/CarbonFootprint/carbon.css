@@ -88,15 +88,18 @@ margin-top: 10px;
   justify-content: center;
 }
 .plant-button {
-  width: 50%;
+  width: 45%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FFF1F1;
   background: #1b9863 0% 0% no-repeat padding-box;
   border-radius: 6px;
   opacity: 1;
-  color: white;
+  
 }
 .speedometertitle {
   width: 100%;
@@ -107,7 +110,7 @@ margin-top: 10px;
   text-align: center;
   text-align: left;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   font: normal normal medium 10px/16px Excon;
   letter-spacing: 0px;
   color: #030911;
