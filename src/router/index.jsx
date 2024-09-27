@@ -1,17 +1,26 @@
 import PageLayoutTwo from "../components/Layout/pageLayoutTwo";
 import PageOneLayout from "../components/Layout/PageOneLayout";
 import Sample from "../pages/sample/sample";
+
+import Url from "../pages/url/url";
+import VehicleType from "../pages/VehicleExpensive/VehicleType";
+import FormSummition from "../pages/Form/form";
+import Submitted from "../pages/Form/submitted";
+
 import FuelType from "../pages/VehicleExpensive/FuelType";
 import KiloMeters from "../pages/VehicleExpensive/Kilometers";
 import NoOfVehicle from "../pages/VehicleExpensive/NoOfVehicle";
-import VehicleType from "../pages/VehicleExpensive/VehicleType";
+
 import PageLayoutThree from "../components/Layout/pageLayoutThree";
 import CarbonFootPrint from "../pages/CarbonFootprint/CarbonFootPrint";
-import Form from "../pages/Form/Form";
+
 import FoodType from "../pages/FoodExpensive/FoodType";
 import HomeAppliances from "../pages/ElectricityExpensive/HomeAppliances";
 import CurrentUnit from "../pages/ElectricityExpensive/CurrentUnit";
 import Home from "../pages/Home/Home";
+
+
+
 const routes = [
 {
   path:"/",
@@ -98,11 +107,19 @@ const routes = [
   path:"/form",
   element: (
     <PageOneLayout>
-      <Form />
+   <FormSummition></FormSummition>
     </PageOneLayout>
   ),
 },
+{
+  path:'/submitted',
+  element : (
+    <PageOneLayout>
+      <Submitted />
+    </PageOneLayout>
 
+  )
+}
 
   
 
