@@ -5,8 +5,11 @@ import Grid2 from "@mui/material/Grid2";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import { Button } from "@mui/material";
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {setappliance_id} from '../../features/karma.jsx'
 function HomeAppliances() {
+  const dispatch=useDispatch();
   const HomeAppliancesData = [
     { id: 1, text: "Fridge", bgColor: "#e1eefa" },
     { id: 2, text: "AC", bgColor: "#fff4e5" },
@@ -48,6 +51,11 @@ function HomeAppliances() {
 
       <Grid2 container spacing={1} justifyContent="center">
         {HomeAppliancesData.map((appliance, index) => (
+          <div onClick={()=>{
+          dispatch(setsetappliance_id({setappliance_id:appliance.id}))
+
+
+          }}>
           <Grid2
             item
             xs={12}
@@ -87,6 +95,7 @@ function HomeAppliances() {
 
             </Card>
           </Grid2>
+          </div>
         ))}
       </Grid2>
       <Box
