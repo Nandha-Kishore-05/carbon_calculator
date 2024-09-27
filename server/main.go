@@ -38,8 +38,10 @@ func main() {
 	routes.RegisterRoutes(router)
 
 	// Set up Swagger
+
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Start the server
+
 	router.Run(":8080")
 }
