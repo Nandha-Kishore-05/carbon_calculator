@@ -10,9 +10,11 @@ import Card from "../../components/Card/Card";
 import { useState } from "react";
 import MotorScooter from '../../assets/MotorScooter.jpg';
 import Automobile from '../../assets/Automobile.jpg'
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {setvehicle_type_id} from "../../features/karma.jsx"
 function VehicleType() {
-
+  const dispatch=useDispatch();
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const handleCardClick = (id) => {
         setSelectedVehicle(id);
@@ -20,6 +22,7 @@ function VehicleType() {
 
   const navigate = useNavigate();
   const handleClick = () => {
+  
     navigate("/no-of-vehicle");
   };
 
@@ -28,10 +31,6 @@ function VehicleType() {
     { id: 1, image: Bicycle, text: "Bicycle/Walk", bgColor: "#e1eefa" },
     { id: 2, image: MotorScooter, text: "Two wheeler", bgColor: "#fff4e5" },
     { id: 3, image: Automobile, text: "Car", bgColor: "#f9f9f9" },
-    // { id: 4, image: Icon1, text: "Bus", bgColor: "#e1eefa" },
-    // { id: 5, image: Icon1, text: "Metro", bgColor: "#fff4e5" },
-    // { id: 6, image: Icon1, text: "Auto", bgColor: "#f9f9f9" },
-    // { id: 7, image: Icon1, text: "Other", bgColor: "#f9f9f9" },
   ];
 
   return (
@@ -52,6 +51,10 @@ function VehicleType() {
 
       <Grid2 container spacing={3} justifyContent="center">
         {vehicleData.map((vehicle, index) => (
+          <div onClick={()=>{
+           
+            dispatch(setvehicle_type_id({vehicle_type_id:vehicle.id}))
+          }}>
           <Grid2
             item
             xs={12}
@@ -82,8 +85,10 @@ function VehicleType() {
                 // boxShadow: selectedVehicle === vehicle.id ? "0px 4px 8px rgba(0, 0, 0, 0.2)" : "none", 
                 // transition: "border 0.2s ease, box-shadow 0.2s ease",
               }}
+              
             />
           </Grid2>
+          </div>
         ))}
       </Grid2>
 

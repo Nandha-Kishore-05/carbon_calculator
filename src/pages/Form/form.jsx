@@ -7,15 +7,28 @@ import './form.css';
 
 function Form() {
     const [name,setname]=useState("")
-    const [number,setnumber]=useState(0)
+    const [number,setnumber]=useState("")
     const [email,setemail]=useState("")
-    const [message,setmessage]=useState("")
     const [location,setLocation]=useState("")
-    const [nooftree,setnooftree]=useState(0)
+    const [nooftree,setnooftree]=useState("")
     const [defaultname,setdefaultname]=useState("")
   const navigate = useNavigate();
 
   const handleClick =() =>{
+    // axios
+    // .post("http://localhost:8080/crayon/calculate", {
+    //   vehicle_type_id: 2,
+    //   number_of_vehicles: 2,
+    //   fuel_type_id: 2,
+    //   km_per_week: 86,
+    //   diet_type_id: 1,
+    //   appliance_id: 1,
+    //   electricity_consumed: 100,
+    // })
+    // .then((response) => {
+      
+    //  console.log("thank you")
+    // });
    navigate('/submitted');
   }
 
@@ -80,13 +93,17 @@ function Form() {
                         <input
                             type="text"
                             placeholder='How many tress you want to plant?'
-                            
+                            value={nooftree}
+                            onChange={(e)=>setnooftree(e.target.value)}
+
                         />
                     </div>
                     <div className="input-fields">
                         <input
                             type="text"
                             placeholder='Name to be planted on behalf on?'
+                            value={defaultname}
+                            onChange={(e)=>{setdefaultname(e.target.value)}}
                         />
                     </div>
             </form>
