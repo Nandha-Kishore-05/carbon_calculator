@@ -1,10 +1,11 @@
+
 import React from "react";
 import sun from '../../assets/sun.png';
 import tree from '../../assets/Trees@2x.png';
 import {useNavigate} from "react-router-dom";
 import './form.css';
 
-function FormSummition() {
+function Form() {
 
   const navigate = useNavigate();
 
@@ -82,6 +83,8 @@ function FormSummition() {
       <img className='tree' src={tree} alt="Sun and clouds" />
     </div>
   );
+
+
 }
 
-export default FormSummition;
+export default Form

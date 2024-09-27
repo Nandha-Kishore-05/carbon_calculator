@@ -1,0 +1,179 @@
+.summarycontent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.speedometer {
+  width: 100%;
+  height: 43%;
+  margin-bottom: 6%;
+  background-image: url("../../assets/speedometerbackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgb(203, 246, 203);
+  border-radius: 6px;
+}
+.evergreen {
+  width: 100%;
+  height: 41%;
+  background-image: url("../../assets/leftbackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgb(203, 246, 203);
+  border-radius: 6px;
+}
+.remindme {
+  width: 100%;
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font: normal normal 550 14px/16px Sarabun;
+  letter-spacing: 0px;
+  font-size: 15px;
+  padding-top: 19px;
+  color: #0e70eb;
+  opacity: 1;
+}
+.tree {
+  width: 100%;
+  height: 37%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footerheader {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: 12px;
+font-weight: 550;
+font-family: sans-serif;
+  font: normal normal medium 14px/12px Excon;
+
+  color: #030911;
+  opacity: 1;
+}
+.plantingsapling {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  
+  font-family: sans-serif;
+  font: normal normal 600 12px/16px sans-serif;
+  letter-spacing: 0px;
+  color: #42a87f;
+  opacity: 1;
+}
+.plantnowoffset {
+  width: 100%;
+  height: 13%;
+margin-top: 10px;
+  font-size: 12px;
+  display: flex;
+  
+  font: normal normal 200 12px/16px sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+.plant-button {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #FFF1F1;
+  background: #1b9863 0% 0% no-repeat padding-box;
+  border-radius: 6px;
+  opacity: 1;
+  
+}
+.speedometertitle {
+  width: 100%;
+  height: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 800;
+  font: normal normal medium 10px/16px Excon;
+  letter-spacing: 0px;
+  color: #030911;
+  opacity: 1;
+}
+.speedometerbar {
+  width: 100%;
+  height: 45%;
+}
+.seperator {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.average {
+  width: 100%;
+  height: 16%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+}
+
+.average-box {
+  width: 85%;
+  height: 80%;
+  border: 1px solid red;
+  color: red;
+  font-size: 12px;
+  border-radius: 7px;
+  background-color: #FFF1F1;
+}
+
+.separtor-items{
+    height: 100%;
+    width: 26%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.rectangle1{
+    height: 12px;
+    width: 12px;
+    background-color: orange;
+    border-radius: 3px;
+    margin-right: 2px;
+}
+.rectangle2{
+    height: 12px;
+    width: 12px;
+    background-color: red;
+    border-radius: 3px;
+    margin-right: 2px;
+}
+.rectangle3{
+    height: 12px;
+    width: 12px;
+    background-color: green;
+    border-radius: 3px;
+    margin-right: 2px;
+}
