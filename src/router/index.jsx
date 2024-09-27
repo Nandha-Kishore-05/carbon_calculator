@@ -3,14 +3,14 @@ import PageOneLayout from "../components/Layout/PageOneLayout";
 import Sample from "../pages/sample/sample";
 
 import Url from "../pages/url/url";
-import VehicleType from "../pages/Vehicle/VehicleType";
+import VehicleType from "../pages/VehicleExpensive/VehicleType";
 import FormSummition from "../pages/Form/form";
 import Submitted from "../pages/Form/submitted";
 
 import FuelType from "../pages/VehicleExpensive/FuelType";
 import KiloMeters from "../pages/VehicleExpensive/Kilometers";
 import NoOfVehicle from "../pages/VehicleExpensive/NoOfVehicle";
-import VehicleType from "../pages/VehicleExpensive/VehicleType";
+
 import PageLayoutThree from "../components/Layout/pageLayoutThree";
 import CarbonFootPrint from "../pages/CarbonFootprint/CarbonFootPrint";
 
@@ -108,14 +108,9 @@ const routes = [
   path:"/form",
   element: (
     <PageOneLayout>
-      <Form />
+   <FormSummition></FormSummition>
     </PageOneLayout>
   ),
-},
-
-
-
-  )
 },
 {
   path:'/submitted',
