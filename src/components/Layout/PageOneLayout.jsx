@@ -16,7 +16,6 @@ function PageOneLayout({ children }) {
                   width: 400,
                   marginTop: 5,
                   marginLeft: 50,
-                  padding: 2,
                 }}
               >
                 {children}
