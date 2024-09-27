@@ -1,0 +1,9 @@
+basePath: /crayon
+host: localhost:8080
+info:
+  contact: {}
+  description: API for calculating carbon footprint and managing tree plantations.
+  title: Carbon Calculator API
+  version: "1.0"
+paths: {}
+swagger: "2.0"

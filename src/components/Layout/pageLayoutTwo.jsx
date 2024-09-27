@@ -6,41 +6,45 @@ import Paper from '@mui/material/Paper';
 function PageLayoutTwo({ children }) {
   return (
     <Container>
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={12}>
-          {/* Outer Grid Container */}
-          <Grid2 container justifyContent="center">
-            <Grid2 item>
-              {/* First Paper Component */}
-              <Paper
-                sx={{
-                  height: 730,
-                  width: 400,
-                  marginTop: 5,
-                  marginLeft: 50,
-                  padding: 2,
-                }}
-              >
-                {/* Inner Grid Container */}
-                <Grid2 container justifyContent="center">
-                  <Grid2 item>
-                    {/* Nested Paper Component */}
-                    <Paper
-                      sx={{
-                        height: 500,
-                        width: 400,
-                        marginTop: 5,
-                        marginLeft: 50,
-                        padding: 2,
-                      }}
-                    >
-                      {children} {/* Render content inside this */}
-                    </Paper>
-                  </Grid2>
-                </Grid2>
-              </Paper>
+     
+      <Grid2 container justifyContent="center" sx={{ marginTop: 5 }}>
+        <Grid2 item>
+        
+          <Paper
+            sx={{
+              backgroundColor: '#d9ebfa',  
+              height: 787,
+              width: 400,
+              padding: 0,  
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              position: 'relative',
+            }}
+          >
+            
+            <Grid2 container justifyContent="center" sx={{ position: 'relative', zIndex: 1 }}>
+              <Grid2 item>
+                <Paper
+                  sx={{
+                    backgroundColor: 'white',
+                    height: 450,
+                    width: 400,
+                    padding: 2,
+                    borderTopLeftRadius: 20, 
+                    borderTopRightRadius: 20, 
+                    borderBottomLeftRadius: 10, 
+                    borderBottomRightRadius: 10, 
+                    marginTop: 42, 
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', 
+                  }}
+                >
+                  {children}
+                </Paper>
+              </Grid2>
             </Grid2>
-          </Grid2>
+          </Paper>
         </Grid2>
       </Grid2>
     </Container>
