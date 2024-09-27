@@ -86,7 +86,7 @@ opacity: 1;
   color: #030911;
   opacity: 0;
   overflow: hidden;
-  top: 40%; 
+  top: 20%; 
 }
 
 
@@ -224,3 +224,16 @@ opacity: 1;
   align-items: center;
   position: relative;
 }
+
+input::placeholder {
+  color: #999; /* Default placeholder color */
+}
+
+input::placeholder {
+  color: red; /* Change the color of the * */
+}
+
+input::placeholder {
+  color: #000; /* Set default text color inside the input */
+}
+
