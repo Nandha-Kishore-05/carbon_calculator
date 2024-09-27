@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import { Box, CircularProgress } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
-import CircularWithValueLabel from '../../feedback/CircularBar';
+// import CircularWithValueLabel from '../../feedback/CircularBar';
 
 function KiloMeters() {
     const navigate = useNavigate();
