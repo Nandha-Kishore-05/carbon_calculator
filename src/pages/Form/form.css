@@ -47,7 +47,7 @@ opacity: 1;
 @keyframes forText {
   0% {
     opacity: 0;
-    transform: translateY(500px); 
+    transform: translateY(100px); 
   }
   20% {
     opacity: 1;
@@ -66,7 +66,7 @@ opacity: 1;
 @keyframes forForm {
   0% {
     opacity: 0;
-    transform: translateY(500px); 
+    transform: translateY(100px); 
   }
   100% {
     opacity: 1;
@@ -85,6 +85,7 @@ opacity: 1;
   font-weight: 600;
   color: #030911;
   opacity: 0;
+  overflow: hidden;
   top: 40%; 
 }
 
@@ -105,7 +106,7 @@ opacity: 1;
 
 .form-data
 {
-  height: 88%;
+  height: 90%;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -132,8 +133,9 @@ input {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 12px;
   color: black; 
+  font-weight: 600;
   outline: none;
   transition: border-color 0.3s ease; 
 }
@@ -200,44 +202,25 @@ height: 139px;
 mix-blend-mode: multiply;
 opacity: 1;
 }
-.ani-1, .ani-2, .ani-3, .ani-4, .ani-5 {
+
+.triangle-oval
+{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  background: #457FC526; /* Semi-transparent background */
-  border-radius: 50%; /* Circular shape */
-  opacity: 1;
 }
 
-.ani-1 {
-  top: 200px;    
-  left: 450px;    
-  width: 50px;         
-  height: 50px;         
-}
-
-.ani-2 {
-  top: 350px;    
-  left: 700px;   
-  width: 50px;         
-  height: 50px;         
-}
-
-.ani-3 {
-  top: 550px;    
-  left: 30  0px;   
-  width: 50px;         
-  height: 50px;         
-}
-
-.ani-4 {
-  top: 100px;    
-  left: 600px;   
-  width: 50px;         
-  height: 50px;         
-}
-
-.ani-5 {
-  top: 700px;    
-  left: 450px;   
-  width: 50px;         
-  height: 50px;         
+.back
+{
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }

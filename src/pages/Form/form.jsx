@@ -58,6 +58,7 @@ function FormSummition() {
                         <input
                             type="text"
                             placeholder='Location'
+                            
                         />
                     </div>
                     <div className="input-fields">
