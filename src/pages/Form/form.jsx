@@ -1,12 +1,18 @@
 
-import React from "react";
+import React, { useState } from "react";
 import sun from '../../assets/sun.png';
 import tree from '../../assets/Trees@2x.png';
 import {useNavigate} from "react-router-dom"
 import './form.css';
 
 function Form() {
-
+    const [name,setname]=useState("")
+    const [number,setnumber]=useState(0)
+    const [email,setemail]=useState("")
+    const [message,setmessage]=useState("")
+    const [location,setLocation]=useState("")
+    const [nooftree,setnooftree]=useState(0)
+    const [defaultname,setdefaultname]=useState("")
   const navigate = useNavigate();
 
   const handleClick =() =>{
@@ -41,24 +47,32 @@ function Form() {
                       <input
                           type="text"
                             placeholder='Your Name'
+                            value={name}
+                            onChange={(e) => setname(e.target.value)}
                       />
                     </div>
                     <div className="input-fields">
                       <input
                           type='number' 
                           placeholder='Phone Number'
+                          value={number}
+                          onChange={(e)=>setnumber(e.target.value)}
                       />
                     </div>
                     <div className="input-fields">
                         <input
                             type="text"
                             placeholder='Email'
+                            value={email}
+                            onChange={(e)=>setemail(e.target.value)}
                         />
                     </div>
                     <div className="input-fields">
                         <input
                             type="text"
                             placeholder='Location'
+                            value={location}
+                            onChange={(e)=>setLocation(e.target.value)}
                             
                         />
                     </div>
@@ -66,6 +80,7 @@ function Form() {
                         <input
                             type="text"
                             placeholder='How many tress you want to plant?'
+                            
                         />
                     </div>
                     <div className="input-fields">
