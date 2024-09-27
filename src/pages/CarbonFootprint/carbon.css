@@ -38,6 +38,7 @@
   font-size: 15px;
   padding-top: 19px;
   color: #0e70eb;
+  cursor: pointer;
   opacity: 1;
 }
 .tree {
@@ -98,6 +99,7 @@ margin-top: 10px;
   color: #FFF1F1;
   background: #1b9863 0% 0% no-repeat padding-box;
   border-radius: 6px;
+  cursor: pointer;
   opacity: 1;
   
 }
@@ -139,13 +141,14 @@ margin-top: 10px;
 }
 
 .average-box {
-  width: 85%;
-  height: 80%;
+  width: 80%;
+  height: 90%;
   border: 1px solid red;
   color: red;
   font-size: 12px;
   border-radius: 7px;
   background-color: #FFF1F1;
+  padding: 4px;
 }
 
 .separtor-items{
