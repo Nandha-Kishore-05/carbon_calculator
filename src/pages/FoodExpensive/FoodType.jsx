@@ -103,7 +103,7 @@ function FoodType() {
             fontSize: "14px",
             color: "#438cfa",
             // borderColor: '#676767',
-            border: "none",
+            // border: "blue",
             backgroundColor: "#c9e1f5",
             textTransform: "none",
             mr: "10px",

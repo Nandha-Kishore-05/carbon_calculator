@@ -24,7 +24,7 @@ function FuelType() {
     navigate('/no-of-vehicle')
   }
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box >
       <Typography
         variant="body1"
         sx={{
@@ -75,54 +75,45 @@ function FuelType() {
           </Grid2>
         ))}
       </Grid2>
-      <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: 360,
-            marginTop: 20,
-          }}
-        >
-          <Button
-            variant="outlined"
-            label="Later"
-            sx={{
-              width: "40%",
-              height: "45px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              fontSize: "14px",
-              color: "#676767",
-              border: "none",
-              backgroundColor: "#c9e1f5",
-              textTransform: "none",
-              mr: "30px",
-              padding: 2,
-            }}
-            onClick={handleBackClick}
-          >
-           Back
-          </Button>
+      <Box sx={{ padding: 1 }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", width: 360, marginTop: 19 }}>
+            <Button
+              variant="outlined"
+              sx={{
+                width: "45%",
+                height: "45px",
+                borderRadius: "10px",
+                fontWeight: "bold",
+                fontSize: "14px",
+                color: "#438cfa",
+                backgroundColor: "#c9e1f5",
+                textTransform: "none",
+                padding: 2,
+               
+              }}
+              onClick={handleBackClick}
+            >
+              Back
+            </Button>
 
-          <Button
-            variant="contained"
-            label="Calculate & offset"
-            sx={{
-              width: "48%",
-              height: "45px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              fontSize: "15px",
-              backgroundColor: "#0671c9",
-              textTransform: "none",
-              color: "white",
-              mr: "30px",
-              padding: 2,
-            }}
-            onClick={handleForwardClick}
-          >
-            Next
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                width: "48%",
+                height: "45px",
+                borderRadius: "10px",
+                fontWeight: "bold",
+                fontSize: "15px",
+                backgroundColor: "#0671c9",
+                textTransform: "none",
+                color: "white",
+                padding: 2,
+              }}
+              onClick={handleForwardClick}
+            >
+              Next
+            </Button>
+          </Box>
         </Box>
     </Box>
   )

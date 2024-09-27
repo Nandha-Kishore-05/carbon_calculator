@@ -35,7 +35,7 @@ function VehicleType() {
   ];
 
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box >
       <Typography
         variant="body1"
         sx={{
@@ -87,7 +87,7 @@ function VehicleType() {
         ))}
       </Grid2>
 
-      <Box mt={4} display="flex" justifyContent="center">
+      <Box mt={4} display="flex" justifyContent="center" sx={{mt:"57px"}}>
         <CustomButton onClick={handleClick} width={350} label="Next" />
       </Box>
     </Box>

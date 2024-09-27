@@ -216,7 +216,7 @@ function Home() {
               border: "none",
               backgroundColor: "#c9e1f5",
               textTransform: "none",
-              mr: "30px",
+          
               padding: 2,
             }}
             // onClick={handleLaterClick}
