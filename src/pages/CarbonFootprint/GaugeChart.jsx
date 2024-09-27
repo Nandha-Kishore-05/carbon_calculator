@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const GaugeChart = () => {
+const GaugeChart = ({karmavalue}) => {
   const data = {
     labels: ['Commute', 'Food', 'Appliances'],
     datasets: [
@@ -44,8 +44,7 @@ const GaugeChart = () => {
           fontSize: '16px',
          fontWeight:"800"
         }}
-      >
-        18 ton CO2
+      >{karmavalue}
       </div>
     </div>
   );
