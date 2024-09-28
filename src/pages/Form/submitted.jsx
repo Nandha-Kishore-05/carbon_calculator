@@ -6,7 +6,7 @@ import './form.css';
 
 function Submitted() {
   return (
-    <div className='first'>
+    <div className='submit'>
       <div className="back">
       <img  src={back} className="triangle-oval"/>
       <video
@@ -19,7 +19,7 @@ function Submitted() {
         autoPlay
         muted
       />
-      <div className="text-1">Form submitted successfully</div>
+      <div className="text-3">Form submitted successfully</div>
       </div>
     </div>
   );
