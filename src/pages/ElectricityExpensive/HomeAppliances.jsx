@@ -7,17 +7,17 @@ import Card from "../../components/Card/Card";
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {setappliance_id} from '../../features/karma.jsx'
+import { setappliance_id } from "../../features/karma.jsx";
 function HomeAppliances() {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const HomeAppliancesData = [
-    { id: 1, text: "Fridge", bgColor: "#e1eefa" },
-    { id: 2, text: "AC", bgColor: "#fff4e5" },
-    { id: 3, text: "Chimney", bgColor: "#f9f9f9" },
-    { id: 4, text: "Washing Machine", bgColor: "#e1eefa" },
-    { id: 5, text: "Electric vehicle", bgColor: "#fff4e5" },
-    { id: 6, text: "Air cooler", bgColor: "#f9f9f9" },
-    { id: 7, text: "Mixer/ Grinder", bgColor: "#f9f9f9" },
+    { id: 1, text: "Fridge", bgColor: "#E4FFEE" },
+    { id: 2, text: "AC", bgColor: "#FFF4E6" },
+    { id: 3, text: "Chimney", bgColor: "#FFF4F3" },
+    { id: 4, text: "Washing Machine", bgColor: "#F9F5F7" },
+    { id: 5, text: "Electric vehicle", bgColor: "#FCF5FF" },
+    { id: 6, text: "Air cooler", bgColor: "#E4FBFF" },
+    { id: 7, text: "Mixer/ Grinder", bgColor: "#FFF4F3" },
   ];
 
   // const [selectedappliance, setSelectedappliance] = useState(null);
@@ -34,67 +34,64 @@ function HomeAppliances() {
     navigate("/food-type");
   };
   return (
-    <Box sx={{ padding: 1 }}>
+    <Box sx={{ padding: 2 }}>
       <Typography
         variant="body1"
         sx={{
-          marginBottom: 3,
+          marginBottom: 2,
           textAlign: "center",
           fontSize: "15px",
           fontWeight: "bold",
           opacity: 1,
           color: "#030911",
+          marginTop:2.5,
         }}
       >
-        Choose the vehicles you use for commuting?
+        Select the appliances your use at your home{" "}
       </Typography>
 
-      <Grid2 container spacing={1} justifyContent="center">
+      <Grid2 container spacing={1.5} justifyContent="center">
         {HomeAppliancesData.map((appliance, index) => (
-          <div onClick={()=>{
-          dispatch(setsetappliance_id({setappliance_id:appliance.id}))
-
-
-          }}>
-          <Grid2
-            item
-            xs={12}
-            sm={4}
-            md={3}
-            key={appliance.id}
-            sx={{
-              display: "flex",
-              justifyContent:
-                index === HomeAppliancesData.length - 1 &&
-                HomeAppliancesData.length % 3 !== 0
-                  ? "center"
-                  : "flex-start",
+          <div
+            onClick={() => {
+              dispatch(setsetappliance_id({ setappliance_id: appliance.id }));
             }}
           >
-            <Card
-              // image={appliance.image}
-              text={appliance.text}
-              bgColor={appliance.bgColor}
-              // backgroundSize="50%"
-              onClick={() => handleCardClick(appliance.id)}
-              customStyles={{
-                width: "90px",
-                height: "90px",
-                backgroundRepeat: "no-repeat",
-                border: "2px solid #ffd580",
+            <Grid2
+              item
+              xs={12}
+              sm={4}
+              md={3}
+              key={appliance.id}
+              sx={{
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                borderRadius: "10px",
-                // boxShadow: selectedappliance === appliance.id ? "0px 4px 8px rgba(0, 0, 0, 0.2)" : "none",
-                // transition: "border 0.2s ease, box-shadow 0.2s ease",
+                justifyContent:
+                  index === HomeAppliancesData.length - 1 &&
+                  HomeAppliancesData.length % 3 !== 0
+                    ? "center"
+                    : "flex-start",
               }}
             >
-
-
-            </Card>
-          </Grid2>
+              <Card
+                // image={appliance.image}
+                text={appliance.text}
+                bgColor={appliance.bgColor}
+                // backgroundSize="50%"
+                onClick={() => handleCardClick(appliance.id)}
+                customStyles={{
+                  width: "90px",
+                  height: "90px",
+                  backgroundRepeat: "no-repeat",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  // boxShadow: selectedappliance === appliance.id ? "0px 4px 8px rgba(0, 0, 0, 0.2)" : "none",
+                  // transition: "border 0.2s ease, box-shadow 0.2s ease",
+                }}
+              ></Card>
+            </Grid2>
           </div>
         ))}
       </Grid2>
@@ -103,7 +100,7 @@ function HomeAppliances() {
           display: "flex",
           justifyContent: "space-between",
           width: 360,
-          marginTop: 3,
+          marginTop: 1.2,
         }}
       >
         <Button
@@ -116,12 +113,11 @@ function HomeAppliances() {
             fontWeight: "bold",
             fontSize: "14px",
             color: "#438cfa",
-            // borderColor: '#676767',
             border: "none",
             backgroundColor: "#c9e1f5",
             textTransform: "none",
             mr: "10px",
-            padding: 2,
+            paddingLeft: 2,
           }}
           onClick={handleBackClick}
         >
@@ -140,8 +136,8 @@ function HomeAppliances() {
             backgroundColor: "#0671c9",
             textTransform: "none",
             color: "white",
-            mr: "19px",
-            padding: 2,
+            mr: "2px",
+            paddingRight: 2,
           }}
           onClick={handleForwardClick}
         >

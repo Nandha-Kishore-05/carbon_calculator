@@ -14,9 +14,9 @@ import {setdiet_type_id} from '../../features/karma.jsx'
 function FoodType() {
   const dispatch=useDispatch();
   const FoodData = [
-    { id: 1, image: Leaf, text: "Veg", bgColor: "#e1eefa" },
-    { id: 2, image: Oden, text: "Both", bgColor: "#fff4e5" },
-    { id: 3, image: leg, text: "Non veg", bgColor: "#f9f9f9" },
+    { id: 1, image: Leaf, text: "Veg", bgColor: "#E4FFEE" },
+    { id: 2, image: Oden, text: "Both", bgColor: "#FFF4E6" },
+    { id: 3, image: leg, text: "Non veg", bgColor: "#FFF4F3" },
     
   ];
 
@@ -41,6 +41,7 @@ function FoodType() {
       variant="body1"
       sx={{
         marginBottom: 3,
+        marginTop:4,
         textAlign: "center",
         fontSize: "15px",
         fontWeight:"bold",
@@ -51,7 +52,7 @@ function FoodType() {
      What you normally eat?
     </Typography>
 
-    <Grid2 container spacing={1} justifyContent="center">
+    <Grid2 container spacing={3} justifyContent="center">
 
       {FoodData.map((food, index) => (
         <div onClick={()=>{
@@ -96,7 +97,7 @@ function FoodType() {
           display: "flex",
           justifyContent: "space-between",
           width: 360,
-          marginTop: 8,
+          marginTop: 3,
         }}
       >
         <Button
@@ -104,7 +105,7 @@ function FoodType() {
           label="Later"
           sx={{
             width: "45%",
-            height: "45px",
+            height: "46px",
             borderRadius: "10px",
             fontWeight: "bold",
             fontSize: "14px",
@@ -113,7 +114,7 @@ function FoodType() {
             border: "none",
             backgroundColor: "#c9e1f5",
             textTransform: "none",
-            mr: "10px",
+            marginLeft:1,
             padding: 2,
           }}
           onClick={handleBackClick}
@@ -126,14 +127,14 @@ function FoodType() {
           label="Calculate & offset"
           sx={{
             width: "48%",
-            height: "45px",
+            height: "46px",
             borderRadius: "10px",
             fontWeight: "bold",
             fontSize: "15px",
             backgroundColor: "#0671c9",
             textTransform: "none",
             color: "white",
-            mr: "19px",
+          
             padding: 2,
           }}
           onClick={handleForwardClick}
