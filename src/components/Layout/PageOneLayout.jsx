@@ -5,7 +5,9 @@ import Paper from '@mui/material/Paper';
 
 function PageOneLayout({ children }) {
   return (
+    
     <Container>
+      <div style={{overflow:'hidden'}}>
       <Grid2 container spacing={2}>
         <Grid2 item xs={12}>
           <Grid2 container justifyContent="center">
@@ -16,7 +18,13 @@ function PageOneLayout({ children }) {
                   width: 400,
                   marginTop: 5,
                   marginLeft: 50,
+                  // alignItems:"center",
+                  // justifyContent:"center",
+                  display:"flex",
                   // padding: 2,
+                  backgroundColor:"#e3ecfa",
+                  position:"absolute",
+                   border:"1px solid  #F0F4FA",
                 }}
               >
                 {children}
@@ -25,7 +33,9 @@ function PageOneLayout({ children }) {
           </Grid2>
         </Grid2>
       </Grid2>
+      </div>
     </Container>
+    
   );
 }
 

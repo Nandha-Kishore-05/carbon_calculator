@@ -73,7 +73,6 @@ const routes = [
   element : (
     <PageLayoutTwo>
 <HomeAppliances/>
-      
     </PageLayoutTwo>
 
   ),
@@ -104,6 +103,7 @@ const routes = [
     </PageOneLayout>
   ),
 },
+
 
 
   

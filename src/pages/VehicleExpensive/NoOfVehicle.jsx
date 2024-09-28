@@ -1,9 +1,10 @@
 import  Typography  from '@mui/material/Typography'
 import React from 'react'
-import CustomButton from '../../components/button/button'
+// import CustomButton from '../../components/button/button'
 import {useNavigate} from "react-router-dom"
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
+import CustomButton from '../../components/button/CustomButton'
 
 function NoOfVehicle() {
     const navigate = useNavigate();
@@ -32,56 +33,35 @@ function NoOfVehicle() {
         How many vehicles do you own?
       </Typography>
         
-    <Box
+      <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: 360,
-          marginTop: 40,
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',    
+          marginTop: 3,           
         }}
       >
-        <Button
-          variant="outlined"
-          label="Later"
-          sx={{
-            width: "45%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "#438cfa",
-            // borderColor: '#676767',
-            border: "none",
-            backgroundColor: "#c9e1f5",
-            textTransform: "none",
-            mr: "10px",
-            padding: 2,
-          }}
-          onClick={handleBackClick}
-        >
-         Back
-        </Button>
+        <CustomButton 
+          text="Back" 
+          variant="secondary"  
+          textcolor="#2e76db" 
+          route="/vehicle-type"
+          sx={{ width: '200px',
+            backgroundColor:"#cddff7"
+           }}  
+        />
 
-        <Button
-          variant="contained"
-          label="Calculate & offset"
-          sx={{
-            width: "48%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "15px",
-            backgroundColor: "#0671c9",
-            textTransform: "none",
-            color: "white",
-            mr: "19px",
-            padding: 2,
-          }}
-          onClick={handleForwardClick}
-        >
-          Next
-        </Button>
+        <CustomButton 
+          text="next" 
+          variant="contained" 
+          bgcolor="#0671c9" 
+          textcolor="white" 
+          route="/fuel-type"
+          sx={{ width: '200px' }}  
+        />
       </Box>
+      
     </Box>
   )
 }

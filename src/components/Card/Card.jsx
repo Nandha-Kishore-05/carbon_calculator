@@ -30,7 +30,7 @@ function Card({ image, text, bgColor, customStyles, backgroundSize }) {
     {image &&  
       <Box
         sx={{
-          width: '100%',
+          width: '70%',
           height: '100px', 
           backgroundImage: `url(${image})`,
           backgroundSize: backgroundSize || '50%',

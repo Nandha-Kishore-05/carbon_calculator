@@ -2,14 +2,17 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid2 from "@mui/material/Grid2";
-import CustomButton from "../../components/button/button";
+// import CustomButton from "../../components/button/button";
 import { useNavigate } from "react-router-dom";
-import Icon1 from "../../assets/icon1.png";
 import Bicycle from "../../assets/Bicycle.png";
 import Card from "../../components/Card/Card";
 import { useState } from "react";
 import MotorScooter from '../../assets/MotorScooter.jpg';
 import Automobile from '../../assets/Automobile.jpg'
+import CustomButton from "../../components/button/CustomButton";
+// import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
 
 function VehicleType() {
 
@@ -33,7 +36,7 @@ function VehicleType() {
     // { id: 6, image: Icon1, text: "Auto", bgColor: "#f9f9f9" },
     // { id: 7, image: Icon1, text: "Other", bgColor: "#f9f9f9" },
   ];
-
+  const percentage = 1;
   return (
     <Box sx={{ padding: 3 }}>
       <Typography
@@ -88,7 +91,21 @@ function VehicleType() {
       </Grid2>
 
       <Box mt={4} display="flex" justifyContent="center">
-        <CustomButton onClick={handleClick} width={350} label="Next" />
+        <CustomButton
+            variant="secondary"
+            text="Next"
+            route={'/no-of-vehicle'}
+            sx={{
+              width: "100%",
+              textAlign: "center",
+              color: "white",
+              fontSize: "15px",
+              backgroundColor: "#0f61d4",
+              ml: "20px",
+              borderRadius: "10px",
+              textTransform: "none",
+            }}
+          ></CustomButton>
       </Box>
     </Box>
   );

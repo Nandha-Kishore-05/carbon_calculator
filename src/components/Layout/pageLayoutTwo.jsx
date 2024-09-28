@@ -7,9 +7,30 @@ import Backimg1 from "../../assets/backimg1.png";
 import Backimg2 from "../../assets/backimg2.png";
 import Backimg3 from "../../assets/backimg3.png";
 import Backimg4 from "../../assets/backimg4.png";
+import { Typography } from '@mui/material';
+import CustomProgressBar from '../ProgressBar/CustomProgressBar';
 
 function PageLayoutTwo({ children }) {
   const location = useLocation();
+  const totalSteps = 4;
+  let currentStep = 1;
+  switch (location.pathname) {
+    case '/vehicle-type':
+      currentStep = 1;
+      break;
+    case '/food-type':
+      currentStep = 2;
+      break;
+    case '/home-appliance':
+      currentStep = 3;
+      break;
+    case '/current-unit':
+      currentStep = 4;
+      break;
+    default:
+      currentStep = 1;
+  }
+
 
   const getBackgroundImage = () => {
     switch(location.pathname){
@@ -27,13 +48,12 @@ function PageLayoutTwo({ children }) {
       return Backimg3;
       case '/current-unit':
       return Backimg4;
-      // case '/carbon-footprint':
-      // return Backimg5;
+      
     }
   }
   return (
     <Container>
-     
+    
       <Grid2 container justifyContent="center" sx={{ marginTop: 5 }}>
         <Grid2 item>
         
@@ -54,23 +74,29 @@ function PageLayoutTwo({ children }) {
               position: 'relative',
             }}
           >
-            
-            <Grid2 container justifyContent="center" sx={{ position: 'relative', zIndex: 1 }}>
+            {/* <Typography variant='body1' position='sticky' sx={{fontSize:"20px",}}>15.90 ton co2</Typography> */}
+
+            <Grid2 container justifyContent="center" sx={{ marginTop: 37 , zIndex:2}}>
+              <CustomProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+            </Grid2>
+            <Grid2 container justifyContent="center" sx={{ position: 'absolute', zIndex: 1 }}>
               <Grid2 item>
                 <Paper
                   sx={{
                     backgroundColor: 'white',
-                    height: 450,
+                    height: 430,
                     width: 400,
                     padding: 2,
                     borderTopLeftRadius: 40, 
                     borderTopRightRadius: 40, 
                     borderBottomLeftRadius: 10, 
                     borderBottomRightRadius: 10, 
-                    marginTop: 42, 
+                    marginTop: 45, 
                     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', 
+                    position:'sticky'
                   }}
                 >
+                   {/* <CustomProgressBar /> */}
                   {children}
                 </Paper>
               </Grid2>

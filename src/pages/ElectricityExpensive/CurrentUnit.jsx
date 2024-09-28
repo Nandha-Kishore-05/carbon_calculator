@@ -27,14 +27,14 @@ function CurrentUnit() {
           color: "#030911",
         }}
       >
-        How many kilometers you drive per week?
+        How much electricity do you consume for a month?
       </Typography>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           width: 360,
-          marginTop: 40,
+          marginTop: 38,
         }}
       >
         <Button
