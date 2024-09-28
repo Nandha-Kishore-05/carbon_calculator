@@ -36,7 +36,7 @@ export const karma=createSlice({
             console.log(action.payload.diet_type_id)
             state.value.diet_type_id=action.payload.diet_type_id
         }
-        , setappliance_id:(state,action)=>{
+        ,setappliance_id:(state,action)=>{
             console.log(action.payload.appliance_id)
             state.value.appliance_id=action.payload.appliance_id
         }

@@ -8,6 +8,7 @@ import GaugeChart from "./GaugeChart";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import high from "../../assets/high.png"
 function CarbonFootPrint() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.value);
@@ -59,7 +60,7 @@ function CarbonFootPrint() {
           </div>
         </div>
         <div className="average">
-          <div className="average-box"> {averagetitle}</div>
+          <div className="average-box"  style={{border:"none",padding:"5px"}}><span style={{display:'flex'}}><img src={high} style={{marginLeft:"3px"}}></img>&ensp;   {averagetitle}</span></div>
         </div>
       </div>
       <div className="evergreen">
@@ -79,7 +80,10 @@ function CarbonFootPrint() {
           <div className="plant-button">Plant now to offset</div>
         </div>
       </div>
-      <div className="remindme">Remind me Later</div>
+      <div className="remindme" onClick={()=>{
+           navigate("/");
+
+      }}>Remind me Later</div>
     </div>
   );
 }
