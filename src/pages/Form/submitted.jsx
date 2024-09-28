@@ -6,7 +6,7 @@ import './form.css';
 
 function Submitted() {
   return (
-    <div className='first'>
+    <div className='submit'>
       <div className="back">
       <img  src={back} className="triangle-oval"/>
       <video

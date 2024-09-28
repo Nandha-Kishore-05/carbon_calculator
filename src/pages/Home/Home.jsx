@@ -2,14 +2,14 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import CustomButton from "../../components/button/button";
 import Grid2 from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
-import HomeImg from "../../assets/homelogo.png";
+import HomeImg from "../../assets/homeimg1.png";
 import { useNavigate } from "react-router-dom";
 import Icon1 from "../../assets/icon1.png";
 import Icon2 from "../../assets/icon2.png";
 import Icon3 from "../../assets/icon3.png";
+import ImgWrapper from "../../components/ImgWrapper/ImgWrapper";
 
 function Home() {
   const navigate = useNavigate();
@@ -21,76 +21,96 @@ function Home() {
   return (
     <Box
       sx={{
-        backgroundColor: "#F0F4FA",
-        height: "100vh",
+        // backgroundColor: "#e6eefa",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
       }}
     >
       <Box
         sx={{
-          width: "100%",
-          height: "60vh",
+          position: "relative",
+          width: "99%",
+          mr: "8px",
+          mt: "0.6px",
+          backgroundColor: "#d2e2fa",
           backgroundImage: `url(${HomeImg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "top",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          opacity: 1,
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          flexDirection: "column",
+          minHeight: "40vh",
+
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(227, 236, 250, 0.6)",
+            zIndex: 0,
+          },
         }}
       >
         <Typography
           variant="h6"
           sx={{
             color: "#0E70EB",
-            fontSize: "normal normal bold 20px/28px Excon;",
-            fontWeight: "800",
+            fontSize: "20px",
+            fontWeight: "bold",
             textAlign: "center",
-            letterSpacing: 0.9,
-            marginTop: "50px",
-            padding: 5,
+            zIndex: 1,
+            //  padding: "10px",
+            mt: "170px",
+            ml: "50px",
+            width: "320px",
+            letterSpacing: "0.5px",
+            position: "static",
           }}
         >
-          Know & offset your carbon footprints
+          Know & offset your carbon footprints!
         </Typography>
       </Box>
+
       <Box
         sx={{
-          width: 360,
-          padding: 2,
-          borderRadius: "20px",
+          width: "90%",
+          maxWidth: "490px",
           bgcolor: "white",
-          boxShadow: "5 white",
-          marginTop: "-140px",
-          mb: "220px",
+          borderRadius: "20px",
+          padding: 2,
+          marginTop: "-10vh",
+          zIndex: 1,
         }}
       >
-        <Grid2 container spacing={2}>
+        <Grid2 container spacing={0}>
           <Grid2 item xs={12}>
             <Paper
               elevation={1}
-              sx={{ padding: 1, display: "flex", boxShadow: "none" }}
+              sx={{
+                padding: 1,
+                display: "flex",
+                boxShadow: "none",
+                alignItems: "center",
+              }}
             >
-              <img
+              <ImgWrapper
                 src={Icon1}
                 alt="Icon 1"
-                style={{
-                  marginRight: "16px",
-                  borderRadius: "8px",
-                  height: "60px",
-                  width: "50px",
-                }}
+                overlayColor="rgba(247, 188, 232, 0.4) "
               />
               <Box>
                 <Typography
                   variant="body1"
                   fontWeight="bold"
                   sx={{
-                    fontSize: "normal normal 600 14px/28px Sarabun;x",
-                    opacity: 1,
+                    fontSize: "15px",
+                    left: "109px",
+                    width: "239px",
+                    height: "25px",
                   }}
                 >
                   Answer our questions
@@ -98,15 +118,16 @@ function Home() {
                 <Typography
                   variant="body2"
                   sx={{
-                    width: "100%",
-                    fontSize: "normal normal normal 12px/20px Sarabun",
+                    fontSize: "12px",
                     color: "#60666F",
-                    opacity: 1,
-                    textAlign: "left",
+                    top: "486px",
+                    left: "109px",
+                    width: "230px",
+                    height: "37px",
                   }}
                 >
-                  estibulum venenatis fringilla lorem eu finibus. Donec ac nulla
-                  nec nunc.
+                  Vestibulum venenatis fringilla lorem eu finibus. Donec ac
+                  nulla nec nunc.
                 </Typography>
               </Box>
             </Paper>
@@ -115,25 +136,29 @@ function Home() {
           <Grid2 item xs={12}>
             <Paper
               elevation={1}
-              sx={{ padding: 1, display: "flex", boxShadow: "none" }}
+              sx={{
+                padding: 1,
+                display: "flex",
+                boxShadow: "none",
+                alignItems: "center",
+              }}
             >
-              <img
+              <ImgWrapper
                 src={Icon2}
-                alt="Icon 2"
-                style={{
-                  marginRight: "16px",
-                  borderRadius: "8px",
-                  height: "60px",
-                  width: "50px",
-                }}
+                alt="Icon 1"
+                overlayColor="rgba(250, 202, 211, 0.4) "
+                width="100px"
               />
+
               <Box>
                 <Typography
                   variant="body1"
                   fontWeight="bold"
                   sx={{
-                    fontSize: "normal normal 600 14px/28px Sarabun",
-                    opacity: 1,
+                    fontSize: "14px",
+                    left: "109px",
+                    width: "239px",
+                    height: "25px",
                   }}
                 >
                   Know your carbon footprint
@@ -141,13 +166,16 @@ function Home() {
                 <Typography
                   variant="body2"
                   sx={{
-                    width: "100%",
-                    fontSize: "normal normal normal 12px/20px Sarabun",
+                    fontSize: "12px",
                     color: "#60666F",
-                    textAlign: "left",
+                    top: "486px",
+                    left: "109px",
+                    width: "230px",
+                    height: "37px",
                   }}
                 >
-                  Donec ac nulla nec nunc malesuada.
+                  estibulum venenatis fringilla lorem eu finibus. Donec ac nulla
+                  nec nunc
                 </Typography>
               </Box>
             </Paper>
@@ -156,89 +184,89 @@ function Home() {
           <Grid2 item xs={12}>
             <Paper
               elevation={1}
-              sx={{ padding: 1, display: "flex", boxShadow: "none" }}
+              sx={{
+                padding: 1,
+                display: "flex",
+                boxShadow: "none",
+                alignItems: "center",
+              }}
             >
-              <img
+              <ImgWrapper
                 src={Icon3}
-                alt="Icon 3"
-                style={{
-                  marginRight: "16px",
-                  borderRadius: "8px",
-                  height: "60px",
-                  width: "50px",
-                }}
+                alt="Icon 1"
+                overlayColor="rgba(226, 241, 230, 0.4) "
+                width="100px"
               />
+
               <Box>
                 <Typography
                   variant="body1"
                   fontWeight="bold"
                   sx={{
-                    fontSize: "normal normal 600 10px/20px Sarabun",
-                    opacity: 1,
+                    fontSize: "14px",
+
+                    left: "109px",
+                    width: "239px",
+                    height: "40px",
+                    textAlign: "left",
                   }}
                 >
-                  Offset it by following instructions
+                  Offset it by following the instructions
                 </Typography>
                 <Typography
                   variant="body2"
                   sx={{
-                    width: "100%",
-                    fontSize: "normal normal normal 12px/20px Sarabun",
+                    fontSize: "12px",
                     color: "#60666F",
                     textAlign: "left",
+                    top: "486px",
+                    left: "109px",
+                    width: "230px",
+                    height: "37px",
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </Typography>
               </Box>
             </Paper>
           </Grid2>
         </Grid2>
+
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            width: 360,
-            marginTop: 2,
+            marginTop: 5,
           }}
         >
           <Button
             variant="outlined"
-            label="Later"
             sx={{
-              width: "46%",
+              width: "45%",
               height: "45px",
-              borderRadius: "8px",
+              borderRadius: "10px",
               fontWeight: "bold",
-              fontSize: "14px",
-              color: "#1d78ec",
-              // borderColor: '#676767',
+              fontSize: "13px",
+              color: "#52a4ff",
               border: "none",
-              backgroundColor: "#e6eefa",
+              backgroundColor: "#c9e1f5",
               textTransform: "none",
-              mr: "18px",
-              padding: 2,
             }}
-            // onClick={handleLaterClick}
           >
             Later
           </Button>
 
           <Button
             variant="contained"
-            label="Calculate & offset"
             sx={{
-              width: "46%",
+              width: "48%",
               height: "45px",
-              borderRadius: "8px",
-              fontWeight: "normal",
-              fontSize: "14px",
-              fontFamily:"Sarabun",
-              backgroundColor: "#1d78ec",
+              borderRadius: "10px",
+              fontWeight: "bold",
+              fontSize: "13px",
+              backgroundColor: "#0671c9",
               textTransform: "none",
               color: "white",
-              mr: "30px",
-              padding: 2,
             }}
             onClick={handleLaterClick}
           >

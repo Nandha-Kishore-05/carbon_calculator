@@ -10,7 +10,7 @@ function KiloMeters() {
   const [value, setValue] = React.useState(80); 
 
   const handleChange = (event, newValue) => {
-    setValue(newValue); 
+    setValue(newValue);
   };
 
   const handleForwardClick = () => {
@@ -104,3 +104,4 @@ function KiloMeters() {
 }
 
 export default KiloMeters;
+

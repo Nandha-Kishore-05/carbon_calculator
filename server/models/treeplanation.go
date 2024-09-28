@@ -8,4 +8,5 @@ type TreePlantation struct {
 	Location     string `json:"location"`
 	TreesToPlant int    `json:"trees_to_plant"`
 	NameOnBehalf string `json:"name_on_behalf"`
+	UserId       int    `json:"user_id"`
 }

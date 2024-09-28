@@ -28,7 +28,7 @@ const dispatch=useDispatch();
     navigate('/no-of-vehicle')
   }
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box >
       <Typography
         variant="body1"
         sx={{
