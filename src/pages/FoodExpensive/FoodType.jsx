@@ -10,7 +10,8 @@ import Oden from '../../assets/Oden.png'
 import leg from '../../assets/leg.png'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {setdiet_type_id} from '../../features/karma.jsx'
+import {setdiet_type_id} from '../../features/karma.jsx';
+import CustomButton from "../../components/button/CustomButton.jsx";
 function FoodType() {
   const dispatch=useDispatch();
   const FoodData = [
@@ -91,56 +92,38 @@ function FoodType() {
         </div>
       ))}
     </Grid2>
-    <Box
+    <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: 360,
-          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
         }}
       >
-        <Button
-          variant="outlined"
-          label="Later"
-          sx={{
-            width: "45%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "#438cfa",
-            // borderColor: '#676767',
-            // border: "blue",
-            backgroundColor: "#c9e1f5",
-            textTransform: "none",
-            mr: "10px",
-            padding: 2,
-          }}
-          onClick={handleBackClick}
-        >
-         Back
-        </Button>
+        <CustomButton 
+          text="Back" 
+          variant="secondary"  
+          textcolor="#1d78ec" 
+          route="/kilometer"
+          sx={{ width: '200px',
+            backgroundColor:"#deeaf9"
+           }}  
+        />
 
-        <Button
-          variant="contained"
-          label="Calculate & offset"
-          sx={{
-            width: "48%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "15px",
-            backgroundColor: "#0671c9",
-            textTransform: "none",
-            color: "white",
-            mr: "19px",
-            padding: 2,
-          }}
-          onClick={handleForwardClick}
-        >
-          Next
-        </Button>
-      </Box>
+        <CustomButton 
+          text="Next" 
+          variant="contained" 
+          bgcolor="#1d78ec" 
+          textcolor="white" 
+          route="/home-appliance"
+          sx={{ width: '200px' }}  
+        />
+        </Box>
+        </Box>
   </Box>
   )
 }

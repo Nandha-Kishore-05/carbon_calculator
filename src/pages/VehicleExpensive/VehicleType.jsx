@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid2 from "@mui/material/Grid2";
-import CustomButton from "../../components/button/button";
+import CustomButton from '../../components/button/CustomButton.jsx'
 import { useNavigate } from "react-router-dom";
 import Icon1 from "../../assets/icon1.png";
 import Bicycle from "../../assets/Bicycle.png";
@@ -26,7 +26,7 @@ function VehicleType() {
     navigate("/no-of-vehicle");
   };
 
-  // Array of card data
+
   const vehicleData = [
     { id: 1, image: Bicycle, text: "Bicycle/Walk", bgColor: "#e1eefa" },
     { id: 2, image: MotorScooter, text: "Two wheeler", bgColor: "#fff4e5" },
@@ -34,11 +34,12 @@ function VehicleType() {
   ];
 
   return (
-    <Box >
+    <Box sx={{ paddingY:0 ,paddingX:0}}>
       <Typography
         variant="body1"
         sx={{
-          marginBottom: 3,
+          margin: "10px",
+          marginBottom: "15px",
           textAlign: "center",
           fontSize: "15px",
           fontWeight:"bold",
@@ -92,9 +93,29 @@ function VehicleType() {
         ))}
       </Grid2>
 
-      <Box mt={4} display="flex" justifyContent="center" sx={{mt:"57px"}}>
-        <CustomButton onClick={handleClick} width={350} label="Next" />
-      </Box>
+      <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
+        }}
+      >
+        <CustomButton 
+          text="Next" 
+          variant="contained" 
+          bgcolor="#1d78ec" 
+          textcolor="white" 
+          route="/no-of-vehicle"
+          sx={{ width: '370px' }}  
+        />
+        </Box>
+        </Box>
+      
     </Box>
   );
 }

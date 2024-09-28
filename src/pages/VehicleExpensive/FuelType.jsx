@@ -10,6 +10,8 @@ import Electric from '../../assets/electric.png'
 import {setfuel_type_id} from '../../features/karma.jsx'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import CustomButton from "../../components/button/CustomButton.jsx";
+
 function FuelType() {
     const navigate = useNavigate();
 const dispatch=useDispatch();
@@ -83,45 +85,37 @@ const dispatch=useDispatch();
           </div>
         ))}
       </Grid2>
-      <Box sx={{ padding: 1 }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between", width: 360, marginTop: 19 }}>
-            <Button
-              variant="outlined"
-              sx={{
-                width: "45%",
-                height: "45px",
-                borderRadius: "10px",
-                fontWeight: "bold",
-                fontSize: "14px",
-                color: "#438cfa",
-                backgroundColor: "#c9e1f5",
-                textTransform: "none",
-                padding: 2,
-               
-              }}
-              onClick={handleBackClick}
-            >
-              Back
-            </Button>
+      <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
+        }}
+      >
+        <CustomButton 
+          text="Back" 
+          variant="secondary"  
+          textcolor="#1d78ec" 
+          route="/no-of-vehicle"
+          sx={{ width: '200px',
+            backgroundColor:"#deeaf9"
+           }}  
+        />
 
-            <Button
-              variant="contained"
-              sx={{
-                width: "48%",
-                height: "45px",
-                borderRadius: "10px",
-                fontWeight: "bold",
-                fontSize: "15px",
-                backgroundColor: "#0671c9",
-                textTransform: "none",
-                color: "white",
-                padding: 2,
-              }}
-              onClick={handleForwardClick}
-            >
-              Next
-            </Button>
-          </Box>
+        <CustomButton 
+          text="Next" 
+          variant="contained" 
+          bgcolor="#1d78ec" 
+          textcolor="white" 
+          route="/kilometer"
+          sx={{ width: '200px' }}  
+        />
+        </Box>
         </Box>
     </Box>
   )

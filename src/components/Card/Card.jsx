@@ -11,6 +11,7 @@ function Card({ image, text, bgColor, customStyles, backgroundSize }) {
       sx={{
         width: 130,
         height: 130, 
+        boxSizing:"border-box",
         borderRadius: 2,
         bgcolor: bgColor || 'primary.main',
         border: `2px solid ${bgColor || 'primary.main'}`,
@@ -18,7 +19,8 @@ function Card({ image, text, bgColor, customStyles, backgroundSize }) {
         flexDirection: 'column', 
         alignItems: 'center',
         justifyContent: image?'space-between':'center',
-        padding: 1,
+        // padding: 1,
+        margin:0,
         textAlign: 'center',
         '&:hover': {
           bgcolor: bgColor ? `${bgColor}80` : 'primary.dark',
