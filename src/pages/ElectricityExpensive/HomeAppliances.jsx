@@ -7,7 +7,10 @@ import Card from "../../components/Card/Card";
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {setappliance_id} from '../../features/karma.jsx'
+import {setappliance_id} from '../../features/karma.jsx';
+import CustomButton from "../../components/button/CustomButton.jsx";
+
+
 function HomeAppliances() {
   const dispatch=useDispatch();
   const HomeAppliancesData = [
@@ -34,7 +37,7 @@ function HomeAppliances() {
     navigate("/food-type");
   };
   return (
-    <Box sx={{ padding: 1 }}>
+    <Box sx={{ padding: 1}}>
       <Typography
         variant="body1"
         sx={{
@@ -49,7 +52,7 @@ function HomeAppliances() {
         Choose the vehicles you use for commuting?
       </Typography>
 
-      <Grid2 container spacing={1} justifyContent="center">
+      <Grid2 container spacing={2} justifyContent="center">
         {HomeAppliancesData.map((appliance, index) => (
           <div onClick={()=>{
           dispatch(setsetappliance_id({setappliance_id:appliance.id}))
@@ -69,6 +72,7 @@ function HomeAppliances() {
                 HomeAppliancesData.length % 3 !== 0
                   ? "center"
                   : "flex-start",
+                  ml:"10px",
             }}
           >
             <Card
@@ -87,6 +91,7 @@ function HomeAppliances() {
                 alignItems: "center",
                 textAlign: "center",
                 borderRadius: "10px",
+
                 // boxShadow: selectedappliance === appliance.id ? "0px 4px 8px rgba(0, 0, 0, 0.2)" : "none",
                 // transition: "border 0.2s ease, box-shadow 0.2s ease",
               }}
@@ -98,56 +103,38 @@ function HomeAppliances() {
           </div>
         ))}
       </Grid2>
-      <Box
+      <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: 360,
-          marginTop: 3,
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
         }}
       >
-        <Button
-          variant="outlined"
-          label="Later"
-          sx={{
-            width: "45%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "#438cfa",
-            // borderColor: '#676767',
-            border: "none",
-            backgroundColor: "#c9e1f5",
-            textTransform: "none",
-            mr: "10px",
-            padding: 2,
-          }}
-          onClick={handleBackClick}
-        >
-          Back
-        </Button>
+        <CustomButton 
+          text="Back" 
+          variant="secondary"  
+          textcolor="#1d78ec" 
+          route="/food-type"
+          sx={{ width: '200px',
+            backgroundColor:"#deeaf9"
+           }}  
+        />
 
-        <Button
-          variant="contained"
-          label="Calculate & offset"
-          sx={{
-            width: "48%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "15px",
-            backgroundColor: "#0671c9",
-            textTransform: "none",
-            color: "white",
-            mr: "19px",
-            padding: 2,
-          }}
-          onClick={handleForwardClick}
-        >
-          Next
-        </Button>
-      </Box>
+        <CustomButton 
+          text="Next" 
+          variant="contained" 
+          bgcolor="#1d78ec" 
+          textcolor="white" 
+          route="/current-unit"
+          sx={{ width: '200px' }}  
+        />
+        </Box>
+        </Box>
     </Box>
   );
 }

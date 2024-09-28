@@ -9,14 +9,14 @@ const GaugeChart = ({karmavalue}) => {
     labels: ['Commute', 'Food', 'Appliances'],
     datasets: [
       {
-        data: [30, 40, 30], // Data for the sections (Commute, Food, Appliances)
-        backgroundColor: ['#FFBF00', '#FF5F5F', '#5BE12C'], // Section colors
-        borderWidth: 0, // Border thickness for the arcs
+        data: [30, 40, 30], 
+        backgroundColor: ['#FFBF00', '#FF5F5F', '#5BE12C'],
+        borderWidth: 0, 
         hoverOffset: 4, 
-        cutout: '90%', // This determines the size of the center, making the arc thinner
-        rotation: 270, // Start the semi-circle from the bottom
-        circumference: 180, // Create the half-circle shape
-        weight: 0.5, // Decrease this to reduce the thickness of the arcs
+        cutout: '90%', 
+        rotation: 270, 
+        circumference: 180, 
+        weight: 0.5, 
         borderRadius: 1,
       },
     ],

@@ -206,17 +206,17 @@ function Home() {
             variant="outlined"
             label="Later"
             sx={{
-              width: "40%",
+              width: "46%",
               height: "45px",
-              borderRadius: "10px",
+              borderRadius: "8px",
               fontWeight: "bold",
               fontSize: "14px",
-              color: "#676767",
+              color: "#1d78ec",
               // borderColor: '#676767',
               border: "none",
-              backgroundColor: "#c9e1f5",
+              backgroundColor: "#e6eefa",
               textTransform: "none",
-              mr: "30px",
+              mr: "18px",
               padding: 2,
             }}
             // onClick={handleLaterClick}
@@ -228,12 +228,13 @@ function Home() {
             variant="contained"
             label="Calculate & offset"
             sx={{
-              width: "48%",
+              width: "46%",
               height: "45px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              fontSize: "15px",
-              backgroundColor: "#0671c9",
+              borderRadius: "8px",
+              fontWeight: "normal",
+              fontSize: "14px",
+              fontFamily:"Sarabun",
+              backgroundColor: "#1d78ec",
               textTransform: "none",
               color: "white",
               mr: "30px",

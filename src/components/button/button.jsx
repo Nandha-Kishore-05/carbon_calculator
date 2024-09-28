@@ -1,6 +1,6 @@
 import "./button.css";
 
-function CustomButton(props) {
+function Button(props) {
   return (
     <button
       onClick={props.onClick}
@@ -16,4 +16,4 @@ function CustomButton(props) {
   );
 }
 
-export default CustomButton;
+export default Button;

@@ -1,5 +1,6 @@
 import React from 'react'
 import CustomButton from '../../components/button/button'
+// import CustomButton from '../../components/button/CustomButton';
 import InputBox from '../../components/inputbox/inputbox'
 import {useNavigate} from "react-router-dom"
 function Sample() {

@@ -1,154 +1,106 @@
-import  Typography  from '@mui/material/Typography'
-import React from 'react'
-import CustomButton from '../../components/button/button'
-
-import {useNavigate} from "react-router-dom";
-import { Box, CircularProgress } from '@mui/material';
-import Slider from '@mui/material/Slider';
-import Divider from '@mui/material/Divider';
-// import CircularWithValueLabel from '../../feedback/CircularBar';
-
+import Typography from '@mui/material/Typography';
+import React from 'react';
+import CustomButton from '../../components/button/CustomButton';
+import { useNavigate } from 'react-router-dom';
+import { Box, CircularProgress, Slider, Divider, Button } from '@mui/material';
 
 function KiloMeters() {
-
-    const navigate = useNavigate();
-  const handleForwardClick =() =>{
-   navigate('/food-type');
-  }
-
-
+  const navigate = useNavigate();
+  
   const [value, setValue] = React.useState(80); 
 
   const handleChange = (event, newValue) => {
     setValue(newValue); 
   };
 
-
-  return (
-    <Typography variant='h5'>
-     <Box sx={{ fontSize:'16px',color:'black',marginTop:'40px',marginBottom:'40px',textAlign:'center'}}>
-      <b>How many kilometres you drive per week?</b>
-    </Box>
-
-    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center',marginBottom:'15px' }}>
-  <Box sx={{ width: '90%'}}> 
-  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-  <Divider orientation="vertical" sx={{ top: '448px',left: '20px',width: '4px',
-        height: '20px',bgcolor: '#0E70EB',borderRadius:'4px' }} />
-  <Slider
-        aria-label="CustomSlider"
-        value={value}                
-        min={10}                      
-        max={250}                     
-        step={1}                      
-        valueLabelDisplay="auto"      
-        onChange={handleChange}        
-      />
-  <Divider orientation="vertical" sx={{ top: '448px',
-left: '351px',
-width: '4px',
-height: '20px', bgcolor: '#0E70EB',borderRadius:'4px' }} />
-    </Box>
-      
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography
-          variant="body2"
-          // onClick={() => setVal(MIN)}
-          // sx={{ cursor: 'pointer' }}
-        >
-          <b>10</b> 
-        </Typography>
-        <Typography
-          variant="body2"
-          // onClick={() => setVal(MAX)}
-          // sx={{ cursor: 'pointer' }}
-        >
-          <b>250</b> 
-        </Typography>
-      </Box>
-    </Box>
-    </Box>
-
-    <Box sx={{display:'flex',justifyContent:'center'}}>
-    <Typography variant="h6" textAlign='center' marginBottom='15px' color='#fea062' fontWeight='bold'
-      padding='5px 5px' bgcolor='#fff4e4' sx={{fontSize:'16px',width:'21%',borderRadius:'5px'}}>
-        {value} km
-    </Typography>
-    </Box>
-
-
+  const handleForwardClick = () => {
+    navigate('/food-type');
+  };
 
   const handleBackClick = () => {
-    navigate('/fuel-type')
-  }
+    navigate('/fuel-type');
+  };
+
   return (
-    <Box sx={{ padding: 3 }}>
-    <Typography
-        variant="body1"
-        sx={{
-          marginBottom: 3,
-          textAlign: "center",
-          fontSize: "15px",
-          fontWeight:"bold",
-          opacity: 1,
-          color: "#030911",
-        }}
-      >
-        How many kilometers you drive per week?
+    <>
+      <Typography variant='h5'>
+        <Box sx={{ fontSize:'16px', color:'black', marginTop:'40px', marginBottom:'40px', textAlign:'center' }}>
+          <b>How many kilometers do you drive per week?</b>
+        </Box>
       </Typography>
-      <Box
+
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '15px' }}>
+        <Box sx={{ width: '90%' }}> 
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Divider orientation="vertical" sx={{ width: '4px', height: '20px', bgcolor: '#0E70EB', borderRadius: '4px' }} />
+            <Slider
+              aria-label="CustomSlider"
+              value={value}
+              min={10}
+              max={250}
+              step={1}
+              valueLabelDisplay="auto"
+              onChange={handleChange}
+            />
+            <Divider orientation="vertical" sx={{ width: '4px', height: '20px', bgcolor: '#0E70EB', borderRadius: '4px' }} />
+          </Box>
+
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="body2"><b>10</b></Typography>
+            <Typography variant="body2"><b>250</b></Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography 
+          variant="h6" 
+          textAlign='center' 
+          marginBottom='15px' 
+          color='#fea062' 
+          fontWeight='bold'
+          padding='5px 5px' 
+          bgcolor='#fff4e4' 
+          sx={{ fontSize:'16px', width:'21%', borderRadius:'5px' }}
+        >
+          {value} km
+        </Typography>
+      </Box>
+
+      <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: 360,
-          marginTop: 40,
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
         }}
       >
-        <Button
-          variant="outlined"
-          label="Later"
-          sx={{
-            width: "45%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "#438cfa",
-            // borderColor: '#676767',
-            border: "none",
-            backgroundColor: "#c9e1f5",
-            textTransform: "none",
-            mr: "10px",
-            padding: 2,
-          }}
-          onClick={handleBackClick}
-        >
-         Back
-        </Button>
+        <CustomButton 
+          text="Back" 
+          variant="secondary"  
+          textcolor="#1d78ec" 
+          route="/fuel-type"
+          sx={{ width: '200px',
+            backgroundColor:"#deeaf9"
+           }}  
+        />
 
-        <Button
-          variant="contained"
-          label="Calculate & offset"
-          sx={{
-            width: "48%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "15px",
-            backgroundColor: "#0671c9",
-            textTransform: "none",
-            color: "white",
-            mr: "19px",
-            padding: 2,
-          }}
-          onClick={handleForwardClick}
-        >
-          Next
-        </Button>
-      </Box>
-    </Box>
-
-  )
+        <CustomButton 
+          text="Next" 
+          variant="contained" 
+          bgcolor="#1d78ec" 
+          textcolor="white" 
+          route="/food-type"
+          sx={{ width: '200px' }}  
+        />
+        </Box>
+        </Box>
+    </>
+  );
 }
 
-export default KiloMeters
+export default KiloMeters;
