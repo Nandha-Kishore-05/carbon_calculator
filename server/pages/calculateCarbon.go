@@ -80,7 +80,7 @@ func CalculateCarbonFootprint(c *gin.Context) {
 	_, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, food_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
 		input.VehicleTypeID, input.FuelTypeID, input.FoodTypeID, electricityID, input.KmPerWeek, input.NumberOfVehicles, totalEmissionsInTons)
 	if err != nil {
-		log.Println("Error inserting carbon data:", err)
+		log.Println("Error inserting carbon data check:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert carbon data"})
 		return
 	}
