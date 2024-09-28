@@ -12,11 +12,11 @@ import (
 func GetAllData(c *gin.Context) {
 
 	var appliances []models.Appliance
-	var dietaryTypes []models.DietaryType
+	var foodtypes []models.FoodType
 	var vehicleTypes []models.VehicleType
 	var fuelTypes []models.FuelType
 
-	rows, err := config.Database.Query("SELECT appliance_id, appliance_name FROM appliance_names")
+	rows, err := config.Database.Query("SELECT appliance_id, appliance_name,carbon_value FROM appliance_names")
 	if err != nil {
 		log.Println("Error fetching appliance names:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch appliance names"})
@@ -26,7 +26,7 @@ func GetAllData(c *gin.Context) {
 
 	for rows.Next() {
 		var appliance models.Appliance
-		if err := rows.Scan(&appliance.ApplianceID, &appliance.ApplianceName); err != nil {
+		if err := rows.Scan(&appliance.ApplianceID, &appliance.ApplianceName, &appliance.CarbonValue); err != nil {
 			log.Println("Error scanning appliance row:", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error scanning appliance row"})
 			return
@@ -34,7 +34,7 @@ func GetAllData(c *gin.Context) {
 		appliances = append(appliances, appliance)
 	}
 
-	rows, err = config.Database.Query("SELECT diet_type_id, diet_type_name FROM dietary_types")
+	rows, err = config.Database.Query("SELECT food_type_id, food_type_name,carbon_value FROM food_types")
 	if err != nil {
 		log.Println("Error fetching dietary types:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch dietary types"})
@@ -43,16 +43,16 @@ func GetAllData(c *gin.Context) {
 	defer rows.Close()
 
 	for rows.Next() {
-		var dietType models.DietaryType
-		if err := rows.Scan(&dietType.DietTypeID, &dietType.DietTypeName); err != nil {
+		var foodType models.FoodType
+		if err := rows.Scan(&foodType.FoodTypeID, &foodType.FoodTypeName, &foodType.CarbonValue); err != nil {
 			log.Println("Error scanning dietary type row:", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error scanning dietary type row"})
 			return
 		}
-		dietaryTypes = append(dietaryTypes, dietType)
+		foodtypes = append(foodtypes, foodType)
 	}
 
-	rows, err = config.Database.Query("SELECT vehicle_type_id, vehicle_type_name FROM vehicle_types")
+	rows, err = config.Database.Query("SELECT vehicle_type_id, vehicle_type_name,carbon_value FROM vehicle_types")
 	if err != nil {
 		log.Println("Error fetching vehicle types:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch vehicle types"})
@@ -62,7 +62,7 @@ func GetAllData(c *gin.Context) {
 
 	for rows.Next() {
 		var vehicleType models.VehicleType
-		if err := rows.Scan(&vehicleType.VehicleTypeID, &vehicleType.VehicleTypeName); err != nil {
+		if err := rows.Scan(&vehicleType.VehicleTypeID, &vehicleType.VehicleTypeName, &vehicleType.CarbonValue); err != nil {
 			log.Println("Error scanning vehicle type row:", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error scanning vehicle type row"})
 			return
@@ -70,7 +70,7 @@ func GetAllData(c *gin.Context) {
 		vehicleTypes = append(vehicleTypes, vehicleType)
 	}
 
-	rows, err = config.Database.Query("SELECT fuel_type_id, fuel_type_name FROM fuel_types")
+	rows, err = config.Database.Query("SELECT fuel_type_id, fuel_type_name,carbon_value FROM fuel_types")
 	if err != nil {
 		log.Println("Error fetching fuel types:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch fuel types"})
@@ -80,7 +80,7 @@ func GetAllData(c *gin.Context) {
 
 	for rows.Next() {
 		var fuelType models.FuelType
-		if err := rows.Scan(&fuelType.FuelTypeID, &fuelType.FuelTypeName); err != nil {
+		if err := rows.Scan(&fuelType.FuelTypeID, &fuelType.FuelTypeName, &fuelType.CarbonValue); err != nil {
 			log.Println("Error scanning fuel type row:", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error scanning fuel type row"})
 			return
@@ -90,7 +90,7 @@ func GetAllData(c *gin.Context) {
 
 	combinedData := models.CombinedData{
 		Appliances:   appliances,
-		DietaryTypes: dietaryTypes,
+		FoodTypes:    foodtypes,
 		VehicleTypes: vehicleTypes,
 		FuelTypes:    fuelTypes,
 	}

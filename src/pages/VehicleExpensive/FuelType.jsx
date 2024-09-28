@@ -7,10 +7,12 @@ import Card from "../../components/Card/Card";
 import Fuelpump from '../../assets/Fuelpump.png'
 import { Button } from "@mui/material";
 import Electric from '../../assets/electric.png'
-
+import {setfuel_type_id} from '../../features/karma.jsx'
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 function FuelType() {
     const navigate = useNavigate();
-
+const dispatch=useDispatch();
     const vehicleData = [
       { id: 1, image: Fuelpump, text: "Petrol/Diesel", bgColor: "#e1eefa" },
       { id: 2, image: Electric, text: "Electric Vehicle", bgColor: "#fff4e5" },
@@ -41,6 +43,11 @@ function FuelType() {
 
       <Grid2 container spacing={3} justifyContent="center">
         {vehicleData.map((vehicle, index) => (
+          <div onClick={()=>{
+
+           
+            dispatch(setfuel_type_id({setfuel_type_id:vehicle.id}))
+          }}>
           <Grid2
             item
             xs={12}
@@ -73,6 +80,7 @@ function FuelType() {
               }}
             />
           </Grid2>
+          </div>
         ))}
       </Grid2>
       <Box sx={{ padding: 1 }}>

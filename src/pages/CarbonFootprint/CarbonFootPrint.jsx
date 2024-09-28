@@ -6,22 +6,19 @@ import { useNavigate } from "react-router-dom";
 import "./carbon.css";
 import GaugeChart from "./GaugeChart";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 function CarbonFootPrint() {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.value);
+  console.log(user)
   const [average, setaverage] = useState("25%");
   const [averagetitle, setaveragetitle] = useState("");
   const [karmavalue, setkarmavalue] = useState("0");
+  
   useEffect(() => {
     axios
-      .post("http://localhost:8080/crayon/calculate", {
-        vehicle_type_id: 2,
-        number_of_vehicles: 2,
-        fuel_type_id: 2,
-        km_per_week: 86,
-        diet_type_id: 1,
-        appliance_id: 1,
-        electricity_consumed: 100,
-      })
+      .post("http://localhost:8080/crayon/calculate",user)
       .then((response) => {
         
         if (

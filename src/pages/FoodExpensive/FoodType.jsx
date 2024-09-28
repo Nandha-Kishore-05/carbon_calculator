@@ -8,10 +8,11 @@ import { Button } from "@mui/material";
 import Leaf from '../../assets/leaf.png'
 import Oden from '../../assets/Oden.png'
 import leg from '../../assets/leg.png'
-
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {setdiet_type_id} from '../../features/karma.jsx'
 function FoodType() {
-
+  const dispatch=useDispatch();
   const FoodData = [
     { id: 1, image: Leaf, text: "Veg", bgColor: "#e1eefa" },
     { id: 2, image: Oden, text: "Both", bgColor: "#fff4e5" },
@@ -51,7 +52,12 @@ function FoodType() {
     </Typography>
 
     <Grid2 container spacing={1} justifyContent="center">
+
       {FoodData.map((food, index) => (
+        <div onClick={()=>{
+          dispatch(setdiet_type_id({diet_type_id:food.id}))
+
+        }}>
         <Grid2
           item
           xs={12}
@@ -82,6 +88,7 @@ function FoodType() {
             }}
           />
         </Grid2>
+        </div>
       ))}
     </Grid2>
     <Box
