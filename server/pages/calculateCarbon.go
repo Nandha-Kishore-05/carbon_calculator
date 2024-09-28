@@ -76,8 +76,7 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve electricity ID"})
 		return
 	}
-
-	_, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, food_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+	result, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, food_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
 		input.VehicleTypeID, input.FuelTypeID, input.FoodTypeID, electricityID, input.KmPerWeek, input.NumberOfVehicles, totalEmissionsInTons)
 	if err != nil {
 		log.Println("Error inserting carbon data check:", err)
@@ -85,6 +84,12 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
+	lastInsertID, err := result.LastInsertId()
+	if err != nil {
+		log.Println("Error getting last insert ID for carbon data:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve last insert ID"})
+		return
+	}
 	averageEmissions := 10.0
 	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 10
 
@@ -101,5 +106,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"annual_carbon_footprint": annualCarbonFootprint + " ton CO₂",
 		"comparison_to_average":   comparison,
+		"carbon_calculator_id":    lastInsertID,
 	})
 }
