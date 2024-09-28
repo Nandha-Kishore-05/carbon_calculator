@@ -127,7 +127,7 @@ opacity: 1;
   color: #030911;
   opacity: 0;
   overflow: hidden;
-  top: 40%; 
+  top: 30%; 
 }
 
 
@@ -189,11 +189,13 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top: 15px;
 }
 
 .input-box
 {
     height: 60%;
+    margin-top: 20px;
     width: 90%;
 }
 
@@ -267,11 +269,26 @@ button
   position: relative;
 }
 
-input::placeholder {
-  color: #737171; 
-  font-size: 14px;
-  font-weight: 600;
+
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+.required-symbol {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.symbol
+{
+  left: 5px;
+  color: red;
+}
 
 

@@ -1,28 +1,43 @@
-
-import React from "react";
+import React, { useState } from "react";
 import sun from '../../assets/sun.png';
 import tree from '../../assets/Trees@2x.png';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './form.css';
 
 function Form() {
-
+  // State to track if each input is filled or not
+  const [filledFields, setFilledFields] = useState({
+    name: false,
+    phone: false,
+    email: false,
+    location: false,
+    trees: false,
+    behalf: false,
+  });
 
   const inputFields = [
-    { type: 'text', placeholder: 'Your Name *' },
-    { type: 'number', placeholder: 'Phone Number *' },
-    { type: 'text', placeholder: 'Email *' },
-    { type: 'text', placeholder: 'Location *' },
-    { type: 'text', placeholder: 'How many trees you want to plant? *' },
-    { type: 'text', placeholder: 'Name to be planted on behalf of? *' },
+    { type: 'text', placeholder: 'Your Name', name: 'name' },
+    { type: 'number', placeholder: 'Phone Number', name: 'phone' },
+    { type: 'text', placeholder: 'Email', name: 'email' },
+    { type: 'text', placeholder: 'Location', name: 'location' },
+    { type: 'text', placeholder: 'How many trees you want to plant?', name: 'trees' },
+    { type: 'text', placeholder: 'Name to be planted on behalf of?', name: 'behalf' },
   ];
-
 
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate('/submitted');
-  }
+  };
+
+  // Handle input change and update the filled state
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFilledFields(prevState => ({
+      ...prevState,
+      [name]: value !== "" // Mark field as filled if it has a value
+    }));
+  };
 
   return (
     <div className='first'>
@@ -47,11 +62,20 @@ function Form() {
           <form className="input-box">
             <div className="input-fields">
               {inputFields.map((field, index) => (
-          <input
-            key={index}
-            type={field.type}
-            placeholder={field.placeholder}
-          />
+                <div key={index} className="input-wrapper">
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    onChange={handleInputChange}
+                  />
+                  
+                  {!filledFields[field.name] && (
+                    <span className="required-symbol">
+                      <spam>{field.placeholder}</spam>
+                      <span className="symbol">*</span>
+                    </span>
+                  )}
+                </div>
               ))}
             </div>
           </form>
@@ -67,8 +91,6 @@ function Form() {
       <div className="tree-con"><img className="tree" src={tree} alt="Sun and clouds" /> </div>
     </div>
   );
-
-
 }
 
-export default Form
+export default Form;
