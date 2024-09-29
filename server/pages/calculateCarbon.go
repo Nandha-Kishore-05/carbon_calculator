@@ -4,7 +4,7 @@ import (
 	"CARBON_CALCULATOR/config"
 	"CARBON_CALCULATOR/models"
 	"log"
-
+	"math"
 	"net/http"
 	"strconv"
 
@@ -19,52 +19,93 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	_, err := config.Database.Exec(`INSERT INTO vehicles (vehicle_type_id, fuel_type_id, km_per_week, number_of_vehicles) VALUES (?, ?, ?, ?)`,
-		input.VehicleTypeID, input.FuelTypeID, input.KmPerWeek, input.NumberOfVehicles)
-
+	var vehicleCarbonValue int
+	err := config.Database.QueryRow(`SELECT carbon_value FROM vehicle_types WHERE vehicle_type_id = ?`, input.VehicleTypeID).Scan(&vehicleCarbonValue)
 	if err != nil {
-		log.Println("Error inserting vehicle data:", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert vehicle data"})
+		log.Println("Error fetching vehicle carbon value:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch vehicle carbon value"})
 		return
 	}
 
-	_, err = config.Database.Exec(`INSERT INTO dietary_habits (diet_type_id) VALUES (?)`, input.DietTypeID)
+	var fuelCarbonValue int
+	err = config.Database.QueryRow(`SELECT carbon_value FROM fuel_types WHERE fuel_type_id = ?`, input.FuelTypeID).Scan(&fuelCarbonValue)
 	if err != nil {
-		log.Println("Error inserting dietary data:", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert dietary data"})
+		log.Println("Error fetching fuel carbon value:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch fuel carbon value"})
 		return
 	}
 
-	_, err = config.Database.Exec(`INSERT INTO electricity_consumption (units_consumed,appliance_id) VALUES (?,?)`, input.ElectricityConsumed, input.ApplianceIDs) // Assuming first appliance for simplicity
+	var foodCarbonValue int
+	err = config.Database.QueryRow(`SELECT carbon_value FROM food_types WHERE food_type_id = ?`, input.FoodTypeID).Scan(&foodCarbonValue)
 	if err != nil {
-		log.Println("Error inserting electricity data:", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert electricity data"})
+		log.Println("Error fetching food carbon value:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch food carbon value"})
+		return
+	}
+	var applianceCarbonValue int
+
+	query := `
+		SELECT SUM(a.carbon_value) 
+		FROM appliance_names a
+		INNER JOIN electricity_consumption e
+		ON FIND_IN_SET(a.appliance_id, e.appliance_ids) > 0
+		WHERE e.id = ?
+	`
+
+	err = config.Database.QueryRow(query, input.ApplianceID).Scan(&applianceCarbonValue)
+	if err != nil {
+		log.Println("Error fetching appliance carbon values:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch appliance carbon values"})
 		return
 	}
 
-	totalEmissions := calculateFootprint(input)
+	totalEmissions := float64(vehicleCarbonValue*input.KmPerWeek*input.NumberOfVehicles + fuelCarbonValue + foodCarbonValue + applianceCarbonValue + input.UnitsConsumed)
+	totalEmissionsInTons := totalEmissions / 10000
+
+	result, err := config.Database.Exec(`INSERT INTO electricity_consumption (units_consumed, appliance_ids) VALUES (?, ?)`,
+		input.UnitsConsumed, input.ApplianceID)
+	if err != nil {
+		log.Println("Error inserting into electricity_consumption:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert electricity consumption data"})
+		return
+	}
+
+	electricityID, err := result.LastInsertId()
+	if err != nil {
+		log.Println("Error getting last insert ID:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve electricity ID"})
+		return
+	}
+	result, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, food_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+		input.VehicleTypeID, input.FuelTypeID, input.FoodTypeID, electricityID, input.KmPerWeek, input.NumberOfVehicles, totalEmissionsInTons)
+	if err != nil {
+		log.Println("Error inserting carbon data check:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert carbon data"})
+		return
+	}
+
+	lastInsertID, err := result.LastInsertId()
+	if err != nil {
+		log.Println("Error getting last insert ID for carbon data:", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve last insert ID"})
+		return
+	}
 	averageEmissions := 10.0
+	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 10
 
-	comparison := "Your carbon footprint is lower than the average"
-	if totalEmissions > averageEmissions {
-		comparison = "Your carbon footprint is higher than the average"
+	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
+	roundedPercentageDifference := int(math.Round(percentageDifference))
+
+	comparison := "Your carbon footprint is equal to the average"
+	if totalEmissionsInTons > averageEmissions {
+		comparison = "Your carbon footprint is " + strconv.Itoa(roundedPercentageDifference) + "% higher than the average"
+	} else if totalEmissionsInTons < averageEmissions {
+		comparison = "Your carbon footprint is " + strconv.Itoa(-roundedPercentageDifference) + "% lower than the average"
 	}
-
-	percentageDifference := (totalEmissions / averageEmissions) * 100
 
 	c.JSON(http.StatusOK, gin.H{
-		"annual_carbon_footprint": strconv.FormatFloat(totalEmissions, 'f', 2, 64) + " ton CO₂",
+		"annual_carbon_footprint": annualCarbonFootprint + " ton CO₂",
 		"comparison_to_average":   comparison,
-		"percentage_difference":   strconv.FormatFloat(percentageDifference, 'f', 2, 64) + "%",
+		"carbon_calculator_id":    lastInsertID,
 	})
-}
-
-func calculateFootprint(input models.CarbonInput) float64 {
-
-	vehicleEmissions := float64(input.KmPerWeek) * 0.1 * float64(input.NumberOfVehicles)
-	dietEmissions := float64(input.DietTypeID) * 0.5
-	electricityEmissions := float64(input.ElectricityConsumed) * 0.3
-
-	totalEmissions := vehicleEmissions + dietEmissions + electricityEmissions
-	return totalEmissions
 }

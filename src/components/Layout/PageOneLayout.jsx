@@ -22,7 +22,7 @@ function PageOneLayout({ children }) {
                   // justifyContent:"center",
                   display:"flex",
                   // padding: 2,
-                  backgroundColor:"#e3ecfa",
+                  backgroundColor:"#edf2fa",
                   position:"absolute",
                    border:"1px solid  #F0F4FA",
                 }}
@@ -34,6 +34,7 @@ function PageOneLayout({ children }) {
         </Grid2>
       </Grid2>
       </div>
+     
     </Container>
     
   );

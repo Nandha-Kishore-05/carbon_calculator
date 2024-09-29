@@ -7,7 +7,13 @@ const StyledButton = styled(Button)(({ bgcolor, textcolor }) => ({
   backgroundColor: bgcolor || "white", 
   color: textcolor || "blue",      
   padding: '10px 60px',
-  borderRadius: '5px',
+  borderRadius: '8px',
+  textTransform:'none',
+  fontFamily:'Sarabun',
+//   '&:hover': {
+//     backgroundColor: textcolor || "#4287f5", 
+//     color: bgcolor || "white",           
+//   },
 }));
 
 function CustomButton({ 

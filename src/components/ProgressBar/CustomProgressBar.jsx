@@ -30,21 +30,49 @@ function CustomProgressBar() {
   const percentage = (currentStep / totalSteps) * 100;
 
   return (
-    <div style={{ width: 100, height: 100 ,backgroundColor:"white",borderRadius:"50% 50%"}}>
+    <div style={{ 
+        width: 89, 
+        height: 89, 
+        backgroundColor: "white", 
+        borderRadius: "50%", 
+        display: 'flex',             
+        justifyContent: 'center',   
+        alignItems: 'center',
+        position:"relative",
+       
+        padding: '10px' // Adding padding for spacing
+    }}>
       <CircularProgressbar
         value={percentage}
-        text={`${currentStep}/${totalSteps}`}
+        strokeWidth= {12} 
+        // text={`${currentStep}/${totalSteps}`}
         styles={buildStyles({
-          rotation: 0.,
-          strokeLinecap: 'round',
-          textSize: '16px',
-          pathTransitionDuration: 0.5,
-          pathColor: `rgba(230, 95, 11)`, 
-          textColor: '#e65f0b', 
-          trailColor: '#d6d6d6',
-          backgroundColor: '#e65f0b',
+          rotation: 1, 
+         strokeLinecap: "butt",
+          textSize: '29px',
+          pathTransitionDuration: 0.5,  
+          pathColor: `rgba(255, 180, 84)`,  
+          textColor: '#FF884C', 
+          trailColor: '#FFEBD6', 
+          backgroundColor: '#f3f4f6',
+        
         })}
       />
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '19px',
+          fontWeight: 800,
+          color: '#FF884C',
+          textAlign: 'center',
+          letterSpacing:"1.5px"
+        }}
+      >
+        {`${currentStep}/${totalSteps}`}
+      </div>
     </div>
   );
 }
