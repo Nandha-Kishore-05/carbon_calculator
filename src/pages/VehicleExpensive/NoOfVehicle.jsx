@@ -3,17 +3,14 @@
 
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { Button, Box, Slider, Divider } from '@mui/material';
+import  Divider  from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider'
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../../components/button/CustomButton';
 
 function NoOfVehicle() {
   const navigate = useNavigate();
-
-  const handleForwardClick = () => {
-    navigate('/fuel-type');
-  };
-
   const [sliderValue, setSliderValue] = React.useState(4);
 
   const handleSliderChange = (event, newValue) => {
@@ -28,19 +25,16 @@ function NoOfVehicle() {
     { value: 10, label: <strong>10</strong> }
   ];
 
-  const handleBackClick = () => {
-    navigate('/vehicle-type');
-  };
-
+ 
   return (
 
       <Typography variant="h5">
-        <Box sx={{ fontSize: '16px', color: 'black', marginTop: '40px', marginBottom: '40px', textAlign: 'center' }}>
+        <Box sx={{ fontSize: '16px', color: 'black', marginTop: '60px', marginBottom: '29px', textAlign: 'center' }}>
           <b>How many vehicles do you own?</b>
         </Box>
 
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '15px' }}>
-          <Box sx={{ width: '85%' }}>
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+          <Box sx={{ width: '95%',mt:"30px" }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
             <Divider orientation="vertical" sx={{ top: '466px',left: '20px',width: '4px',
         height: '20px',bgcolor: '#0E70EB',borderRadius:'4px',zIndex:'1' }} />    
@@ -54,10 +48,10 @@ function NoOfVehicle() {
       marks={marks}
       value={sliderValue}       
       onChange={handleSliderChange}
-      sx={{top: '446px',
+      sx={{top: '500px',
         position:'absolute',
-        left: '47px',
-        width: '308px',
+        left: '20px',
+        width: '358px',
         height: '4px'}}
     />
       <Divider orientation="vertical" sx={{ top: '466px',

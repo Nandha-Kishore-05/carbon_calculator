@@ -6,25 +6,16 @@ import { Box, CircularProgress, Slider, Divider, Button } from '@mui/material';
 
 function KiloMeters() {
   const navigate = useNavigate();
-  
   const [value, setValue] = React.useState(80); 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleForwardClick = () => {
-    navigate('/food-type');
-  };
-
-  const handleBackClick = () => {
-    navigate('/fuel-type');
-  };
-
   return (
     <>
       <Typography variant='h5'>
-        <Box sx={{ fontSize:'16px', color:'black', marginTop:'40px', marginBottom:'40px', textAlign:'center' }}>
+        <Box sx={{ fontSize:'16px', color:'black', marginTop:'60px', marginBottom:'40px', textAlign:'center' }}>
           <b>How many kilometers do you drive per week?</b>
         </Box>
       </Typography>
@@ -46,8 +37,8 @@ function KiloMeters() {
           </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="body2"><b>10</b></Typography>
-            <Typography variant="body2"><b>250</b></Typography>
+            <Typography variant="body2"><b>10 km</b></Typography>
+            <Typography variant="body2"><b>250 km</b></Typography>
           </Box>
         </Box>
       </Box>

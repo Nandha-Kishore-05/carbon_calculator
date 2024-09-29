@@ -5,20 +5,10 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from '../../components/button/CustomButton';
 
 function CurrentUnit() {
-  const navigate = useNavigate();
-
   const [units, setUnits] = React.useState(200);
 
   const handleUnitsChange = (event, newValue) => {
     setUnits(newValue);
-  };
-
-  const handleForwardClick = () => {
-    navigate('/carbon-footprint');
-  };
-
-  const handleBackClick = () => {
-    navigate('/home-appliance');
   };
 
   return (
@@ -28,7 +18,7 @@ function CurrentUnit() {
           sx={{
             fontSize: '16px',
             color: 'black',
-            marginTop: '40px',
+            marginTop: '60px',
             marginBottom: '40px',
             textAlign: 'center',
           }}

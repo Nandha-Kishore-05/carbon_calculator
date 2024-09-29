@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Grid2 from "@mui/material/Grid2";
+import Grid2 from "@mui/material/Grid2"; // Note: Check if you're using @mui/material/Grid instead
 import Paper from "@mui/material/Paper";
 import HomeImg from "../../assets/homeimg1.png";
 import { useNavigate } from "react-router-dom";
@@ -18,21 +18,66 @@ function Home() {
     navigate("/vehicle-type");
   };
 
+  const InfoSection = ({ icon, title, description, overlayColor }) => (
+    <Grid2 item xs={12}>
+      <Paper
+        elevation={1}
+        sx={{
+          padding: 1,
+          display: "flex",
+          boxShadow: "none",
+          alignItems: "center",
+        }}
+      >
+        <ImgWrapper
+          src={icon}
+          alt={title}
+          overlayColor={overlayColor}
+          sx={{ width: { xs: "80px", md: "100px" }, height: "auto" }}
+        />
+        <Box>
+          <Typography
+            variant="body1"
+            fontWeight="bold"
+            sx={{
+              fontSize: { xs: "14px", md: "13.1px" },
+              width: "239px",
+              height: "25px",
+              textAlign: "left",
+            }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: "12px",
+              color: "#60666F",
+              width: "230px",
+              height: "37px",
+              textAlign: "left",
+            }}
+          >
+            {description}
+          </Typography>
+        </Box>
+      </Paper>
+    </Grid2>
+  );
+
   return (
     <Box
       sx={{
-        // backgroundColor: "#e6eefa",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        minHeight: "100vh", // Ensure full-screen height
       }}
     >
       <Box
         sx={{
           position: "relative",
-          width: "99%",
-          mr: "8px",
-          mt: "0.6px",
+          width: "100%", // Set to 100% to avoid shifts
           backgroundColor: "#d2e2fa",
           backgroundImage: `url(${HomeImg})`,
           backgroundRepeat: "no-repeat",
@@ -41,8 +86,7 @@ function Home() {
           opacity: 1,
           display: "flex",
           flexDirection: "column",
-          minHeight: "40vh",
-
+          minHeight: "40vh", // Set height relative to the viewport
           "&::before": {
             content: '""',
             position: "absolute",
@@ -50,25 +94,23 @@ function Home() {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(227, 236, 250, 0.6)",
+            backgroundColor: "rgba(227, 236, 250, 0.4)",
             zIndex: 0,
           },
         }}
       >
         <Typography
           variant="h6"
+          component="h6"
           sx={{
             color: "#0E70EB",
-            fontSize: "20px",
-            fontWeight: "bold",
+            fontWeight: 800,
             textAlign: "center",
             zIndex: 1,
-            //  padding: "10px",
-            mt: "170px",
-            ml: "50px",
-            width: "320px",
+            marginTop: { xs: "15vh", md: "20vh" },
+            fontSize: { xs: "16px", md: "20px" },
             letterSpacing: "0.5px",
-            position: "static",
+            maxWidth: "80vw",
           }}
         >
           Know & offset your carbon footprints!
@@ -81,155 +123,30 @@ function Home() {
           maxWidth: "490px",
           bgcolor: "white",
           borderRadius: "20px",
-          padding: 2,
-          marginTop: "-10vh",
+          padding: { xs: 1, md: 2 },
+          marginTop: { xs: "-5vh", md: "-10vh" },
           zIndex: 1,
         }}
       >
         <Grid2 container spacing={0}>
-          <Grid2 item xs={12}>
-            <Paper
-              elevation={1}
-              sx={{
-                padding: 1,
-                display: "flex",
-                boxShadow: "none",
-                alignItems: "center",
-              }}
-            >
-              <ImgWrapper
-                src={Icon1}
-                alt="Icon 1"
-                overlayColor="rgba(247, 188, 232, 0.4) "
-              />
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight="bold"
-                  sx={{
-                    fontSize: "15px",
-                    left: "109px",
-                    width: "239px",
-                    height: "25px",
-                  }}
-                >
-                  Answer our questions
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontSize: "12px",
-                    color: "#60666F",
-                    top: "486px",
-                    left: "109px",
-                    width: "230px",
-                    height: "37px",
-                  }}
-                >
-                  Vestibulum venenatis fringilla lorem eu finibus. Donec ac
-                  nulla nec nunc.
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid2>
-
-          <Grid2 item xs={12}>
-            <Paper
-              elevation={1}
-              sx={{
-                padding: 1,
-                display: "flex",
-                boxShadow: "none",
-                alignItems: "center",
-              }}
-            >
-              <ImgWrapper
-                src={Icon2}
-                alt="Icon 1"
-                overlayColor="rgba(250, 202, 211, 0.4) "
-                width="100px"
-              />
-
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight="bold"
-                  sx={{
-                    fontSize: "14px",
-                    left: "109px",
-                    width: "239px",
-                    height: "25px",
-                  }}
-                >
-                  Know your carbon footprint
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontSize: "12px",
-                    color: "#60666F",
-                    top: "486px",
-                    left: "109px",
-                    width: "230px",
-                    height: "37px",
-                  }}
-                >
-                  estibulum venenatis fringilla lorem eu finibus. Donec ac nulla
-                  nec nunc
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid2>
-
-          <Grid2 item xs={12}>
-            <Paper
-              elevation={1}
-              sx={{
-                padding: 1,
-                display: "flex",
-                boxShadow: "none",
-                alignItems: "center",
-              }}
-            >
-              <ImgWrapper
-                src={Icon3}
-                alt="Icon 1"
-                overlayColor="rgba(226, 241, 230, 0.4) "
-                width="100px"
-              />
-
-              <Box>
-                <Typography
-                  variant="body1"
-                  fontWeight="bold"
-                  sx={{
-                    fontSize: "14px",
-
-                    left: "109px",
-                    width: "239px",
-                    height: "40px",
-                    textAlign: "left",
-                  }}
-                >
-                  Offset it by following the instructions
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontSize: "12px",
-                    color: "#60666F",
-                    textAlign: "left",
-                    top: "486px",
-                    left: "109px",
-                    width: "230px",
-                    height: "37px",
-                  }}
-                >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-              </Box>
-            </Paper>
-          </Grid2>
+          <InfoSection
+            icon={Icon1}
+            title="Answer our questions"
+            description="Vestibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc."
+            overlayColor="rgba(247, 188, 232, 0.4)"
+          />
+          <InfoSection
+            icon={Icon2}
+            title="Know your carbon footprint"
+            description="Vestibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc."
+            overlayColor="rgba(250, 202, 211, 0.4)"
+          />
+          <InfoSection
+            icon={Icon3}
+            title="Offset it by following the instructions"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            overlayColor="rgba(226, 241, 230, 0.4)"
+          />
         </Grid2>
 
         <Box
@@ -251,6 +168,9 @@ function Home() {
               border: "none",
               backgroundColor: "#c9e1f5",
               textTransform: "none",
+              "&:hover": {
+                backgroundColor: "#b4d3f3",
+              },
             }}
           >
             Later
@@ -267,6 +187,9 @@ function Home() {
               backgroundColor: "#0671c9",
               textTransform: "none",
               color: "white",
+              "&:hover": {
+                backgroundColor: "#055da1",
+              },
             }}
             onClick={handleLaterClick}
           >

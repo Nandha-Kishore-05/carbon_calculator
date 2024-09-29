@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-
 const StyledButton = styled(Button)(({ bgcolor, textcolor }) => ({
   backgroundColor: bgcolor || "white", 
   color: textcolor || "blue",      
