@@ -19,7 +19,7 @@ function Submitted() {
         autoPlay
         muted
       />
-      <div className="text-1">Form submitted successfully</div>
+      <div className="text-3">Form submitted successfully</div>
       </div>
     </div>
   );
