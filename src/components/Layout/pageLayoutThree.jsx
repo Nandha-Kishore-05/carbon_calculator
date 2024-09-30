@@ -54,7 +54,7 @@ function PageLayoutThree({ children }) {
                       alignItems: "center",
                       position: "absolute",
                       top: "40px",
-                      left: "110px",
+                      left: "130px",
                       letterSpacing: "-0.08px",
                       color: "#030911",
                       fontSize: "20px",

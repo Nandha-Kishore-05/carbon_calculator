@@ -8,55 +8,68 @@ import { Button } from "@mui/material";
 import Leaf from '../../assets/leaf.png'
 import Oden from '../../assets/Oden.png'
 import leg from '../../assets/leg.png'
-
-
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {setdiet_type_id} from '../../features/karma.jsx';
+import CustomButton from "../../components/button/CustomButton.jsx";
 function FoodType() {
-
+  const dispatch=useDispatch();
   const FoodData = [
-    { id: 1, image: Leaf, text: "Veg", bgColor: "#e1eefa" },
-    { id: 2, image: Oden, text: "Both", bgColor: "#fff4e5" },
-    { id: 3, image: leg, text: "Non veg", bgColor: "#f9f9f9" },
+    { id: 1, image: Leaf, text: "Veg", bgColor: "#E4FFEE",borderColor: "#2bf074", imageWidth: "70px",
+      imageHeight: "50px", },
+    { id: 2, image: Oden, text: "Both", bgColor: "#FFF4E6",borderColor: "#e89833", imageWidth: "80px",
+      imageHeight: "50px", },
+    { id: 3, image: leg, text: "Non veg", bgColor: "#FFF4F3",borderColor: "#EB7E74", imageWidth: "70px",
+      imageHeight: "50px", },
     
   ];
 
-  // const [selectedFood, setSelectedFood] = useState(null);
-  // const handleCardClick = (id) => {
-  //     setSelectedFood(id);
-  //   };
-
-
-    const navigate = useNavigate();
-    const handleForwardClick =() =>{
-      navigate('/home-appliance');
-     }
-   
-     const handleBackClick = () => {
-       navigate('/kilometer')
-     }
+  const [selectedFoods, setSelectedFoods] = useState([]);
+    const handleFoodClick = (id) => {
+      setSelectedFoods((prevSelected) => {
+        if(prevSelected.includes(id)){
+          return prevSelected.filter((foodId) => foodId != id);
+        }
+        else{
+          return [...prevSelected, id];
+        }
+      });
+      };
   
   return (
-    <Box sx={{ padding: 1 }}>
-    <Typography
-      variant="body1"
-      sx={{
-        marginBottom: 3,
-        textAlign: "center",
-        fontSize: "15px",
-        fontWeight:"bold",
-        opacity: 1,
-        color: "#030911",
-      }}
-    >
-     What you normally eat?
-    </Typography>
+    
+    <Typography variant="h5">
+      <Box
+        sx={{
+          fontSize: "16px",
+          color: "black",
+          marginTop: "50px",
+          marginBottom: "15px",
+          textAlign: "center",
+        }}
+      >
+        <b> What you normally eat? </b>
+      </Box>
+      <Box sx={{ paddingY: 0, paddingX: 0 }}>
+    <Grid2  container
+          spacing={3}
+          justifyContent="center"
+          alignItems="center"
+          padding={0}>
 
-    <Grid2 container spacing={1} justifyContent="center">
       {FoodData.map((food, index) => (
+        <div 
+        key={food.id} 
+        onClick={()=>{
+          dispatch(setdiet_type_id({diet_type_id:food.id}))
+          handleFoodClick(food.id);
+        }}>
         <Grid2
           item
           xs={12}
-          sm={4}
-          md={3}
+          sm={12}
+          md={7}
           key={food.id}
           sx={{
             display: "flex",
@@ -64,6 +77,7 @@ function FoodType() {
               index === FoodData.length - 1 && FoodData.length % 3 !== 0
                 ? "center"
                 : "flex-start",
+                marginTop:"1px",
           }}
         >
           <Card
@@ -71,70 +85,59 @@ function FoodType() {
             text={food.text}
             bgColor={food.bgColor}
             backgroundSize="50%"
-            onClick={() => handleCardClick(food.id)} 
+            isSelected={selectedFoods.includes(food.id)}
+            border={
+              selectedFoods.includes(food.id)
+              ? food.borderColor
+              : "transparent"
+            }
+            onClick={() => handleFoodClick(food.id)} 
             customStyles={{
-              width: "120px",
-              height: "120px",
+              width: "125px",
+                      height: "115px",
               backgroundRepeat: "no-repeat",
-              border: "2px solid #ffd580", 
-              // boxShadow: selectedFood === food.id ? "0px 4px 8px rgba(0, 0, 0, 0.2)" : "none", 
-              // transition: "border 0.2s ease, box-shadow 0.2s ease",
             }}
+            imageWidth={food.imageWidth}
+            imageHeight={food.imageHeight}
           />
         </Grid2>
+        </div>
       ))}
     </Grid2>
-    <Box
+    <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: 360,
-          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
         }}
       >
-        <Button
-          variant="outlined"
-          label="Later"
-          sx={{
-            width: "45%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "#438cfa",
-            // borderColor: '#676767',
-            border: "none",
-            backgroundColor: "#c9e1f5",
-            textTransform: "none",
-            mr: "10px",
-            padding: 2,
-          }}
-          onClick={handleBackClick}
-        >
-         Back
-        </Button>
+        <CustomButton 
+          text="Back" 
+          variant="secondary"  
+          textcolor="#1d78ec" 
+          route="/kilometer"
+          sx={{ width: '200px',
+            backgroundColor:"#deeaf9"
+           }}  
+           />
 
-        <Button
-          variant="contained"
-          label="Calculate & offset"
-          sx={{
-            width: "48%",
-            height: "45px",
-            borderRadius: "10px",
-            fontWeight: "bold",
-            fontSize: "15px",
-            backgroundColor: "#0671c9",
-            textTransform: "none",
-            color: "white",
-            mr: "19px",
-            padding: 2,
-          }}
-          onClick={handleForwardClick}
-        >
-          Next
-        </Button>
-      </Box>
-  </Box>
+        <CustomButton 
+          text="Next" 
+          variant="contained" 
+          bgcolor="#1d78ec" 
+          textcolor="white" 
+          route="/home-appliance"
+          sx={{ width: '200px' }}  
+          />
+        </Box>
+        </Box>
+          </Box>
+        </Typography>
   )
 }
 

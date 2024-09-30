@@ -70,8 +70,7 @@ const routes = [
   path:'/food-type',
   element : (
     <PageLayoutTwo>
-<FoodType/>
-      
+<FoodType/>    
     </PageLayoutTwo>
 
   ),
@@ -81,7 +80,6 @@ const routes = [
   element : (
     <PageLayoutTwo>
 <HomeAppliances/>
-      
     </PageLayoutTwo>
 
   ),
@@ -121,6 +119,7 @@ const routes = [
 
   )
 }
+
 
   
 
