@@ -53,7 +53,7 @@ function Form() {
         <div className="form-data">
           <div className="form-head">
             <div className="text-1">
-              Fill out the form
+              Fill out this form
             </div>
             <div className="text-2">
               Our teammate will reach out to you to help with your tree plantation
@@ -72,7 +72,7 @@ function Form() {
                   {!filledFields[field.name] && (
                     <span className="required-symbol">
                       <spam>{field.placeholder}</spam>
-                      <span className="symbol">*</span>
+                      <span className="symbol"> *</span>
                     </span>
                   )}
                 </div>
