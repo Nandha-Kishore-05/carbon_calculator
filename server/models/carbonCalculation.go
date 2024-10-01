@@ -1,20 +1,13 @@
 package models
 
 type CarbonInput struct {
-	VehicleTypeID    int    `json:"vehicle_type_id"`
-	FuelTypeID       int    `json:"fuel_type_id"`
-	FoodTypeID       int    `json:"food_type_id"`
-	ApplianceID      string `json:"appliance_id"`
-	KmPerWeek        int    `json:"km_per_week"`
-	NumberOfVehicles int    `json:"number_of_vehicles"`
-	ElectricityID    int    `json:"electricity_id"`
-	UnitsConsumed    int    `json:"units_consumed"`
-	Name             string `json:"name"`
-	PhoneNumber      string `json:"phone_number"`
-	Email            string `json:"email"`
-	Location         string `json:"location"`
-	TreesToPlant     int    `json:"trees_to_plant"`
-	NameOnBehalf     string `json:"name_on_behalf"`
+	VehicleTypeID    int      `json:"VehicleTypeID"`
+	FuelTypeID       int      `json:"FuelTypeID"`
+	FoodTypeID       int      `json:"FoodTypeID"`
+	ApplianceID      []string `json:"ApplianceID"`
+	KmPerWeek        int      `json:"KmPerWeek"`
+	NumberOfVehicles int      `json:"NumberOfVehicles"`
+	UnitsConsumed    int      `json:"UnitsConsumed"`
 }
 
 type CarbonData struct {
