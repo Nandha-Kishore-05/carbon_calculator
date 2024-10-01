@@ -3,11 +3,14 @@ import React from 'react';
 import CustomButton from '../../components/button/CustomButton';
 import { useNavigate } from 'react-router-dom';
 import { Box, CircularProgress, Slider, Divider, Button } from '@mui/material';
+import { useSelector } from "react-redux";
+import {setnumber_of_vehicles} from '../../features/karma.jsx'
 
+import { useDispatch } from "react-redux";
 function KiloMeters() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(80); 
-
+  const dispatch=useDispatch();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -87,6 +90,11 @@ function KiloMeters() {
           textcolor="white" 
           route="/food-type"
           sx={{ width: '200px' }}  
+          funct={()=>{
+
+            dispatch(setnumber_of_vehicles({number_of_vehicles:value}))
+
+          }}
         />
         </Box>
         </Box>

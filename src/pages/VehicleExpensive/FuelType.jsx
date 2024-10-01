@@ -15,15 +15,14 @@ import CustomButton from "../../components/button/CustomButton.jsx";
 
 function FuelType() {
   const [selectedFuel, setSelectedFuel] = useState([]);
+  const [selectedVehicle,setSelectedVehicle]=useState(-1)
 
+  const data = useSelector((state) => state.data.value.fuel_types);
+
+  const color=["#e1eefa","#fff4e5","#f9f9f9"]
+    const image=[ Fuelpump,Electric]
   const handleFuelClick = (id) => {
-    setSelectedFuel((prevSelected) => {
-      if (prevSelected.includes(id)) {
-        return prevSelected.filter((fuelId) => fuelId != id);
-      } else {
-        return [...prevSelected, id];
-      }
-    });
+   setSelectedVehicle(id)
   };
 
   const dispatch = useDispatch();
@@ -63,11 +62,11 @@ function FuelType() {
       </Box>
       <Box>
         <Grid2 container spacing={4} justifyContent="center">
-          {fuelData.map((fuel, index) => (
+          {data.map((fuel, index) => (
             <div
               onClick={() => {
-                dispatch(setfuel_type_id({ setfuel_type_id: fuel.id }));
-                handleFuelClick(fuel.id);
+                dispatch(setfuel_type_id({ setfuel_type_id: fuel.fuel_type_id }));
+                handleFuelClick(fuel.fuel_type_id);
               }}
             >
               <Grid2
@@ -85,17 +84,17 @@ function FuelType() {
                 }}
               >
                 <Card
-                  image={fuel.image}
-                  text={fuel.text}
-                  bgColor={fuel.bgColor}
+                  image={image[fuel.fuel_type_id-1]}
+                  text={fuel.fuel_type_name}
+                  bgColor={color[fuel.fuel_type_id-1]}
                   backgroundSize="50%"
-                  isSelected={selectedFuel.includes(fuel.id)}
+                  isSelected={selectedVehicle==fuel.fuel_type_id}
                   border={
-                    selectedFuel.includes(fuel.id)
+                    selectedVehicle==fuel.fuel_type_id
                       ? fuel.borderColor
                       : "transparent"
                   }
-                  onClick={() => handleFuelClick(fuel.id)}
+                  onClick={() => handleFuelClick(fuel.fuel_type_id)}
                   customStyles={{
                     width: "130px",
                     height: "130px",

@@ -8,10 +8,13 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider'
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../../components/button/CustomButton';
+import { useDispatch } from "react-redux";
+import {setnumber_of_vehicles} from '../../features/karma.jsx'
 
 function NoOfVehicle() {
   const navigate = useNavigate();
   const [sliderValue, setSliderValue] = React.useState(4);
+  const dispatch=useDispatch();
 
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
@@ -105,6 +108,10 @@ function NoOfVehicle() {
           textcolor="white" 
           route="/fuel-type"
           sx={{ width: '200px' }}  
+          funct={()=>{
+            dispatch(setnumber_of_vehicles({number_of_vehicles:sliderValue}))
+          }}
+
         />
         </Box>
         </Box>

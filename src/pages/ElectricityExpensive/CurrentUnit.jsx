@@ -3,12 +3,23 @@ import React from 'react';
 import { Button, Box, Slider, Divider } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import CustomButton from '../../components/button/CustomButton';
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {setelectricity_consumed} from '../../features/karma.jsx'
 function CurrentUnit() {
   const [units, setUnits] = React.useState(200);
-
+  const dispatch=useDispatch();
+  const navigate = useNavigate();
+  
   const handleUnitsChange = (event, newValue) => {
     setUnits(newValue);
+  };
+  const handleForwardClick = () => {
+    navigate('/carbon-footprint');
+  };
+
+  const handleBackClick = () => {
+    navigate('/home-appliance');
   };
 
   return (
@@ -18,7 +29,7 @@ function CurrentUnit() {
           sx={{
             fontSize: '16px',
             color: 'black',
-            marginTop: '60px',
+            marginTop: '40px',
             marginBottom: '40px',
             textAlign: 'center',
           }}
@@ -74,27 +85,48 @@ function CurrentUnit() {
           </Typography>
         </Box>
 
-        <Box  sx={{height:"55px", position: 'absolute',
-          bottom: '25px',
-          left: '20px',
-          right: '20px',}}>
-        <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row', 
-          gap: 2,                  
-          alignItems: 'center',           
-        }}
-      >
-        <CustomButton 
-          text="Calculate Carbon Footprint" 
-          variant="contained" 
-          bgcolor="#1d78ec" 
-          textcolor="white" 
-          route="/carbon-footprint"
-          sx={{ width: '400px' }}  
-        />
-        </Box>
+        <Box sx={{ padding: 1 }} >
+          <Box sx={{ display: "flex", justifyContent: "space-between", width: 360,marginTop:18 }} >
+            <Button 
+              variant="outlined"
+              sx={{
+                width: "45%",
+                height: "45px",
+                borderRadius: "10px",
+                fontWeight: "bold",
+                fontSize: "14px",
+                color: "#438cfa",
+                backgroundColor: "#c9e1f5",
+                textTransform: "none",
+                padding: 2,
+              }}
+              onClick={handleBackClick}
+            >
+              Back
+            </Button>
+
+            <Button
+              variant="contained"
+              sx={{
+                width: "48%",
+                height: "45px",
+                borderRadius: "10px",
+                fontWeight: "bold",
+                fontSize: "15px",
+                backgroundColor: "#0671c9",
+                textTransform: "none",
+                color: "white",
+                padding: 2,
+              }}
+              onClick={()=>{
+                dispatch(setelectricity_consumed({electricity_consumed:units}))
+                handleForwardClick()
+
+              }}
+            >
+              Next
+            </Button>
+          </Box>
         </Box>
       </Typography>
     </>

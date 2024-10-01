@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import high from "../../assets/high.png"
 function CarbonFootPrint() {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.value);
+  const user = useSelector((state) => state.karma.value);
   console.log(user)
   const [average, setaverage] = useState("25%");
   const [averagetitle, setaveragetitle] = useState("");
@@ -22,17 +22,10 @@ function CarbonFootPrint() {
       .post("http://localhost:8080/crayon/calculate",user)
       .then((response) => {
         
-        if (
-          response.data.comparison_to_average ==
-          "Your carbon footprint is higher than the average"
-        ) {
-          const text =
-            "Which is " +
-            parseInt(response.data.percentage_difference) / 10 +
-            " higher than average";
-          setaveragetitle(text);
-          setkarmavalue(response.data.annual_carbon_footprint);
-        }
+        setkarmavalue(response.data.annual_carbon_footprint);
+        setaveragetitle(response.data.comparison_to_average);
+        
+       
       });
   }, []);
   const handleClick = () => {

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 export const karma=createSlice({
 
-    name: 'user',
+    name: 'karma',
     initialState: {
      value: {
         vehicle_type_id: 2,
