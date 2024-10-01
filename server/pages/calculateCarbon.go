@@ -109,7 +109,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 	averageEmissions := 10.0 // Average value, this can be adjusted
 	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 1000
 
-	// Prepare the output
 	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
 	roundedPercentageDifference := int(math.Round(percentageDifference))
 
@@ -120,7 +119,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		comparison = "Your carbon footprint is " + strconv.Itoa(-roundedPercentageDifference) + "% lower than the average"
 	}
 
-	// Return the result
 	c.JSON(http.StatusOK, gin.H{
 		"annual_carbon_footprint": annualCarbonFootprint + " ton CO₂",
 		"comparison_to_average":   comparison,
