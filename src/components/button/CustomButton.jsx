@@ -25,11 +25,13 @@ function CustomButton({
     startIcon, 
     endIcon ,
     sx={},
+    funct=()=>{}
   }) {
   const navigate = useNavigate();
   const handleClick = () => {
      if(route){
       navigate(route);
+      funct()
      }
   }
   return (

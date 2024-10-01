@@ -24,17 +24,15 @@ function FoodType() {
       imageHeight: "50px", },
     
   ];
+  const data = useSelector((state) => state.data.value.dietary_types);
+  console.log(data)
+  const color=["#e1eefa","#fff4e5","#f9f9f9"]
+  const image=[Leaf,Oden,leg]
+  const [selectedFood,setSelectedFood]=useState(-1)
 
   const [selectedFoods, setSelectedFoods] = useState([]);
     const handleFoodClick = (id) => {
-      setSelectedFoods((prevSelected) => {
-        if(prevSelected.includes(id)){
-          return prevSelected.filter((foodId) => foodId != id);
-        }
-        else{
-          return [...prevSelected, id];
-        }
-      });
+      setSelectedFood(id)
       };
   
   return (
@@ -58,12 +56,12 @@ function FoodType() {
           alignItems="center"
           padding={0}>
 
-      {FoodData.map((food, index) => (
+      {data.map((food, index) => (
         <div 
-        key={food.id} 
+        key={food.Food_type_id} 
         onClick={()=>{
-          dispatch(setdiet_type_id({diet_type_id:food.id}))
-          handleFoodClick(food.id);
+          dispatch(setdiet_type_id({diet_type_id:food.Food_type_id}))
+          handleFoodClick(food.Food_type_id);
         }}>
         <Grid2
           item
@@ -81,17 +79,17 @@ function FoodType() {
           }}
         >
           <Card
-            image={food.image}
-            text={food.text}
-            bgColor={food.bgColor}
+           image={image[food.Food_type_id-1]}
+           text={food.Food_type_name}
+           bgColor={color[food.Food_type_id-1]}
             backgroundSize="50%"
-            isSelected={selectedFoods.includes(food.id)}
+            isSelected={food.Food_type_id==selectedFood}
             border={
-              selectedFoods.includes(food.id)
+              food.Food_type_id==selectedFood
               ? food.borderColor
               : "transparent"
             }
-            onClick={() => handleFoodClick(food.id)} 
+            onClick={() => handleFoodClick(food.Food_type_id)} 
             customStyles={{
               width: "125px",
                       height: "115px",

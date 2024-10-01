@@ -4,22 +4,41 @@ import Box from "@mui/material/Box";
 import Grid2 from "@mui/material/Grid2";
 import Card from "../../components/Card/Card";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { setappliance_id } from "../../features/karma.jsx";
 import CustomButton from "../../components/button/CustomButton.jsx";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
+import { setdata } from "../../features/data.jsx";
 function HomeAppliances() {
-  const [selectedAppliance, setSelectedAppliance] = useState([]);
 
+  const [selectedAppliance, setSelectedAppliance] = useState([]);
+  const user = useSelector((state) => state.karma.value.appliance_id);
+  console.log(user);
+  const data = useSelector((state) => state.data.value.appliances);
+  console.log(data);
+  const navigate = useNavigate();
   const handleApplianceClick = (id) => {
     setSelectedAppliance((prevSelected) => {
-      if (prevSelected.includes(id)) {
-        return prevSelected.filter((Id) => applianceId != id);
+      if (prevSelected.includes(id.toString())) {
+        return prevSelected.filter((Id) => Id != id.toString());
       } else {
-        return [...prevSelected, id];
+        return [...prevSelected, id.toString()];
       }
     });
   };
+  const [selectarray, setselectedarray] = useState([]);
+  const color = [
+    "#e1eefa",
+    "#fff4e5",
+    "#f9f9f9",
+    "#e1eefa",
+    "#fff4e5",
+    "#f9f9f9",
+    "#f9f9f9",
+  ];
 
   const dispatch = useDispatch();
   const HomeAppliancesData = [
@@ -69,12 +88,12 @@ function HomeAppliances() {
           alignItems="center"
           padding={2}
         >
-          {HomeAppliancesData.map((appliance, index) => (
+          {data.map((appliance, index) => (
             <div
-              key={appliance.id}
+              key={appliance.appliance_id}
               onClick={() => {
                 // dispatch(setsetappliance_id({ setappliance_id: appliance.id }));
-                handleApplianceClick(appliance.id);
+                handleApplianceClick(appliance.appliance_id);
               }}
             >
               <Grid2
@@ -94,12 +113,14 @@ function HomeAppliances() {
                 }}
               >
                 <Card
-                  text={appliance.text}
-                  bgColor={appliance.bgColor}
+                  text={appliance.appliance_name}
+                  bgColor={color[index]}
                   backgroundSize="50%"
-                  isSelected={selectedAppliance.includes(appliance.id)}
+                  isSelected={selectedAppliance.includes(
+                    appliance.appliance_id.toString()
+                  )}
                   border={
-                    selectedAppliance.includes(appliance.id)
+                    selectedAppliance.includes(appliance.appliance_id.toString())
                       ? appliance.borderColor
                       : "transparent"
                   }
@@ -144,15 +165,21 @@ function HomeAppliances() {
               route="/food-type"
               sx={{ width: "200px", backgroundColor: "#deeaf9" }}
             />
-
-            <CustomButton
-              text="Next"
-              variant="contained"
-              bgcolor="#1d78ec"
-              textcolor="white"
-              route="/current-unit"
-              sx={{ width: "200px" }}
-            />
+            <div
+              onClick={() => {
+                dispatch(setappliance_id({ appliance_id: selectedAppliance }));
+              }}
+            >
+              <CustomButton
+                text="Next"
+                variant="contained"
+                bgcolor="#1d78ec"
+                textcolor="white"
+                route="/current-unit"
+                sx={{ width: "200px" }}
+                funct={()=>{ dispatch(setappliance_id({appliance_id:selectarray}))}}
+              />
+            </div>
           </Box>
         </Box>
       </Box>

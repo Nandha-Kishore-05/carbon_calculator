@@ -10,21 +10,19 @@ import MotorScooter from "../../assets/MotorScooter.png";
 import Automobile from "../../assets/Automobile.png";
 import { useDispatch } from "react-redux";
 import { setvehicle_type_id } from "../../features/karma.jsx";
+import { useSelector } from "react-redux";
 
 function VehicleType() {
   const dispatch = useDispatch();
   const [selectedCards, setSelectedCards] = useState([]);
-
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
   const handleCardClick = (id) => {
-    setSelectedCards((prevSelected) => {
-      if (prevSelected.includes(id)) {
-        return prevSelected.filter((cardId) => cardId != id);
-      } else {
-        return [...prevSelected, id];
-      }
-    });
+    setSelectedVehicle(id);
   };
-
+  const data = useSelector((state) => state.data.value.vehicle_types);
+  const vehicle_id = useSelector((state) => state.karma.value.vehicle_type_id);
+ 
+  console.log(data)
   const vehicleData = [
     {
       id: 1,
@@ -48,6 +46,8 @@ function VehicleType() {
       borderColor: "#EB7E74",
     },
   ];
+  const color=["#e1eefa","#fff4e5","#f9f9f9"]
+const image=[Bicycle,MotorScooter,Automobile]
   const percentage = 1;
   return (
     <Typography variant="h5">
@@ -70,12 +70,12 @@ function VehicleType() {
           alignItems="center"
           padding={2}
         >
-          {vehicleData.map((vehicle, index) => (
+          {data.map((vehicle, index) => (
             <div
-              key={vehicle.id}
+              key={vehicle.vehicle_type_id}
               onClick={() => {
-                dispatch(setvehicle_type_id({ vehicle_type_id: vehicle.id }));
-                handleCardClick(vehicle.id);
+                dispatch(setvehicle_type_id({ vehicle_type_id: vehicle.vehicle_type_id }));
+                // handleCardClick(vehicle.id);
               }}
             >
               <Grid2
@@ -83,7 +83,7 @@ function VehicleType() {
                 xs={12}
                 sm={12}
                 md={7}
-                key={vehicle.id}
+                key={vehicle.vehicle_type_id}
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -96,13 +96,13 @@ function VehicleType() {
               >
                 <div style={{ display: "flex", gap: "10px" }}>
                   <Card
-                    image={vehicle.image}
-                    text={vehicle.text}
-                    bgColor={vehicle.bgColor}
+                    image={image[vehicle.vehicle_type_id-1]}
+                    text={vehicle.vehicle_type_name}
+                    bgColor={color[vehicle.vehicle_type_id-1]}
                     backgroundSize="50%"
-                    isSelected={selectedCards.includes(vehicle.id)}
+                    isSelected={vehicle.vehicle_type_id}
                     border={
-                      selectedCards.includes(vehicle.id)
+                      vehicle_id==vehicle.vehicle_type_id
                         ? vehicle.borderColor
                         : "transparent"
                     }
@@ -144,6 +144,7 @@ function VehicleType() {
               textcolor="white"
               route="/no-of-vehicle"
               sx={{ width: "370px" }}
+            
             />
           </Box>
         </Box>
