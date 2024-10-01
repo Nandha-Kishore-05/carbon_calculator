@@ -19,29 +19,10 @@
   height: 100%;
 }
 
-.sun
-{
-width: 100%;
-height: 100%;
-background: transparent 0% 0% no-repeat padding-box;
-opacity: 1;
-object-fit: cover;
-}
-
-.tree
-{
-width: 100%;
-height: 100%;
-object-fit: cover;
-background: transparent 0% 0% no-repeat padding-box;
-opacity: 1;
-}
-
-
 .middle
 {
 width: 100%;
-height: 10%;
+height: 2%;
 background: transparent 0% 0% no-repeat padding-box;
 opacity: 1;
 }
@@ -49,7 +30,7 @@ opacity: 1;
 .head
 {
 width: 100%;
-height: 40px;
+height: 7%;
 background: transparent 0% 0% no-repeat padding-box;
 opacity: 1;
 }
@@ -57,9 +38,9 @@ opacity: 1;
 .tree-con
 {
 width: 100%;
-height: 70%;
-background-image: url('../../assets/Trees@2x.png');
+height: 78%;
 opacity: 1;
+object-fit: cover;
 }
 
 .sun-con
@@ -75,7 +56,7 @@ opacity: 1;
 @keyframes forText {
   0% {
     opacity: 0;
-    transform: translateY(100px); 
+    transform: translateY(10px); 
   }
   20% {
     opacity: 1;
@@ -87,17 +68,17 @@ opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px); 
+    transform: translateY(-10px); 
   }
 }
 .form-animation {
   opacity: 0;
   position: absolute;
-  width: 375px;
-  top: 12%;
-  height: 600px;
+  width: 100%;
+  top: 9%;
+  height: 75%;
   text-align: center;
-  animation: forForm 1.5s ease-out 3s forwards; 
+  animation: forForm 0.5s ease-out 5s forwards; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,7 +98,7 @@ opacity: 1;
 
 
 .text-animation {
-  animation: forText 4s ease-in-out 0s forwards;
+  animation: forText 4s ease-in-out 1s forwards;
   width: 375px;
   height: 600px;
   position: absolute;
@@ -135,7 +116,7 @@ opacity: 1;
 
 .form-data
 {
-  height: 95%;
+  height: 100%;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -150,24 +131,19 @@ opacity: 1;
   display: flex;
   flex-direction: column;
   width: 100%; 
-  height: 100%;
-  justify-content: space-between;  
-  align-items: center;
+  height: 100%; 
 }
 
 input {
-  height: 40px;
+  height: 45px;
   width: 90%;
-  padding: 4px;
-  padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  font-size: 12px;
+  font-size: 16px;
   color: black; 
   font-weight: 600;
   outline: none;
   transition: border-color 0.3s ease; 
-  font-size: 14px;
   font-weight: 600;
   display: flex;
   justify-content: center;
@@ -197,7 +173,7 @@ input {
 
 .input-box
 {
-    height: 60%;
+    height: 65%;
     margin-top: 20px;
     width: 90%;
 }
@@ -212,7 +188,7 @@ button
   border: none;
   color: white;
   font-size: 14px;
-  border-radius: 5px;
+  border-radius: 7px;
   font-weight: 540;
 }
 
@@ -220,6 +196,7 @@ button
 {
   color: black;
   font-size: medium;
+  font-size: 17px;
   font-weight: 700;
   width: 90%;
 }
@@ -227,7 +204,7 @@ button
 .text-2
 {
   color: gray;
-  font-size: small;
+  font-size: 16px;
   font-weight: 650;
   width: 90%;
 }
@@ -278,14 +255,14 @@ button
   position: relative;
   width: 100%;
   display: flex;
-  height: 250px;
+  height: 100%;
   justify-content: center;
 }
 
 .required-symbol {
   position: absolute;
   left: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: gray;
   top: 50%;
@@ -297,5 +274,3 @@ button
   left: 20px;
   color: red;
 }
-
-

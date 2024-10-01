@@ -5,8 +5,17 @@ import { useNavigate } from "react-router-dom";
 import './form.css';
 
 function Form() {
-  // State to track if each input is filled or not
-  const [filledFields, setFilledFields] = useState({
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    location: "",
+    trees: "",
+    behalf: ""
+  });
+
+  const [errors, setErrors] = useState({
     name: false,
     phone: false,
     email: false,
@@ -27,27 +36,48 @@ function Form() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/submitted');
+    const newErrors = {
+      name: formData.name === "",
+      phone: formData.phone === "",
+      email: formData.email === "",
+      location: formData.location === "",
+      trees: formData.trees === "",
+      behalf: formData.behalf === "",
+    };
+
+    setErrors(newErrors);
+    const hasErrors = Object.values(newErrors).some(error => error === true);
+    
+    if (!hasErrors) {
+      const dataToSend = JSON.stringify(formData);
+      console.log("Data to be sent to backend:", dataToSend);
+      navigate('/submitted');
+    }
   };
 
-  // Handle input change and update the filled state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFilledFields(prevState => ({
+    setFormData(prevState => ({
       ...prevState,
-      [name]: value !== "" // Mark field as filled if it has a value
+      [name]: value
     }));
+
+    if (value !== "") {
+      setErrors(prevState => ({
+        ...prevState,
+        [name]: false
+      }));
+    }
   };
 
   return (
     <div className='first'>
       <div className="head"></div>
-      <div className="sun-con"><img src={sun} alt="Sun and clouds" /></div>
-      <div className="middle"></div>
+      <div className="sun-con"><img style={{height:'100%', width:'100%'}} src={sun} alt="Sun and clouds" /></div>
       <div className="text-animation">
         <div>
           Great job! You're making a positive <br />contribution to preserving our <br />green environment.
-        </div>
+        </div>    
       </div>
       <div className="form-animation">
         <div className="form-data">
@@ -66,12 +96,16 @@ function Form() {
                   <input
                     type={field.type}
                     name={field.name}
+                    value={formData[field.name]}
                     onChange={handleInputChange}
+                    style={{
+                      border: errors[field.name] ? '2px solid red' : '1px solid #ccc'
+                    }}
                   />
                   
-                  {!filledFields[field.name] && (
+                  {!formData[field.name] && (
                     <span className="required-symbol">
-                      <spam>{field.placeholder}</spam>
+                      <span>{field.placeholder}</span>
                       <span className="symbol"> *</span>
                     </span>
                   )}
@@ -88,7 +122,7 @@ function Form() {
           </div>
         </div>
       </div>
-      <div className="tree-con"><img className="tree" src={tree} alt="Sun and clouds" /> </div>
+      <div className="tree-con"><img style={{height:'100%', width:'100%'}} src={tree} alt="Sun and clouds" /></div>
     </div>
   );
 }
