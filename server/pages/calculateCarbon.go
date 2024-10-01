@@ -102,17 +102,17 @@ func CalculateCarbonFootprint(c *gin.Context) {
 	}
 
 	averageEmissions := 5.0
-	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 1000
+percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 100
 
-	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
-	roundedPercentageDifference := int(math.Round(percentageDifference))
+annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
+roundedPercentageDifference := int(math.Round(percentageDifference))
 
-	comparison := "Your carbon footprint is equal to the average"
-	if totalEmissionsInTons > averageEmissions {
-		comparison = "Your carbon footprint is " + strconv.Itoa(roundedPercentageDifference) + "% higher than the average"
-	} else if totalEmissionsInTons < averageEmissions {
-		comparison = "Your carbon footprint is " + strconv.Itoa(-roundedPercentageDifference) + "% lower than the average"
-	}
+comparison := "which is equal to the average"
+if totalEmissionsInTons > averageEmissions {
+    comparison = fmt.Sprintf("which is %d%% higher than average", roundedPercentageDifference/100)
+} else if totalEmissionsInTons < averageEmissions {
+    comparison = fmt.Sprintf("which is %d%% lower than average", -roundedPercentageDifference/100)
+}
 
 	c.JSON(http.StatusOK, gin.H{
 		"annual_carbon_footprint": annualCarbonFootprint + " ton CO₂",
