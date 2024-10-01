@@ -66,14 +66,12 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Calculate total emissions
 	totalEmissions := (vehicleCarbonValue * float64(input.KmPerWeek) * float64(input.NumberOfVehicles)) +
 		float64(fuelCarbonValue) + float64(foodCarbonValue) + float64(applianceCarbonValue) +
 		float64(input.UnitsConsumed)
 
 	totalEmissionsInTons := totalEmissions / 10000
 
-	// Insert electricity consumption data
 	result, err := config.Database.Exec(`INSERT INTO electricity_consumption (units_consumed, appliance_ids) VALUES (?, ?)`,
 		input.UnitsConsumed, applianceIDs)
 	if err != nil {
@@ -88,7 +86,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Insert carbon calculator data
 	result, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, food_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
 		input.VehicleTypeID, input.FuelTypeID, input.FoodTypeID, electricityID, input.KmPerWeek, input.NumberOfVehicles, totalEmissionsInTons)
 	if err != nil {
