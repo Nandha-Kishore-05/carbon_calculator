@@ -8,9 +8,11 @@ export const karma=createSlice({
         number_of_vehicles: 2,
         fuel_type_id: 2,
         km_per_week: 86,
+        food_type_id: 1,
         diet_type_id: 1,
-        appliance_id: 1,
+        appliance_id:["1", "7", "5"],
         electricity_consumed: 100,
+      
       }
     },
     reducers: {
@@ -18,7 +20,18 @@ export const karma=createSlice({
             console.log(action.payload.vehicle_type_id)
             state.value.vehicle_type_id=action.payload.vehicle_type_id
         },
-       
+        setappliance_id:(state,action)=>{
+            console.log(action.payload.appliance_id)
+            state.value.appliance_id=action.payload.appliance_id
+        },
+        setfood_type_id:(state,action)=>{
+            console.log(action.payload.food_type_id)
+            state.value.food_type_id=action.payload.food_type_id
+        },
+        setunits_consumed:(state,action)=>{
+            console.log(action.payload.units_consumed)
+            state.value.units_consumed=action.payload.units_consumed
+        },
         setnumber_of_vehicles:(state,action)=>{
             console.log(action.payload.number_of_vehicles)
             state.value.number_of_vehicles=action.payload.number_of_vehicles
