@@ -97,7 +97,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Get last insert ID
 	lastInsertID, err := result.LastInsertId()
 	if err != nil {
 		log.Println("Error getting last insert ID for carbon data:", err)
@@ -105,8 +104,7 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Calculate comparison to average emissions
-	averageEmissions := 10.0 // Average value, this can be adjusted
+	averageEmissions := 5.0
 	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 1000
 
 	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
