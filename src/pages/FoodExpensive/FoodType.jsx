@@ -26,7 +26,8 @@ function FoodType() {
   ];
   const data = useSelector((state) => state.data.value.dietary_types);
   console.log(data)
-  const color=["#e1eefa","#fff4e5","#f9f9f9"]
+  const color=["#E4FFEE","#FFF4E6","#FFF4F3"]
+  const bordercolor=["#51F28D","#FAAD4B","#EB7E74"]
   const image=[Leaf,Oden,leg]
   const [selectedFood,setSelectedFood]=useState(-1)
 
@@ -84,10 +85,11 @@ function FoodType() {
            bgColor={color[food.Food_type_id-1]}
             backgroundSize="50%"
             isSelected={food.Food_type_id==selectedFood}
+           
             border={
-              food.Food_type_id==selectedFood
-              ? food.borderColor
-              : "transparent"
+              food.Food_type_id === selectedFood
+                ? bordercolor[ food.Food_type_id-1] // Use the correct border color
+                : "transparent"
             }
             onClick={() => handleFoodClick(food.Food_type_id)} 
             customStyles={{

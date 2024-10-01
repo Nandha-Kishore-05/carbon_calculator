@@ -29,7 +29,7 @@ function VehicleType() {
       image: Bicycle,
       text: "Bicycle/Walk",
       bgColor: "#EEF6FF",
-      borderColor: "#3b85f5",
+      borderColor: "#FFF4F3",
     },
     {
       id: 2,
@@ -46,7 +46,8 @@ function VehicleType() {
       borderColor: "#EB7E74",
     },
   ];
-  const color=["#e1eefa","#fff4e5","#f9f9f9"]
+  const color=["#EEF6FF","#FFF4E6","#FFF4F3"]
+  const border = ["#4A9FE9","#FFBA63","#EB7E74"]
 const image=[Bicycle,MotorScooter,Automobile]
   const percentage = 1;
   return (
@@ -102,8 +103,8 @@ const image=[Bicycle,MotorScooter,Automobile]
                     backgroundSize="50%"
                     isSelected={vehicle.vehicle_type_id}
                     border={
-                      vehicle_id==vehicle.vehicle_type_id
-                        ? vehicle.borderColor
+                      vehicle.vehicle_type_id === vehicle_id
+                        ? border[vehicle.vehicle_type_id-1] // Use the correct border color
                         : "transparent"
                     }
                     onClick={() => handleCardClick(vehicle.id)}

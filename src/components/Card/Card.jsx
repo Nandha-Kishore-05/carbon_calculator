@@ -60,10 +60,16 @@ function Card({
           textOverflow: "ellipsis",
           textAlign: "center",
           width: "100px",
+          display:"flex",
+          alignItems:"center",
+          justifyContent:'center',
+          
           
         }}
       >
+        <div style={{display:'flex',alignItems:"center",justifyContent:'center',width:"80%",height:"100%"}}>
         {text}
+        </div>
       </Typography>
     );
   };
@@ -76,7 +82,7 @@ function Card({
         borderRadius: 2,
         bgcolor: bgColor || "primary.main",
         border: isSelected
-          ? `2px solid ${border || "#ffd580"}`
+          ? `2px solid ${border || "#EB7E74"}`
           : `2px solid transparent`,
         display: "flex",
         flexDirection: "column",
