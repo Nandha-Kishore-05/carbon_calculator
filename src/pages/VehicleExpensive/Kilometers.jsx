@@ -1,21 +1,26 @@
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React,{useEffect} from 'react';
 import CustomButton from '../../components/button/CustomButton';
 import { useNavigate } from 'react-router-dom';
 import { Box, CircularProgress, Slider, Divider, Button } from '@mui/material';
 import { useSelector } from "react-redux";
 import {setkm_per_week} from '../../features/karma.jsx'
-import { addindex, addval,subindex } from "../../features/header.jsx";
+import { addindex, addval,subindex,setindex } from "../../features/header.jsx";
 
 import { useDispatch } from "react-redux";
 function KiloMeters() {
   const navigate = useNavigate();
-  const [value, setValue] = React.useState(80); 
+  const [value, setValue] =React.useState(useSelector((state) => state.karma.value.km_per_week)); 
   const dispatch=useDispatch();
   const handleChange = (event, newValue) => {
+    dispatch(setkm_per_week({km_per_week:newValue}))
     setValue(newValue);
   };
 
+  useEffect(()=>{
+    dispatch(setindex({index:3}))
+
+},[])
   return (
     <>
       <Typography variant='h5'>
@@ -83,7 +88,7 @@ function KiloMeters() {
             backgroundColor:"#deeaf9"
            }}  
            funct={()=>{
-            dispatch(subindex());
+            // dispatch(subindex());
            
            }}
         />
@@ -100,7 +105,7 @@ function KiloMeters() {
             dispatch(setkm_per_week({km_per_week:value}))
             dispatch(addval({val:value}));
 
-            dispatch(addindex());
+            // dispatch(addindex());
 
 
           }}

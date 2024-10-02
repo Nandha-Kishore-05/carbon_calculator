@@ -9,15 +9,17 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import high from "../../assets/high.png"
-import { addindex, addval } from "../../features/header.jsx";
+import { addindex, addval,initial } from "../../features/header.jsx";
 
 function CarbonFootPrint() {
+  
   const navigate = useNavigate();
   const user = useSelector((state) => state.karma.value);
   console.log(user)
   const [average, setaverage] = useState("25%");
   const [averagetitle, setaveragetitle] = useState("");
   const [karmavalue, setkarmavalue] = useState("0");
+  const dispatch=useDispatch();
   
   useEffect(() => {
     console.log(user)
@@ -31,6 +33,10 @@ function CarbonFootPrint() {
        
       });
   }, []);
+  useEffect(()=>{
+    dispatch(initial());
+
+  },[])
   const handleClick = () => {
     navigate("/form");
   };

@@ -8,14 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 import { setappliance_id } from "../../features/karma.jsx";
 import CustomButton from "../../components/button/CustomButton.jsx";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
-import { addindex, addval,subindex } from "../../features/header.jsx";
+import { addindex, addval,subindex,setindex } from "../../features/header.jsx";
 
 import { setdata } from "../../features/data.jsx";
 function HomeAppliances() {
-  const [selectedAppliance, setSelectedAppliance] = useState([]);
-  const [carb,setcarb]=useState(0)
+  const [selectedAppliance, setSelectedAppliance] =   React.useState(useSelector((state) => state.karma.value.appliance_id));
+  const [carb,setcarb]=useState(useSelector((state) => state.header.value.val)[4])
 
   const user = useSelector((state) => state.karma.value.appliance_id);
 
@@ -81,6 +81,11 @@ console.log(data)
       borderColor: "#EB7E74",
     },
   ];
+  
+  useEffect(()=>{
+    dispatch(setindex({index:5}))
+
+},[])
 
   return (
     <Typography variant="h5">
@@ -183,7 +188,7 @@ console.log(data)
               route="/food-type"
               sx={{ width: "200px", backgroundColor: "#deeaf9" }}
               funct={()=>{
-                dispatch(subindex());
+                // dispatch(subindex());
               
               }}
             />
@@ -203,7 +208,7 @@ console.log(data)
                   dispatch(setappliance_id({ appliance_id: selectarray }));
                   dispatch(addval({val:carb}));
 
-                  dispatch(addindex());
+                  // dispatch(addindex());
 
                 }}
               />

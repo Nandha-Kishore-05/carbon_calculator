@@ -4,13 +4,13 @@ export const karma=createSlice({
     name: 'karma',
     initialState: {
      value: {
-        vehicle_type_id: 2,
+        vehicle_type_id: -1,
         number_of_vehicles: 2,
-        fuel_type_id: 2,
-        km_per_week: 86,
+        fuel_type_id: -1,
+        km_per_week: 90,
         food_type_id: 1,
-        diet_type_id: 1,
-        appliance_id:["1", "7", "5"],
+        diet_type_id: -1,
+        appliance_id:["1"],
         electricity_consumed: 100,
       
       }

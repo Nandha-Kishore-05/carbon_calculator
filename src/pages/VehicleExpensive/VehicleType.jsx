@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid2 from "@mui/material/Grid2";
@@ -11,10 +11,10 @@ import Automobile from "../../assets/Automobile.png";
 import { useDispatch } from "react-redux";
 import { setvehicle_type_id } from "../../features/karma.jsx";
 import { useSelector } from "react-redux";
-import { addindex, addval } from "../../features/header.jsx";
+import { addindex, addval,setindex } from "../../features/header.jsx";
 function VehicleType() {
   const dispatch = useDispatch();
-  const [carb,setcarb]=useState(0)
+  const [carb,setcarb]=useState(useSelector((state) => state.header.value.val)[0])
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const handleCardClick = (id) => {
@@ -52,6 +52,10 @@ function VehicleType() {
   const border = ["#4A9FE9","#FFBA63","#EB7E74"]
 const image=[Bicycle,MotorScooter,Automobile]
   const percentage = 1;
+  useEffect(()=>{
+    dispatch(setindex({index:0}))
+
+},[])
   return (
     <Typography variant="h5">
       <Box

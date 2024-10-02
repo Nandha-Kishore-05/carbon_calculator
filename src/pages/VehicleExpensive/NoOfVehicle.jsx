@@ -1,8 +1,6 @@
 
-
-
 import Typography from '@mui/material/Typography';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import  Divider  from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider'
@@ -11,7 +9,7 @@ import CustomButton from '../../components/button/CustomButton';
 import { useDispatch } from "react-redux";
 import {useSelector } from "react-redux";
 import {setnumber_of_vehicles} from '../../features/karma.jsx'
-import { addindex, addval,subindex } from "../../features/header.jsx";
+import { addindex, addval,subindex,setindex } from "../../features/header.jsx";
 
 function NoOfVehicle() {
   const navigate = useNavigate();
@@ -32,6 +30,10 @@ function NoOfVehicle() {
     { value: 8, label: <strong>8</strong> },
     { value: 10, label: <strong>10</strong> }
   ];
+  useEffect(()=>{
+    dispatch(setindex({index:1}))
+
+},[])
 
  
   return (
@@ -105,7 +107,7 @@ function NoOfVehicle() {
             backgroundColor:"#deeaf9"
            }}  
            funct={()=>{
-            dispatch(subindex());
+            // dispatch(subindex());
            }}
         />
 
@@ -119,7 +121,7 @@ function NoOfVehicle() {
           funct={()=>{
             
             dispatch(addval({val:sliderValue}));
-            dispatch(addindex());
+            // dispatch(addindex());
            
 
 

@@ -6,6 +6,15 @@ export const karma = createSlice({
     },
   },
   reducers: {
+    setindex:(state,action)=>{
+      console.log(action.payload.index)
+      state.value.index=action.payload.index
+
+    },
+    initial:(state,action)=>{
+      state.value = { val:[0,0,0,0,0,0,0,0,0,0],index:0
+      }
+    },
     addval: (state, action) => {
       console.log(action.payload.val,state.value.index);
       if(state.value.index==0){
@@ -32,7 +41,8 @@ export const karma = createSlice({
 });
 
 export const {
-  addval,subval,addindex,subindex
+  addval,subval,addindex,subindex,initial,setindex
+
 } = karma.actions;
 
 export default karma.reducer;
