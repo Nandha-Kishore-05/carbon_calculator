@@ -8,7 +8,8 @@ import GaugeChart from "./GaugeChart";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import high from "../../assets/high.png";
+import high from "../../assets/high.png"
+import { addindex, addval } from "../../features/header.jsx";
 
 function CarbonFootPrint() {
   const navigate = useNavigate();

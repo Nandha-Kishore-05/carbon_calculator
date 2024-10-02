@@ -10,8 +10,12 @@ import Backimg4 from "../../assets/backimg4.png";
 import { Typography } from '@mui/material';
 import CustomProgressBar from '../ProgressBar/CustomProgressBar';
 import HomeImg from "../../assets/homeimg1.png"; 
-
+import { useSelector } from "react-redux";
 function PageLayoutTwo({ children }) {
+  const header = useSelector((state) => state.header.value.val);
+  const headerindex = useSelector((state) => state.header.value.index);
+console.log(headerindex)
+  console.log("carbon value ",header[headerindex])
   const location = useLocation();
   const totalSteps = 4;
   let currentStep = 1;
@@ -117,7 +121,7 @@ function PageLayoutTwo({ children }) {
     margin: 0,
   }}
 >
-  15.90 ton CO2
+  {headerindex==0?0:header[headerindex-1]} ton CO2
 </span>
               </div>
               <Grid2 item sx={{width: '400px', 

@@ -6,6 +6,8 @@ import CustomButton from '../../components/button/CustomButton';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {setelectricity_consumed} from '../../features/karma.jsx'
+import { addindex, addval,subindex } from "../../features/header.jsx";
+
 function CurrentUnit() {
   const [units, setUnits] = React.useState(200);
   const dispatch=useDispatch();
@@ -19,6 +21,7 @@ function CurrentUnit() {
   };
 
   const handleBackClick = () => {
+    dispatch(subindex());
     navigate('/home-appliance');
   };
 
@@ -120,7 +123,12 @@ function CurrentUnit() {
               }}
               onClick={()=>{
                 dispatch(setelectricity_consumed({electricity_consumed:units}))
+                dispatch(addval({val:units}));
+
+                dispatch(addindex());
+
                 handleForwardClick()
+
 
               }}
             >

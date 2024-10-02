@@ -11,15 +11,17 @@ import Automobile from "../../assets/Automobile.png";
 import { useDispatch } from "react-redux";
 import { setvehicle_type_id } from "../../features/karma.jsx";
 import { useSelector } from "react-redux";
-
+import { addindex, addval } from "../../features/header.jsx";
 function VehicleType() {
   const dispatch = useDispatch();
+  const [carb,setcarb]=useState(0)
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const handleCardClick = (id) => {
     setSelectedVehicle(id);
   };
   const data = useSelector((state) => state.data.value.vehicle_types);
+  
   const vehicle_id = useSelector((state) => state.karma.value.vehicle_type_id);
  
   console.log(data)
@@ -75,7 +77,9 @@ const image=[Bicycle,MotorScooter,Automobile]
             <div
               key={vehicle.vehicle_type_id}
               onClick={() => {
+                setcarb(vehicle.carbon_value)
                 dispatch(setvehicle_type_id({ vehicle_type_id: vehicle.vehicle_type_id }));
+               
                 // handleCardClick(vehicle.id);
               }}
             >
@@ -145,6 +149,10 @@ const image=[Bicycle,MotorScooter,Automobile]
               textcolor="white"
               route="/no-of-vehicle"
               sx={{ width: "370px" }}
+              funct={()=>{ 
+                dispatch(addval({val:carb}));
+                dispatch(addindex());
+              }}
             
             />
           </Box>

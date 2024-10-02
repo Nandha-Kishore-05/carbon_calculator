@@ -13,17 +13,21 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {setdiet_type_id} from '../../features/karma.jsx';
 import CustomButton from "../../components/button/CustomButton.jsx";
+import { addindex, addval,subindex } from "../../features/header.jsx";
+
 function FoodType() {
   const dispatch=useDispatch();
-  const FoodData = [
-    { id: 1, image: Leaf, text: "Veg", bgColor: "#E4FFEE",borderColor: "#2bf074", imageWidth: "70px",
-      imageHeight: "50px", },
-    { id: 2, image: Oden, text: "Both", bgColor: "#FFF4E6",borderColor: "#e89833", imageWidth: "80px",
-      imageHeight: "50px", },
-    { id: 3, image: leg, text: "Non veg", bgColor: "#FFF4F3",borderColor: "#EB7E74", imageWidth: "70px",
-      imageHeight: "50px", },
+  const [carb,setcarb]=useState(0)
+
+  // const FoodData = [
+  //   { id: 1, image: Leaf, text: "Veg", bgColor: "#E4FFEE",borderColor: "#2bf074", imageWidth: "70px",
+  //     imageHeight: "50px", },
+  //   { id: 2, image: Oden, text: "Both", bgColor: "#FFF4E6",borderColor: "#e89833", imageWidth: "80px",
+  //     imageHeight: "50px", },
+  //   { id: 3, image: leg, text: "Non veg", bgColor: "#FFF4F3",borderColor: "#EB7E74", imageWidth: "70px",
+  //     imageHeight: "50px", },
     
-  ];
+  // ];
   const data = useSelector((state) => state.data.value.dietary_types);
   console.log(data)
   const color=["#E4FFEE","#FFF4E6","#FFF4F3"]
@@ -33,7 +37,7 @@ function FoodType() {
 
   const [selectedFoods, setSelectedFoods] = useState([]);
     const handleFoodClick = (id) => {
-      setSelectedFood(id)
+      setSelectedFoods(id)
       };
   
   return (
@@ -59,10 +63,11 @@ function FoodType() {
 
       {data.map((food, index) => (
         <div 
-        key={food.Food_type_id} 
+        key={food.diet_type_id} 
         onClick={()=>{
-          dispatch(setdiet_type_id({diet_type_id:food.Food_type_id}))
-          handleFoodClick(food.Food_type_id);
+          dispatch(setdiet_type_id({diet_type_id:food.diet_type_id}))
+          setcarb(food.carbon_value)
+          handleFoodClick(food.diet_type_id);
         }}>
         <Grid2
           item
@@ -72,26 +77,26 @@ function FoodType() {
           key={food.id}
           sx={{
             display: "flex",
-            justifyContent:
-              index === FoodData.length - 1 && FoodData.length % 3 !== 0
-                ? "center"
-                : "flex-start",
-                marginTop:"1px",
+            // justifyContent:
+            //   // index === FoodData.length - 1 && FoodData.length % 3 !== 0
+            //     ? "center"
+            //     : "flex-start",
+            //     marginTop:"1px",
           }}
         >
           <Card
-           image={image[food.Food_type_id-1]}
+           image={image[food.diet_type_id-1]}
            text={food.Food_type_name}
-           bgColor={color[food.Food_type_id-1]}
+           bgColor={color[food.diet_type_id-1]}
             backgroundSize="50%"
-            isSelected={food.Food_type_id==selectedFood}
+            isSelected={food.diet_type_id==selectedFoods}
            
             border={
-              food.Food_type_id === selectedFood
-                ? bordercolor[ food.Food_type_id-1] // Use the correct border color
+              food.diet_type_id === selectedFoods
+                ? bordercolor[ food.diet_type_id-1] // Use the correct border color
                 : "transparent"
             }
-            onClick={() => handleFoodClick(food.Food_type_id)} 
+            onClick={() => handleFoodClick(food.diet_type_id)} 
             customStyles={{
               width: "125px",
                       height: "115px",
@@ -124,6 +129,8 @@ function FoodType() {
           sx={{ width: '200px',
             backgroundColor:"#deeaf9"
            }}  
+           funct={()=>{
+            dispatch(subindex());}}
            />
 
         <CustomButton 
@@ -132,7 +139,13 @@ function FoodType() {
           bgcolor="#1d78ec" 
           textcolor="white" 
           route="/home-appliance"
-          sx={{ width: '200px' }}  
+          sx={{ width: '200px' }}
+          funct={()=>{
+            dispatch(addval({val:carb}));
+
+            dispatch(addindex());
+
+          }}  
           />
         </Box>
         </Box>

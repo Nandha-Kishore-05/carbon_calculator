@@ -2,21 +2,26 @@
 
 
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React,{useState} from 'react';
 import  Divider  from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider'
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../../components/button/CustomButton';
 import { useDispatch } from "react-redux";
+import {useSelector } from "react-redux";
 import {setnumber_of_vehicles} from '../../features/karma.jsx'
+import { addindex, addval,subindex } from "../../features/header.jsx";
 
 function NoOfVehicle() {
   const navigate = useNavigate();
-  const [sliderValue, setSliderValue] = React.useState(4);
+  console.log("vehicle ",useSelector((state) => state.karma.value.number_of_vehicles))
+  const [sliderValue, setSliderValue] = React.useState(useSelector((state) => state.karma.value.number_of_vehicles));
   const dispatch=useDispatch();
-
+  const [carb,setcarb]=useState(0)
+ 
   const handleSliderChange = (event, newValue) => {
+    dispatch(setnumber_of_vehicles({number_of_vehicles:newValue}))
     setSliderValue(newValue);
   };
 
@@ -99,6 +104,9 @@ function NoOfVehicle() {
           sx={{ width: '200px',
             backgroundColor:"#deeaf9"
            }}  
+           funct={()=>{
+            dispatch(subindex());
+           }}
         />
 
         <CustomButton 
@@ -109,7 +117,12 @@ function NoOfVehicle() {
           route="/fuel-type"
           sx={{ width: '200px' }}  
           funct={()=>{
-            dispatch(setnumber_of_vehicles({number_of_vehicles:sliderValue}))
+            
+            dispatch(addval({val:sliderValue}));
+            dispatch(addindex());
+           
+
+
           }}
 
         />
