@@ -10,21 +10,28 @@ import { setappliance_id } from "../../features/karma.jsx";
 import CustomButton from "../../components/button/CustomButton.jsx";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { addindex, addval,subindex } from "../../features/header.jsx";
 
 import { setdata } from "../../features/data.jsx";
 function HomeAppliances() {
-
   const [selectedAppliance, setSelectedAppliance] = useState([]);
+  const [carb,setcarb]=useState(0)
+
   const user = useSelector((state) => state.karma.value.appliance_id);
-  console.log(user);
+
   const data = useSelector((state) => state.data.value.appliances);
-  console.log(data);
+console.log(data)
   const navigate = useNavigate();
   const handleApplianceClick = (id) => {
     setSelectedAppliance((prevSelected) => {
       if (prevSelected.includes(id.toString())) {
+        
+        setcarb(carb-data.filter((Id) => Id.appliance_id== id.toString())[0].carbon_value)
+        console.log(carb)
         return prevSelected.filter((Id) => Id != id.toString());
       } else {
+        console.log(carb)
+        setcarb(carb+data.filter((Id) => Id.appliance_id== id.toString())[0].carbon_value)
         return [...prevSelected, id.toString()];
       }
     });
@@ -39,7 +46,15 @@ function HomeAppliances() {
     "#E4FBFF",
     "#FFF4F3",
   ];
-  const borderColor =["#51F28D","#FFBA63","#FB8276","#EF9BC5","#D793F4","#8AE6F7","#EB7E74"]
+  const borderColor = [
+    "#51F28D",
+    "#FFBA63",
+    "#FB8276",
+    "#EF9BC5",
+    "#D793F4",
+    "#8AE6F7",
+    "#EB7E74",
+  ];
 
   const dispatch = useDispatch();
   const HomeAppliancesData = [
@@ -120,11 +135,11 @@ function HomeAppliances() {
                   isSelected={selectedAppliance.includes(
                     appliance.appliance_id.toString()
                   )}
-
                   border={
                     selectedAppliance.includes(
-                    appliance.appliance_id.toString())
-                      ? borderColor[appliance.appliance_id.toString()-1] 
+                      appliance.appliance_id.toString()
+                    )
+                      ? borderColor[appliance.appliance_id.toString() - 1]
                       : "transparent"
                   }
                   onClick={() => handleApplianceClick(appliance.id)}
@@ -138,8 +153,6 @@ function HomeAppliances() {
                     borderRadius: "10px",
                     // overflow: "hidden",
                     whiteSpace: "wrap",
-                    
-                    
                   }}
                 ></Card>
               </Grid2>
@@ -169,6 +182,10 @@ function HomeAppliances() {
               textcolor="#1d78ec"
               route="/food-type"
               sx={{ width: "200px", backgroundColor: "#deeaf9" }}
+              funct={()=>{
+                dispatch(subindex());
+              
+              }}
             />
             <div
               onClick={() => {
@@ -181,10 +198,14 @@ function HomeAppliances() {
                 bgcolor="#1d78ec"
                 textcolor="white"
                 route="/current-unit"
-                sx={{ width: "200px"
+                sx={{ width: "200px" }}
+                funct={() => {
+                  dispatch(setappliance_id({ appliance_id: selectarray }));
+                  dispatch(addval({val:carb}));
 
-                 }}
-                funct={()=>{ dispatch(setappliance_id({appliance_id:selectarray}))}}
+                  dispatch(addindex());
+
+                }}
               />
             </div>
           </Box>

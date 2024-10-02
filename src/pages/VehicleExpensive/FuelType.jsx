@@ -12,10 +12,14 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import CustomButton from "../../components/button/CustomButton.jsx";
+import { addindex, addval,subindex } from "../../features/header.jsx";
 
 function FuelType() {
   const [selectedFuel, setSelectedFuel] = useState([]);
   const [selectedVehicle,setSelectedVehicle]=useState(-1)
+  const [carb,setcarb]=useState(0)
+
+
 
   const data = useSelector((state) => state.data.value.fuel_types);
 
@@ -67,6 +71,7 @@ function FuelType() {
             <div
               onClick={() => {
                 dispatch(setfuel_type_id({ setfuel_type_id: fuel.fuel_type_id }));
+                setcarb(fuel.carbon_value)
                 handleFuelClick(fuel.fuel_type_id);
               }}
             >
@@ -132,6 +137,9 @@ function FuelType() {
               textcolor="#1d78ec"
               route="/no-of-vehicle"
               sx={{ width: "200px", backgroundColor: "#deeaf9" }}
+              funct={()=>{
+                dispatch(subindex());
+              }}
             />
 
             <CustomButton
@@ -141,6 +149,11 @@ function FuelType() {
               textcolor="white"
               route="/kilometer"
               sx={{ width: "200px" }}
+              funct={()=>{
+                dispatch(addval({val:carb}));
+                dispatch(addindex());
+
+              }}
             />
           </Box>
         </Box>

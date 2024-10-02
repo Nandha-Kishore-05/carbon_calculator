@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box, CircularProgress, Slider, Divider, Button } from '@mui/material';
 import { useSelector } from "react-redux";
 import {setkm_per_week} from '../../features/karma.jsx'
+import { addindex, addval,subindex } from "../../features/header.jsx";
 
 import { useDispatch } from "react-redux";
 function KiloMeters() {
@@ -81,6 +82,10 @@ function KiloMeters() {
           sx={{ width: '200px',
             backgroundColor:"#deeaf9"
            }}  
+           funct={()=>{
+            dispatch(subindex());
+           
+           }}
         />
 
         <CustomButton 
@@ -93,6 +98,10 @@ function KiloMeters() {
           funct={()=>{
 
             dispatch(setkm_per_week({km_per_week:value}))
+            dispatch(addval({val:value}));
+
+            dispatch(addindex());
+
 
           }}
         />
