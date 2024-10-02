@@ -13,8 +13,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {setdiet_type_id} from '../../features/karma.jsx';
 import CustomButton from "../../components/button/CustomButton.jsx";
+import { addindex, addval,subindex } from "../../features/header.jsx";
+
 function FoodType() {
   const dispatch=useDispatch();
+  const [carb,setcarb]=useState(0)
+
   const FoodData = [
     { id: 1, image: Leaf, text: "Veg", bgColor: "#E4FFEE",borderColor: "#2bf074", imageWidth: "70px",
       imageHeight: "50px", },
@@ -62,6 +66,7 @@ function FoodType() {
         key={food.Food_type_id} 
         onClick={()=>{
           dispatch(setdiet_type_id({diet_type_id:food.Food_type_id}))
+          setcarb(food.carbon_value)
           handleFoodClick(food.Food_type_id);
         }}>
         <Grid2
@@ -124,6 +129,8 @@ function FoodType() {
           sx={{ width: '200px',
             backgroundColor:"#deeaf9"
            }}  
+           funct={()=>{
+            dispatch(subindex());}}
            />
 
         <CustomButton 
@@ -132,7 +139,13 @@ function FoodType() {
           bgcolor="#1d78ec" 
           textcolor="white" 
           route="/home-appliance"
-          sx={{ width: '200px' }}  
+          sx={{ width: '200px' }}
+          funct={()=>{
+            dispatch(addval({val:carb}));
+
+            dispatch(addindex());
+
+          }}  
           />
         </Box>
         </Box>
