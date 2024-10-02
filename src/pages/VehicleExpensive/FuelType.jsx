@@ -9,20 +9,17 @@ import { Button } from "@mui/material";
 import Electric from "../../assets/electric.png";
 import { setfuel_type_id } from "../../features/karma.jsx";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CustomButton from "../../components/button/CustomButton.jsx";
-import { addindex, addval,subindex } from "../../features/header.jsx";
+import { addindex, addval,subindex,setindex } from "../../features/header.jsx";
 
 function FuelType() {
   const [selectedFuel, setSelectedFuel] = useState([]);
-  const [selectedVehicle,setSelectedVehicle]=useState(-1)
-  const [carb,setcarb]=useState(0)
-
-
-
+  const [selectedVehicle,setSelectedVehicle]= React.useState(useSelector((state) => state.karma.value.fuel_type_id))
+  console.log("fuel type ",selectedVehicle)
+  const [carb,setcarb]=useState(useSelector((state) => state.header.value.val)[1])
   const data = useSelector((state) => state.data.value.fuel_types);
-
   const color=["#FFF4F3","#FFF4E6"]
   const bordercolor=["#EB7E74","#FFBA63"]
     const image=[ Fuelpump,Electric]
@@ -51,6 +48,10 @@ function FuelType() {
       imageHeight: "70px",
     },
   ];
+  useEffect(()=>{
+    dispatch(setindex({index:2}))
+
+},[])
 
   return (
     <Typography variant="h5">
@@ -138,7 +139,7 @@ function FuelType() {
               route="/no-of-vehicle"
               sx={{ width: "200px", backgroundColor: "#deeaf9" }}
               funct={()=>{
-                dispatch(subindex());
+                // dispatch(subindex());
               }}
             />
 
@@ -151,7 +152,7 @@ function FuelType() {
               sx={{ width: "200px" }}
               funct={()=>{
                 dispatch(addval({val:carb}));
-                dispatch(addindex());
+                // dispatch(addindex());
 
               }}
             />

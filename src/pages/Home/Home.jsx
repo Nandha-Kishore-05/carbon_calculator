@@ -14,9 +14,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import {setdata } from "../../features/data.jsx";
 import { useSelector } from "react-redux";
+import { initial } from "../../features/header.jsx";
 function Home() {
   const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(initial());
 
+  },[])
   useEffect(() => {
     axios
       .get("http://localhost:8080/crayon/all-data")

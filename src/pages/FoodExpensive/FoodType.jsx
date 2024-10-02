@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid2 from "@mui/material/Grid2";
@@ -13,11 +13,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {setdiet_type_id} from '../../features/karma.jsx';
 import CustomButton from "../../components/button/CustomButton.jsx";
-import { addindex, addval,subindex } from "../../features/header.jsx";
+import { addindex, addval,subindex,setindex } from "../../features/header.jsx";
 
 function FoodType() {
   const dispatch=useDispatch();
-  const [carb,setcarb]=useState(0)
+
+  const [carb,setcarb]=useState(useSelector((state) => state.header.value.val)[3])
 
   // const FoodData = [
   //   { id: 1, image: Leaf, text: "Veg", bgColor: "#E4FFEE",borderColor: "#2bf074", imageWidth: "70px",
@@ -33,12 +34,16 @@ function FoodType() {
   const color=["#E4FFEE","#FFF4E6","#FFF4F3"]
   const bordercolor=["#51F28D","#FAAD4B","#EB7E74"]
   const image=[Leaf,Oden,leg]
-  const [selectedFood,setSelectedFood]=useState(-1)
+  const [selectedFood,setSelectedFood]=  React.useState(useSelector((state) => state.karma.value.diet_type_id))
 
   const [selectedFoods, setSelectedFoods] = useState([]);
     const handleFoodClick = (id) => {
       setSelectedFoods(id)
       };
+      useEffect(()=>{
+        dispatch(setindex({index:4}))
+    
+},[])
   
   return (
     
@@ -130,7 +135,8 @@ function FoodType() {
             backgroundColor:"#deeaf9"
            }}  
            funct={()=>{
-            dispatch(subindex());}}
+            // dispatch(subindex());
+          }}
            />
 
         <CustomButton 
@@ -143,7 +149,7 @@ function FoodType() {
           funct={()=>{
             dispatch(addval({val:carb}));
 
-            dispatch(addindex());
+            // dispatch(addindex());
 
           }}  
           />
