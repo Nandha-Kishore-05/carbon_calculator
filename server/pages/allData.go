@@ -34,7 +34,7 @@ func GetAllData(c *gin.Context) {
 		appliances = append(appliances, appliance)
 	}
 
-	rows, err = config.Database.Query("SELECT food_type_id, food_type_name,carbon_value FROM food_types")
+	rows, err = config.Database.Query("SELECT diet_type_id, food_type_name,carbon_value FROM food_types")
 	if err != nil {
 		log.Println("Error fetching dietary types:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch dietary types"})
@@ -44,7 +44,7 @@ func GetAllData(c *gin.Context) {
 
 	for rows.Next() {
 		var foodType models.FoodType
-		if err := rows.Scan(&foodType.FoodTypeID, &foodType.FoodTypeName, &foodType.CarbonValue); err != nil {
+		if err := rows.Scan(&foodType.DietTypeID, &foodType.FoodTypeName, &foodType.CarbonValue); err != nil {
 			log.Println("Error scanning dietary type row:", err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Error scanning dietary type row"})
 			return
