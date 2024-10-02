@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -10,8 +10,24 @@ import Icon1 from "../../assets/icon1.png";
 import Icon2 from "../../assets/icon2.png";
 import Icon3 from "../../assets/icon3.png";
 import ImgWrapper from "../../components/ImgWrapper/ImgWrapper";
-
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import {setdata } from "../../features/data.jsx";
+import { useSelector } from "react-redux";
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/crayon/all-data")
+      .then((response) => {
+       console.log(response.data)
+       dispatch(setdata({ data: response.data}));
+
+        
+       
+      });
+  }, []);
   const navigate = useNavigate();
 
   const handleLaterClick = () => {
@@ -110,7 +126,8 @@ function Home() {
             marginTop: { xs: "15vh", md: "20vh" },
             fontSize: { xs: "16px", md: "20px" },
             letterSpacing: "0.5px",
-            maxWidth: "80vw",
+            maxWidth: "20vw",
+            ml:"40px"
           }}
         >
           Know & offset your carbon footprints!

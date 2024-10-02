@@ -31,14 +31,15 @@ function HomeAppliances() {
   };
   const [selectarray, setselectedarray] = useState([]);
   const color = [
-    "#e1eefa",
-    "#fff4e5",
-    "#f9f9f9",
-    "#e1eefa",
-    "#fff4e5",
-    "#f9f9f9",
-    "#f9f9f9",
+    "#E4FFEE",
+    "#FFF4E6",
+    "#FFF4F3",
+    "#F9F5F7",
+    "#FCF5FF",
+    "#E4FBFF",
+    "#FFF4F3",
   ];
+  const borderColor =["#51F28D","#FFBA63","#FB8276","#EF9BC5","#D793F4","#8AE6F7","#EB7E74"]
 
   const dispatch = useDispatch();
   const HomeAppliancesData = [
@@ -119,9 +120,11 @@ function HomeAppliances() {
                   isSelected={selectedAppliance.includes(
                     appliance.appliance_id.toString()
                   )}
+
                   border={
-                    selectedAppliance.includes(appliance.appliance_id.toString())
-                      ? appliance.borderColor
+                    selectedAppliance.includes(
+                    appliance.appliance_id.toString())
+                      ? borderColor[appliance.appliance_id.toString()-1] 
                       : "transparent"
                   }
                   onClick={() => handleApplianceClick(appliance.id)}
@@ -135,6 +138,8 @@ function HomeAppliances() {
                     borderRadius: "10px",
                     // overflow: "hidden",
                     whiteSpace: "wrap",
+                    
+                    
                   }}
                 ></Card>
               </Grid2>
@@ -176,7 +181,9 @@ function HomeAppliances() {
                 bgcolor="#1d78ec"
                 textcolor="white"
                 route="/current-unit"
-                sx={{ width: "200px" }}
+                sx={{ width: "200px"
+
+                 }}
                 funct={()=>{ dispatch(setappliance_id({appliance_id:selectarray}))}}
               />
             </div>

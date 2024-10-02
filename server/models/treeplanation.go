@@ -6,7 +6,7 @@ type TreePlantation struct {
 	PhoneNumber  string `json:"phone_number"`
 	Email        string `json:"email"`
 	Location     string `json:"location"`
-	TreesToPlant int    `json:"trees_to_plant"`
+	TreesToPlant int    `json:"trees_to_plant"` // Change from string to int
 	NameOnBehalf string `json:"name_on_behalf"`
 	UserId       int    `json:"user_id"`
 }

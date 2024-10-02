@@ -19,7 +19,8 @@ function FuelType() {
 
   const data = useSelector((state) => state.data.value.fuel_types);
 
-  const color=["#e1eefa","#fff4e5","#f9f9f9"]
+  const color=["#FFF4F3","#FFF4E6"]
+  const bordercolor=["#EB7E74","#FFBA63"]
     const image=[ Fuelpump,Electric]
   const handleFuelClick = (id) => {
    setSelectedVehicle(id)
@@ -90,8 +91,8 @@ function FuelType() {
                   backgroundSize="50%"
                   isSelected={selectedVehicle==fuel.fuel_type_id}
                   border={
-                    selectedVehicle==fuel.fuel_type_id
-                      ? fuel.borderColor
+                    fuel.fuel_type_id === selectedVehicle
+                      ? bordercolor[fuel.fuel_type_id-1] // Use the correct border color
                       : "transparent"
                   }
                   onClick={() => handleFuelClick(fuel.fuel_type_id)}

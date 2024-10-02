@@ -10,7 +10,6 @@ export const karma = createSlice({
     setdata: (state, action) => {
       console.log(action.payload.data);
       state.value = action.payload.data;
-
       console.log("at",state.value)
     }
   },

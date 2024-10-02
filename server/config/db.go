@@ -13,7 +13,7 @@ var Database *sql.DB
 func ConnectDB() {
 	var err error
 
-	Database, err = sql.Open("mysql", "root:Navan@123@tcp(localhost:3306)/caarbon_calculator")
+	Database, err = sql.Open("mysql", "root:nandha@tcp(localhost:3306)/caarbon_calculator")
 	if err != nil {
 		log.Fatalf("Error opening database: %v", err)
 	}
