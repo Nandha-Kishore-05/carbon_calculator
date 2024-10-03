@@ -1,36 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import sun from '../../assets/sun.png';
 import tree from '../../assets/Trees@2x.png';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import './form.css';
 
 function Form() {
+  const location = useLocation(); 
+  const userId = location.state?.userId; 
+  
+
+  useEffect(() => {
+    console.log("User ID received in Form:", userId);
+  }, [userId]);
 
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    phone_number: "", 
     email: "",
     location: "",
-    trees: "",
-    behalf: ""
+    trees_to_plant: "", 
+    name_on_behalf: ""  
   });
 
   const [errors, setErrors] = useState({
     name: false,
-    phone: false,
+    phone_number: false,
     email: false,
     location: false,
-    trees: false,
-    behalf: false,
+    trees_to_plant: false,
+    name_on_behalf: false, 
   });
 
   const inputFields = [
     { type: 'text', placeholder: 'Your Name', name: 'name' },
-    { type: 'number', placeholder: 'Phone Number', name: 'phone' },
+    { type: 'text', placeholder: 'Phone Number', name: 'phone_number' }, 
     { type: 'text', placeholder: 'Email', name: 'email' },
     { type: 'text', placeholder: 'Location', name: 'location' },
-    { type: 'text', placeholder: 'How many trees you want to plant?', name: 'trees' },
-    { type: 'text', placeholder: 'Name to be planted on behalf of?', name: 'behalf' },
+    { type: 'number', placeholder: 'How many trees you want to plant?', name: 'trees_to_plant' }, 
+    { type: 'text', placeholder: 'Name to be planted on behalf of?', name: 'name_on_behalf' } 
   ];
 
   const navigate = useNavigate();
@@ -38,22 +45,47 @@ function Form() {
   const handleClick = () => {
     const newErrors = {
       name: formData.name === "",
-      phone: formData.phone === "",
+      phone_number: formData.phone_number === "",
       email: formData.email === "",
       location: formData.location === "",
-      trees: formData.trees === "",
-      behalf: formData.behalf === "",
+      trees_to_plant: formData.trees_to_plant === "", 
+      name_on_behalf: formData.name_on_behalf === "", 
     };
-
+  
     setErrors(newErrors);
     const hasErrors = Object.values(newErrors).some(error => error === true);
-    
+  
     if (!hasErrors) {
-      const dataToSend = JSON.stringify(formData);
-      console.log("Data to be sent to backend:", dataToSend);
-      navigate('/submitted');
+
+      const dataToSend = {
+        ...formData,
+        trees_to_plant: parseInt(formData.trees_to_plant, 10),   
+        user_id: userId,  
+        status: "1" 
+      };
+  
+      
+      console.log("Data to send:", dataToSend);
+  
+ 
+      fetch("http://localhost:8080/crayon/plantation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          navigate("/submitted"); 
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -102,7 +134,6 @@ function Form() {
                       border: errors[field.name] ? '2px solid red' : '1px solid #ccc'
                     }}
                   />
-                  
                   {!formData[field.name] && (
                     <span className="required-symbol">
                       <span>{field.placeholder}</span>

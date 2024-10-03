@@ -7,9 +7,9 @@ type Appliance struct {
 }
 
 type FoodType struct {
-	FoodTypeID   int     `json:"Food_type_id"`
 	FoodTypeName string  `json:"Food_type_name"`
 	CarbonValue  float64 `json:"carbon_value"`
+	DietTypeID   int     `json:"diet_type_id"`
 }
 
 type VehicleType struct {

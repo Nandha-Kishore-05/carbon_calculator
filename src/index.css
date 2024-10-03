@@ -1,5 +1,18 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap");
+@font-face {
+  font-family: 'Excon-Bold';
+  src: url('/Fonts/OTF/Excon-Bold.woff2') format('woff2'),
+       url('/Fonts/OTF/Excon-Bold.woff') format('woff'),
+       url('/Fonts/OTF/Excon-Bold.ttf') format('truetype');
+  font-weight: 700; /* Bold weight */
+  font-style: normal;
+}
+
+
+
+
+
 
 * {
   box-sizing: border-box;
@@ -13,15 +26,16 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
+    font-family: "Sarabun";
+    font-Family: "Excon";
     font-family: "Nunito";
     background-color: #ffffff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Sarabun","Excon",;
 }
 
 

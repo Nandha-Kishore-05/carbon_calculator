@@ -39,9 +39,13 @@ function CurrentUnit() {
           sx={{
             fontSize: '16px',
             color: 'black',
-            marginTop: '40px',
-            marginBottom: '40px',
+            marginTop: '50px',
+            marginBottom: '20px',
             textAlign: 'center',
+            fontFamily: "Nunito",
+            width:"340px",
+            ml:"20px"
+
           }}
         >
           <b>How much electricity do you consume per month?</b>
@@ -79,10 +83,10 @@ function CurrentUnit() {
             </Box>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="body2" sx={{ cursor: 'pointer' }}>
+              <Typography variant="body2" sx={{ cursor: 'pointer',fontFamily: "Nunito" }}>
                 <b>100 units</b>
               </Typography>
-              <Typography variant="body2" sx={{ cursor: 'pointer' }}>
+              <Typography variant="body2" sx={{ cursor: 'pointer',fontFamily: "Nunito" }}>
                 <b>1000 units</b>
               </Typography>
             </Box>
@@ -98,59 +102,33 @@ function CurrentUnit() {
             fontWeight="bold"
             padding="5px 10px"
             bgcolor="#fff4e4"
-            sx={{ fontSize: '16px', width: '30%', borderRadius: '5px' }}
+            sx={{ fontSize: '16px', width: '30%', borderRadius: '5px',fontFamily: "Nunito" }}
           >
             {units} units
           </Typography>
         </Box>
 
-        <Box sx={{ padding: 1 }} >
-          <Box sx={{ display: "flex", justifyContent: "space-between", width: 360,marginTop:18 }} >
-            <Button 
-              variant="outlined"
-              sx={{
-                width: "45%",
-                height: "45px",
-                borderRadius: "10px",
-                fontWeight: "bold",
-                fontSize: "14px",
-                color: "#438cfa",
-                backgroundColor: "#c9e1f5",
-                textTransform: "none",
-                padding: 2,
-              }}
-              onClick={handleBackClick}
-            >
-              Back
-            </Button>
-
-            <Button
-              variant="contained"
-              sx={{
-                width: "48%",
-                height: "45px",
-                borderRadius: "10px",
-                fontWeight: "bold",
-                fontSize: "15px",
-                backgroundColor: "#0671c9",
-                textTransform: "none",
-                color: "white",
-                padding: 2,
-              }}
-              onClick={()=>{
-                dispatch(setelectricity_consumed({electricity_consumed:units}))
-                dispatch(addval({val:units}));
-
-                // dispatch(addindex());
-
-                handleForwardClick()
-
-
-              }}
-            >
-              Next
-            </Button>
-          </Box>
+        <Box  sx={{height:"55px", position: 'absolute',
+          bottom: '25px',
+          left: '20px',
+          right: '20px',}}>
+        <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row', 
+          gap: 2,                  
+          alignItems: 'center',           
+        }}
+      >
+        <CustomButton 
+          text="Calculate Carbon Footprint" 
+          variant="contained" 
+          bgcolor="#0e70eb" 
+          textcolor="white" 
+          route="/carbon-footprint"
+          sx={{ width: '400px' }}  
+        />
+        </Box>
         </Box>
       </Typography>
     </>

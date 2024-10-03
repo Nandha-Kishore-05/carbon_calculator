@@ -59,7 +59,8 @@ function PageLayoutThree({ children }) {
                       color: "#030911",
                       fontSize: "20px",
                       font: "normal normal bold 16px/24px Excon",
-                      fontFamily:"sans-serif"
+                   fontFamily: "Nunito",
+                      fontWeight:"900"
                     }}
                     
                   >

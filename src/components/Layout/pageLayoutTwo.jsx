@@ -102,7 +102,7 @@ console.log(headerindex)
                   height: '21px',
                 }}
               >
-                <svg width="18" height="18" style={{ marginRight: '1px' }} viewBox="0 0 40 40">
+                <svg width="18" height="18" style={{ marginRight: '3px',marginTop:'3.5px' }} viewBox="0 0 40 40">
                   <path
                     d="M20 5 L35 30 A3 3 0 0 1 32 34 H8 A3 3 0 0 1 5 30 Z"
                     fill="#DF2929"
@@ -110,19 +110,22 @@ console.log(headerindex)
                 </svg>
 
                 <span
+
   style={{
     textAlign: 'left',
-    fontFamily: 'Arial, sans-serif',
-    fontWeight: '800',
+    fontfamily: "Nunito",
+    fontWeight: '1000',           // Use 'bold' for 800 weight
     fontSize: '16px',
     lineHeight: '23px',
-    // letterSpacing: '0.5px',
+    letterSpacing: '-0.08px',
     color: '#030911',
+    opacity: 1,
     margin: 0,
   }}
  
 >
-  {headerindex==0?0:header[headerindex-1].toFixed(2)} ton CO2
+  {headerindex==0?15.95:header[headerindex-1].toFixed(2)} ton CO2
+
 </span>
               </div>
               <Grid2 item sx={{width: '400px', 

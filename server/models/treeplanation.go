@@ -1,7 +1,6 @@
 package models
 
-type TreePlantation struct {
-	ID           int    `json:"id"`
+type TreePlantationWithStatus struct {
 	Name         string `json:"name"`
 	PhoneNumber  string `json:"phone_number"`
 	Email        string `json:"email"`
@@ -9,4 +8,5 @@ type TreePlantation struct {
 	TreesToPlant int    `json:"trees_to_plant"`
 	NameOnBehalf string `json:"name_on_behalf"`
 	UserId       int    `json:"user_id"`
+	Status       string `json:"status"`
 }

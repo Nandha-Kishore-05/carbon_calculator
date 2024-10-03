@@ -21,7 +21,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch vehicle carbon value
 	var vehicleCarbonValue float64
 	fmt.Printf("VehicleTypeID: %d\n", input.VehicleTypeID)
 
@@ -33,7 +32,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch fuel carbon value
 	var fuelCarbonValue float64
 	err = config.Database.QueryRow(`SELECT carbon_value FROM fuel_types WHERE fuel_type_id = ?`, input.FuelTypeID).Scan(&fuelCarbonValue)
 	if err != nil {
@@ -42,16 +40,15 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch food carbon value
 	var foodCarbonValue float64
-	err = config.Database.QueryRow(`SELECT carbon_value FROM food_types WHERE food_type_id = ?`, input.FoodTypeID).Scan(&foodCarbonValue)
+	fmt.Printf("foodTypeID: %d\n", input.DietTypeID)
+	err = config.Database.QueryRow(`SELECT carbon_value FROM food_types WHERE diet_type_id = ?`, input.DietTypeID).Scan(&foodCarbonValue)
 	if err != nil {
 		log.Println("Error fetching food carbon value:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch food carbon value"})
 		return
 	}
 
-	// Fetch appliance carbon values
 	var applianceCarbonValue float64
 	applianceIDs := strings.Join(input.ApplianceID, ",")
 	query := `
@@ -65,15 +62,19 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to fetch appliance carbon values"})
 		return
 	}
-
 	totalEmissions := (vehicleCarbonValue * float64(input.KmPerWeek) * float64(input.NumberOfVehicles)) +
-		float64(fuelCarbonValue) + float64(foodCarbonValue) + float64(applianceCarbonValue) +
-		float64(input.UnitsConsumed)
+		float64(fuelCarbonValue) +
+		float64(foodCarbonValue) +
+		float64(applianceCarbonValue) +
+		float64(input.ElectricityConsumed)
 
-	totalEmissionsInTons := totalEmissions / 10000
+	totalEmissionsInTons := totalEmissions / 1000
 
-	result, err := config.Database.Exec(`INSERT INTO electricity_consumption (units_consumed, appliance_ids) VALUES (?, ?)`,
-		input.UnitsConsumed, applianceIDs)
+	log.Printf("Vehicle Carbon Value: %.2f, Km Per Week: %d, Number of Vehicles: %d, Fuel Carbon Value: %.2f, Food Carbon Value: %.2f, Appliance Carbon Value: %.2f, Electricity Consumed: %.2f, Total Emissions: %.2f\n",
+		vehicleCarbonValue, input.KmPerWeek, input.NumberOfVehicles, fuelCarbonValue, foodCarbonValue, applianceCarbonValue, float64(input.ElectricityConsumed), totalEmissionsInTons)
+
+	result, err := config.Database.Exec(`INSERT INTO electricity_consumption (electricity_consumed, appliance_ids) VALUES (?, ?)`,
+		input.ElectricityConsumed, applianceIDs)
 	if err != nil {
 		log.Println("Error inserting into electricity_consumption:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert electricity consumption data"})
@@ -86,8 +87,8 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	result, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, food_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-		input.VehicleTypeID, input.FuelTypeID, input.FoodTypeID, electricityID, input.KmPerWeek, input.NumberOfVehicles, totalEmissionsInTons)
+	result, err = config.Database.Exec(`INSERT INTO carbon_calculator_data (vehicle_type_id, fuel_type_id, diet_type_id, electricity_id, km_per_week, number_of_vehicles, carbon_value) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+		input.VehicleTypeID, input.FuelTypeID, input.DietTypeID, electricityID, input.KmPerWeek, input.NumberOfVehicles, totalEmissionsInTons)
 	if err != nil {
 		log.Println("Error inserting carbon data:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to insert carbon data"})
@@ -100,19 +101,18 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve last insert ID"})
 		return
 	}
+	averageEmissions := 10.0
+	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 100
 
-	averageEmissions := 5.0
-percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 100
+	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
+	roundedPercentageDifference := int(math.Round(math.Abs(percentageDifference)))
 
-annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
-roundedPercentageDifference := int(math.Round(percentageDifference))
-
-comparison := "which is equal to the average"
-if totalEmissionsInTons > averageEmissions {
-    comparison = fmt.Sprintf("which is %d%% higher than average", roundedPercentageDifference/100)
-} else if totalEmissionsInTons < averageEmissions {
-    comparison = fmt.Sprintf("which is %d%% lower than average", -roundedPercentageDifference/100)
-}
+	comparison := "which is equal to the average"
+	if totalEmissionsInTons > averageEmissions {
+		comparison = fmt.Sprintf("which is %d%% higher than average", roundedPercentageDifference)
+	} else if totalEmissionsInTons < averageEmissions {
+		comparison = fmt.Sprintf("which is %d%% lower than average", roundedPercentageDifference)
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"annual_carbon_footprint": annualCarbonFootprint + " ton CO₂",

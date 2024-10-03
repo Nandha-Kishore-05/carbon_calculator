@@ -39,7 +39,7 @@ function NoOfVehicle() {
   return (
 
       <Typography variant="h5">
-        <Box sx={{ fontSize: '16px', color: 'black', marginTop: '60px', marginBottom: '29px', textAlign: 'center' }}>
+        <Box sx={{ fontSize: '16px', color: 'black', marginTop: '60px', marginBottom: '29px', textAlign: 'center',fontFamily: "Nunito" }}>
           <b>How many vehicles do you own?</b>
         </Box>
 
@@ -114,7 +114,7 @@ function NoOfVehicle() {
         <CustomButton 
           text="Next" 
           variant="contained" 
-          bgcolor="#1d78ec" 
+          bgcolor="#0e70eb" 
           textcolor="white" 
           route="/fuel-type"
           sx={{ width: '200px' }}  

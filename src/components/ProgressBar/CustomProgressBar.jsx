@@ -34,7 +34,7 @@ function CustomProgressBar() {
         width: 89, 
         height: 89, 
         backgroundColor: "white", 
-        borderRadius: "50%", 
+        borderRadius: "55%", 
         display: 'flex',             
         justifyContent: 'center',   
         alignItems: 'center',
@@ -44,7 +44,7 @@ function CustomProgressBar() {
     }}>
       <CircularProgressbar
         value={percentage}
-        strokeWidth= {12} 
+        strokeWidth= {10} 
         // text={`${currentStep}/${totalSteps}`}
         styles={buildStyles({
           rotation: 1, 

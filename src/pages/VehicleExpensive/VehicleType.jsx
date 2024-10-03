@@ -60,11 +60,12 @@ const image=[Bicycle,MotorScooter,Automobile]
     <Typography variant="h5">
       <Box
         sx={{
-          fontSize: "16px",
+          fontSize: "14px",
           color: "black",
           marginTop: "50px",
           marginBottom: "1px",
           textAlign: "center",
+           fontfamily: "Nunito"
         }}
       >
         <b> Choose the vehicles you use for commuting?</b>
@@ -103,7 +104,7 @@ const image=[Bicycle,MotorScooter,Automobile]
                       : "flex-start",
                 }}
               >
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", fontfamily: "Nunito" }}>
                   <Card
                     image={image[vehicle.vehicle_type_id-1]}
                     text={vehicle.vehicle_type_name}
@@ -122,6 +123,8 @@ const image=[Bicycle,MotorScooter,Automobile]
                       backgroundRepeat: "no-repeat",
                       cursor: "pointer",
                     }}
+                    imageHeight={60}
+                    imageWidth={80}
                   />
                 </div>
               </Grid2>
@@ -149,7 +152,7 @@ const image=[Bicycle,MotorScooter,Automobile]
             <CustomButton
               text="Next"
               variant="contained"
-              bgcolor="#1d78ec"
+              bgcolor="#0e70eb"
               textcolor="white"
               route="/no-of-vehicle"
               sx={{ width: "370px" }}

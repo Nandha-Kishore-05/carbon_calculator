@@ -119,7 +119,7 @@ function Home() {
           },
         }}
       >
-        <Typography
+     <Typography
           variant="h6"
           component="h6"
           sx={{
@@ -130,12 +130,16 @@ function Home() {
             marginTop: { xs: "15vh", md: "20vh" },
             fontSize: { xs: "16px", md: "20px" },
             letterSpacing: "0.5px",
-            maxWidth: "20vw",
-            ml:"40px"
+            maxWidth: "80vw",
           }}
         >
           Know & offset your carbon footprints!
         </Typography>
+
+
+
+
+
       </Box>
 
       <Box
@@ -149,25 +153,106 @@ function Home() {
           zIndex: 1,
         }}
       >
-        <Grid2 container spacing={0}>
-          <InfoSection
-            icon={Icon1}
-            title="Answer our questions"
-            description="Vestibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc."
-            overlayColor="rgba(247, 188, 232, 0.4)"
-          />
-          <InfoSection
-            icon={Icon2}
-            title="Know your carbon footprint"
-            description="Vestibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc."
-            overlayColor="rgba(250, 202, 211, 0.4)"
-          />
-          <InfoSection
-            icon={Icon3}
-            title="Offset it by following the instructions"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            overlayColor="rgba(226, 241, 230, 0.4)"
-          />
+        <Grid2 container >
+        <InfoSection
+  icon={Icon1}
+  title={
+    <Typography
+      sx={{
+        fontFamily: "Sarabun, sans-serif",
+        fontWeight: "bolder",
+        fontSize: "14px",
+   
+        letterSpacing: "0px",
+        color: "#030911",
+      }}
+    >
+      Answer our questions
+    </Typography>
+  }
+  description={
+    <Typography
+      sx={{
+        fontFamily: "Sarabun, sans-serif",
+        fontWeight: "normal",
+        fontSize: "12px",
+        lineHeight: "20px",
+        letterSpacing: "0px",
+        color: "#60666F",
+      }}
+    >
+      Vestibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc.
+    </Typography>
+  }
+  overlayColor="rgba(247, 188, 232, 0.4)"
+/>
+
+ 
+
+<InfoSection
+  icon={Icon2}
+  title={
+    <Typography
+      sx={{
+        fontFamily: "Sarabun, sans-serif",
+        fontWeight: "bolder",
+        fontSize: "14px",
+        letterSpacing: "0px",
+        color: "#030911",
+      }}
+    >
+      Know your carbon footprint
+    </Typography>
+  }
+  description={
+    <Typography
+      sx={{
+        fontFamily: "Sarabun, sans-serif",
+        fontWeight: "normal",
+        fontSize: "12px",
+        lineHeight: "20px",
+        letterSpacing: "0px",
+        color: "#60666F",
+      }}
+    >
+      Vestibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc.
+    </Typography>
+  }
+  overlayColor="rgba(250, 202, 211, 0.4)"
+/>
+
+<InfoSection
+  icon={Icon3}
+  title={
+    <Typography
+      sx={{
+        fontFamily: "Sarabun, sans-serif",
+        fontWeight: "bolder",
+        fontSize: "14px",
+        letterSpacing: "0px",
+        color: "#030911",
+      }}
+    >
+      Offset it by following the instructions
+    </Typography>
+  }
+  description={
+    <Typography
+      sx={{
+        fontFamily: "Sarabun, sans-serif",
+        fontWeight: "normal",
+        fontSize: "12px",
+        lineHeight: "20px",
+        letterSpacing: "0px",
+        color: "#60666F",
+      }}
+    >
+     estibulum venenatis fringilla lorem eu finibus. Donec ac nulla nec nunc 
+    </Typography>
+  }
+  overlayColor="rgba(226, 241, 230, 0.4)"
+/>
+
         </Grid2>
 
         <Box
@@ -177,45 +262,49 @@ function Home() {
             marginTop: 5,
           }}
         >
-          <Button
-            variant="outlined"
-            sx={{
-              width: "45%",
-              height: "45px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              fontSize: "13px",
-              color: "#52a4ff",
-              border: "none",
-              backgroundColor: "#c9e1f5",
-              textTransform: "none",
-              "&:hover": {
-                backgroundColor: "#b4d3f3",
-              },
-            }}
-          >
-            Later
-          </Button>
+        <Button
+  variant="outlined"
+  sx={{
+    width: "48%",
+    height: "45px",
+    borderRadius: "8px",
+    fontWeight: "bold",
+     fontWeight: "600",
+    fontSize: "14px",
+    fontFamily: "Sarabun", 
+    color: "#52a4ff",
+    border: "none",
+    backgroundColor: "#e6eefa",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#e6eefa",
+    },
+  }}
+>
+  Later
+</Button>
 
-          <Button
-            variant="contained"
-            sx={{
-              width: "48%",
-              height: "45px",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              fontSize: "13px",
-              backgroundColor: "#0671c9",
-              textTransform: "none",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "#055da1",
-              },
-            }}
-            onClick={handleLaterClick}
-          >
-            Calculate & Offset
-          </Button>
+<Button
+  variant="contained"
+  sx={{
+    width: "48%",
+    height: "45px",
+    borderRadius: "8px",
+    fontWeight: "600",
+    fontSize: "14px",
+    fontFamily: "Sarabun", // Adding the font family
+    backgroundColor: "#0e70eb",
+    textTransform: "none",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#0e70eb",
+    },
+  }}
+  onClick={handleLaterClick}
+>
+  Calculate & Offset
+</Button>
+
         </Box>
       </Box>
     </Box>
