@@ -36,7 +36,7 @@ function NoOfVehicle() {
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <Box sx={{ width: '95%',mt:"30px" }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
-            <Divider orientation="vertical" sx={{ top: '466px',left: '20px',width: '4px',
+            <Divider orientation="vertical" sx={{ top: '508px',left: '20px',width: '4px',position:'absolute',
         height: '20px',bgcolor: '#0E70EB',borderRadius:'4px',zIndex:'1' }} />    
       <Slider
       aria-label="NumberofVehicles"
@@ -48,14 +48,19 @@ function NoOfVehicle() {
       marks={marks}
       value={sliderValue}       
       onChange={handleSliderChange}
-      sx={{top: '500px',
+      sx={{top: '503px',
         position:'absolute',
         left: '20px',
         width: '358px',
-        height: '4px'}}
+        height: '4px',
+        '& .MuiSlider-mark': {
+      display: 'none', 
+    },
+      }}
     />
-      <Divider orientation="vertical" sx={{ top: '466px',
-        left: '351px',
+      <Divider orientation="vertical" sx={{ top: '508px',
+        position:'absolute',
+        left: '375px',
         width: '4px',
         height: '20px', bgcolor: '#0E70EB',borderRadius:'4px' }} />
             </Box>
