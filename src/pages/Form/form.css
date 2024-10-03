@@ -56,7 +56,7 @@ opacity: 1;
 @keyframes forText {
   0% {
     opacity: 0;
-    transform: translateY(10px); 
+    transform: translateY(300px); 
   }
   20% {
     opacity: 1;
@@ -68,7 +68,7 @@ opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translateY(-10px); 
+    transform: translateY(-300px); 
   }
 }
 .form-animation {
@@ -100,7 +100,7 @@ opacity: 1;
 .text-animation {
   animation: forText 4s ease-in-out 1s forwards;
   width: 375px;
-  height: 600px;
+  height: 200px;
   position: absolute;
   text-align: center;
   font-size: large;

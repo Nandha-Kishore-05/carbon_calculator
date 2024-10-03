@@ -12,15 +12,16 @@ export const karma = createSlice({
 
     },
     initial:(state,action)=>{
-      state.value = { val:[0,0,0,0,0,0,0,0,0,0],index:0
+      state.value = { 
+        val:[0,0,0,0,0,0,0,0,0,0],index:0
       }
     },
     addval: (state, action) => {
       console.log(action.payload.val,state.value.index);
       if(state.value.index==0){
-        state.value.val[state.value.index] = action.payload.val;
+        state.value.val[state.value.index] = Number(Number(action.payload.val).toFixed(2));
       }else{
-        state.value.val[state.value.index] =state.value.val[state.value.index-1]+ action.payload.val;
+        state.value.val[state.value.index] =state.value.val[state.value.index-1]+Number( Number(action.payload.val).toFixed(2));
       }
    
 

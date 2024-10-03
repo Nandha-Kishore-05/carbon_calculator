@@ -27,8 +27,8 @@ function CarbonFootPrint() {
       .post("http://localhost:8080/crayon/calculate",user)
       .then((response) => {
         console.log(response.data)
-        setkarmavalue(response.data.annual_carbon_footprint);
-        setaveragetitle(response.data.comparison_to_average);
+        setkarmavalue(response?.data?.annual_carbon_footprint);
+        setaveragetitle(response?.data?.comparison_to_average);
         
        
       });

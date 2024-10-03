@@ -120,8 +120,9 @@ console.log(headerindex)
     color: '#030911',
     margin: 0,
   }}
+ 
 >
-  {headerindex==0?0:header[headerindex-1]} ton CO2
+  {headerindex==0?0:header[headerindex-1].toFixed(2)} ton CO2
 </span>
               </div>
               <Grid2 item sx={{width: '400px', 

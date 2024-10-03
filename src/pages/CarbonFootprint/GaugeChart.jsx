@@ -11,18 +11,28 @@ const GaugeChart = ({karmavalue}) => {
       {
         data: [30, 40, 30], 
         backgroundColor: ['#FFBF00', '#FF5F5F', '#5BE12C'],
-        borderWidth: 0, 
+        // borderWidth: 2, 
         hoverOffset: 4, 
         cutout: '90%', 
         rotation: 270, 
         circumference: 180, 
         weight: 0.5, 
-        borderRadius: 1,
+        borderColor: ['#FFBF00', '#FF5F5F', '#5BE12C'],
+        borderRadius: 199,
+        borderJoinStyle:"round",
+        borderAlign:"inner",
+        borderWidth: 20,
+        // borderWidth:300
+       
+        circular:true
       },
     ],
   };
 
   const options = {
+    cutout: '450%', // Adjusts the inner radius (for doughnut)
+    radius: '90%',
+    
     responsive: true,
     maintainAspectRatio: false,
     plugins: {

@@ -57,11 +57,20 @@ function CurrentUnit() {
               <Slider
                 aria-label="ElectricityUnitsConsumed"
                 value={units}
+             
                 valueLabelDisplay="auto"
                 step={1}
                 min={100}
                 max={1000}
                 onChange={handleUnitsChange}
+                sx={{
+                  
+                  "& .MuiSlider-valueLabelLabel": {
+                    fontSize: "2px",
+                    fontWeight: "bold",
+              
+                  }
+                }}
               />
               <Divider
                 orientation="vertical"
