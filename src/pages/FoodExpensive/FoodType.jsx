@@ -55,6 +55,7 @@ function FoodType() {
           marginTop: "50px",
           marginBottom: "15px",
           textAlign: "center",
+          fontFamily: "Nunito"
         }}
       >
         <b> What you normally eat? </b>
@@ -132,7 +133,7 @@ function FoodType() {
           textcolor="#1d78ec" 
           route="/kilometer"
           sx={{ width: '200px',
-            backgroundColor:"#deeaf9"
+            backgroundColor:"#e6eefa"
            }}  
            funct={()=>{
             // dispatch(subindex());
@@ -142,7 +143,7 @@ function FoodType() {
         <CustomButton 
           text="Next" 
           variant="contained" 
-          bgcolor="#1d78ec" 
+          bgcolor="#0e70eb" 
           textcolor="white" 
           route="/home-appliance"
           sx={{ width: '200px' }}

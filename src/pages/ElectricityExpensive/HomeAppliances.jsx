@@ -88,7 +88,7 @@ console.log(data)
 },[])
 
   return (
-    <Typography variant="h5">
+  <>
       <Box
         sx={{
           fontSize: "16px",
@@ -96,12 +96,13 @@ console.log(data)
           marginTop: "50px",
           marginBottom: "1px",
           textAlign: "center",
+          fontFamily: "Nunito"
         }}
       >
         <b> Select the appliances your use at home </b>
       </Box>
 
-      <Box sx={{ paddingY: 0, paddingX: 0 }}>
+    
         <Grid2
           container
           spacing={1}
@@ -186,37 +187,37 @@ console.log(data)
               variant="secondary"
               textcolor="#1d78ec"
               route="/food-type"
-              sx={{ width: "200px", backgroundColor: "#deeaf9" }}
+              sx={{ width: "200px", backgroundColor: "#e6eefa" }}
               funct={()=>{
                 // dispatch(subindex());
               
               }}
             />
-            <div
+            {/* <div
               onClick={() => {
-                dispatch(setappliance_id({ appliance_id: selectedAppliance }));
+               
               }}
-            >
+            >    </div>  */}
               <CustomButton
                 text="Next"
                 variant="contained"
-                bgcolor="#1d78ec"
+                bgcolor="#0e70eb"
                 textcolor="white"
                 route="/current-unit"
                 sx={{ width: "200px" }}
                 funct={() => {
                   dispatch(setappliance_id({ appliance_id: selectarray }));
                   dispatch(addval({val:carb}));
-
+                  dispatch(setappliance_id({ appliance_id: selectedAppliance }));
                   // dispatch(addindex());
 
                 }}
               />
-            </div>
+         
           </Box>
         </Box>
-      </Box>
-    </Typography>
+     
+      </>
   );
 }
 

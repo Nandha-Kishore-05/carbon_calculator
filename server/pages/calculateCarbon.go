@@ -21,7 +21,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch vehicle carbon value
 	var vehicleCarbonValue float64
 	fmt.Printf("VehicleTypeID: %d\n", input.VehicleTypeID)
 
@@ -33,7 +32,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch fuel carbon value
 	var fuelCarbonValue float64
 	err = config.Database.QueryRow(`SELECT carbon_value FROM fuel_types WHERE fuel_type_id = ?`, input.FuelTypeID).Scan(&fuelCarbonValue)
 	if err != nil {
@@ -42,7 +40,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch food carbon value
 	var foodCarbonValue float64
 	fmt.Printf("foodTypeID: %d\n", input.DietTypeID)
 	err = config.Database.QueryRow(`SELECT carbon_value FROM food_types WHERE diet_type_id = ?`, input.DietTypeID).Scan(&foodCarbonValue)
@@ -52,7 +49,6 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		return
 	}
 
-	// Fetch appliance carbon values
 	var applianceCarbonValue float64
 	applianceIDs := strings.Join(input.ApplianceID, ",")
 	query := `
@@ -72,10 +68,8 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		float64(applianceCarbonValue) +
 		float64(input.ElectricityConsumed)
 
-	// Convert total emissions to tons (assuming emissions are calculated in grams)
-	totalEmissionsInTons := totalEmissions / 1000 // Change divisor if your input emissions are in a different unit (grams, kg, etc.)
+	totalEmissionsInTons := totalEmissions / 1000
 
-	// Debugging: Log the values before insertion
 	log.Printf("Vehicle Carbon Value: %.2f, Km Per Week: %d, Number of Vehicles: %d, Fuel Carbon Value: %.2f, Food Carbon Value: %.2f, Appliance Carbon Value: %.2f, Electricity Consumed: %.2f, Total Emissions: %.2f\n",
 		vehicleCarbonValue, input.KmPerWeek, input.NumberOfVehicles, fuelCarbonValue, foodCarbonValue, applianceCarbonValue, float64(input.ElectricityConsumed), totalEmissionsInTons)
 
@@ -107,11 +101,11 @@ func CalculateCarbonFootprint(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to retrieve last insert ID"})
 		return
 	}
-	averageEmissions := 10.0                                                                     // Average emissions in tons
-	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 100 // Calculate percentage difference
+	averageEmissions := 10.0
+	percentageDifference := ((totalEmissionsInTons - averageEmissions) / averageEmissions) * 100
 
-	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))   // Convert total emissions to string
-	roundedPercentageDifference := int(math.Round(math.Abs(percentageDifference))) // Absolute value for comparison
+	annualCarbonFootprint := strconv.Itoa(int(math.Round(totalEmissionsInTons)))
+	roundedPercentageDifference := int(math.Round(math.Abs(percentageDifference)))
 
 	comparison := "which is equal to the average"
 	if totalEmissionsInTons > averageEmissions {

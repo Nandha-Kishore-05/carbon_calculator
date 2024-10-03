@@ -4,12 +4,12 @@ type CarbonInput struct {
 	VehicleTypeID    int      `json:"vehicle_type_id"`
 	FuelTypeID       int      `json:"fuel_type_id"`
 	FoodTypeID       int      `json:"food_type_id"`
-	DietTypeID       int      `json:"diet_type_id"` // New field
+	DietTypeID       int      `json:"diet_type_id"`
 	ApplianceID      []string `json:"appliance_id"`
 	KmPerWeek        int      `json:"km_per_week"`
 	NumberOfVehicles int      `json:"number_of_vehicles"`
 
-	ElectricityConsumed int `json:"electricity_consumed"` // New field
+	ElectricityConsumed int `json:"electricity_consumed"`
 }
 
 type CarbonData struct {

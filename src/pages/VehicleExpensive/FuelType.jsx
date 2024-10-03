@@ -57,11 +57,15 @@ function FuelType() {
     <Typography variant="h5">
       <Box
         sx={{
-          fontSize: "16px",
+          fontSize: "15px",
           color: "black",
           marginTop: "58px",
-          marginBottom: "20px",
+          marginBottom: "19px",
           textAlign: "center",
+          fontFamily: "Nunito",
+          fontWeight:"900",
+          width:"260px",
+          ml:"65px"
         }}
       >
         <b> What types of vehicle do you use?</b>
@@ -103,8 +107,9 @@ function FuelType() {
                   }
                   onClick={() => handleFuelClick(fuel.fuel_type_id)}
                   customStyles={{
-                    width: "130px",
-                    height: "130px",
+                    width: "120px",
+                    height: "120px",
+                    
                     backgroundRepeat: "no-repeat",
                     mt: "20px",
                   }}
@@ -137,7 +142,7 @@ function FuelType() {
               variant="secondary"
               textcolor="#1d78ec"
               route="/no-of-vehicle"
-              sx={{ width: "200px", backgroundColor: "#deeaf9" }}
+              sx={{ width: "200px", backgroundColor: "#e6eefa" }}
               funct={()=>{
                 // dispatch(subindex());
               }}
@@ -146,7 +151,7 @@ function FuelType() {
             <CustomButton
               text="Next"
               variant="contained"
-              bgcolor="#1d78ec"
+              bgcolor="#0e70eb"
               textcolor="white"
               route="/kilometer"
               sx={{ width: "200px" }}

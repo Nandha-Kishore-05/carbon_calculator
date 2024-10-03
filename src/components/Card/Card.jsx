@@ -47,10 +47,10 @@ function Card({
     }
     return (
       <Typography
-        variant="body2"
+      
         sx={{
           fontSize: "13px",
-          fontWeight: 580,
+          fontWeight: 700,
           width: "90px",
           color: "#030911",
           wordBreak: 'normal',
@@ -63,11 +63,11 @@ function Card({
           display:"flex",
           alignItems:"center",
           justifyContent:'center',
-          
+           fontfamily: "Nunito"
           
         }}
       >
-        <div style={{display:'flex',alignItems:"center",justifyContent:'center',width:"80%",height:"100%"}}>
+        <div style={{display:'flex',alignItems:"center",justifyContent:'center',width:"100%",height:"100%",padding:"10px",  fontFamily: "Nunito"}}>
         {text}
         </div>
       </Typography>
@@ -79,6 +79,7 @@ function Card({
       sx={{
         width: 100,
         height: 100,
+       fontFamily: "Nunito",
         borderRadius: 2,
         bgcolor: bgColor || "primary.main",
         border: isSelected

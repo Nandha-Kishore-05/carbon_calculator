@@ -4,7 +4,7 @@ import Sample from "../pages/sample/sample";
 
 import Url from "../pages/url/url";
 import VehicleType from "../pages/VehicleExpensive/VehicleType";
-import FormSummition from "../pages/Form/form";
+
 import Submitted from "../pages/Form/submitted";
 
 import FuelType from "../pages/VehicleExpensive/FuelType";
@@ -18,6 +18,7 @@ import FoodType from "../pages/FoodExpensive/FoodType";
 import HomeAppliances from "../pages/ElectricityExpensive/HomeAppliances";
 import CurrentUnit from "../pages/ElectricityExpensive/CurrentUnit";
 import Home from "../pages/Home/Home";
+
 
 
 
@@ -106,7 +107,7 @@ const routes = [
   path:"/form",
   element: (
     <PageOneLayout>
-   <FormSummition></FormSummition>
+   <Form />
     </PageOneLayout>
   ),
 },
